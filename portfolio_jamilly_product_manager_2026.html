@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="theme-color" content="#ffffff" />
+  <title>Jamilly Danielle — Product Manager</title>
+  <style>
+    :root{
+      color-scheme: light;
+      --bg:#ffffff;
+      --surface:#faf8f6;
+      --surface-2:#f5f2ef;
+      --surface-3:#efebe7;
+      --text:#2f2d2b;
+      --muted:#7b7671;
+      --soft:#a8a29d;
+      --line:#e9e5e1;
+      --accent:#8e7c6b;
+      --accent-soft:#eee7e1;
+      --dark:#2d2b29;
+      --max: 930px;
+      --radius: 14px;
+    }
+
+    *{box-sizing:border-box}
+    html{
+      scroll-behavior:smooth;
+      background:#fff;
+    }
+    body{
+      margin:0;
+      background:#fff;
+      color:var(--text);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+      line-height:1.5;
+    }
+
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;color:inherit}
+    img{max-width:100%;display:block}
+
+    .container{
+      width:min(var(--max), calc(100% - 36px));
+      margin:0 auto;
+      padding:72px 0 52px;
+    }
+
+    .top-title{
+      font-size:clamp(32px, 4.2vw, 48px);
+      line-height:1.05;
+      letter-spacing:-.035em;
+      margin:0 0 58px;
+      font-weight:700;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns: 0.78fr 1.25fr;
+      gap:74px;
+      align-items:center;
+    }
+
+    .hero h1{
+      margin:0 0 12px;
+      font-size:clamp(30px, 3.4vw, 40px);
+      line-height:1.08;
+      letter-spacing:-.035em;
+    }
+
+    .role{
+      margin-bottom:14px;
+      color:var(--muted);
+      font-size:14px;
+      font-weight:600;
+      letter-spacing:.01em;
+    }
+
+    .hero-copy p{
+      max-width:345px;
+      margin:0 0 20px;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.55;
+      font-style:italic;
+    }
+
+    .actions{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      min-height:36px;
+      padding:7px 11px;
+      border:1px solid var(--line);
+      border-radius:7px;
+      background:#fff;
+      font-size:13px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .16s ease, transform .16s ease, border-color .16s ease;
+    }
+
+    .btn:hover{
+      background:var(--surface);
+      border-color:#dcd6d0;
+      transform:translateY(-1px);
+    }
+
+    .btn.primary{
+      background:var(--dark);
+      color:#fff;
+      border-color:var(--dark);
+    }
+
+    .btn.primary:hover{background:#45413d}
+
+    .hero-art{
+      min-height:278px;
+      background:var(--surface);
+      border-radius:22px;
+      overflow:hidden;
+      position:relative;
+      border:1px solid #f1eeeb;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+
+    .hero-art::before,
+    .hero-art::after{
+      content:"";
+      position:absolute;
+      border-radius:50%;
+      border:1px solid rgba(142,124,107,.10);
+    }
+
+    .hero-art::before{
+      width:280px;height:280px;right:-90px;top:-120px;
+    }
+    .hero-art::after{
+      width:210px;height:210px;left:-110px;bottom:-115px;
+    }
+
+    .product-map{
+      width:100%;
+      max-width:420px;
+      height:205px;
+      position:relative;
+    }
+
+    .node{
+      position:absolute;
+      background:rgba(255,255,255,.94);
+      border:1px solid var(--line);
+      border-radius:11px;
+      padding:11px 12px;
+      min-width:100px;
+      box-shadow:0 5px 16px rgba(47,45,43,.035);
+      z-index:2;
+    }
+    .node b{
+      display:block;
+      font-size:12px;
+      margin-bottom:2px;
+    }
+    .node span{font-size:10px;color:var(--muted)}
+
+    .n1{left:0;top:10px}
+    .n2{right:0;top:10px}
+    .n3{left:50%;top:79px;transform:translateX(-50%);background:var(--accent-soft)}
+    .n4{left:5%;bottom:5px}
+    .n5{right:3%;bottom:5px}
+
+    .line{
+      position:absolute;
+      height:1px;
+      background:#d8d1ca;
+      transform-origin:left center;
+      z-index:1;
+    }
+    .l1{left:22%;top:47px;width:31%;transform:rotate(15deg)}
+    .l2{left:52%;top:48px;width:29%;transform:rotate(-15deg)}
+    .l3{left:20%;top:158px;width:34%;transform:rotate(-16deg)}
+    .l4{left:53%;top:158px;width:32%;transform:rotate(15deg)}
+
+    .hero-caption{
+      position:absolute;
+      bottom:12px;
+      left:16px;
+      right:16px;
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      color:var(--soft);
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      z-index:3;
+    }
+
+    .quick{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      margin:62px 0 54px;
+    }
+
+    .quick-card{
+      background:var(--surface);
+      padding:22px 19px 18px;
+      min-height:128px;
+      border-radius:9px;
+    }
+
+    .quick-card strong{
+      display:block;
+      font-size:25px;
+      line-height:1;
+      letter-spacing:-.035em;
+      margin-bottom:20px;
+    }
+    .quick-card span{
+      display:block;
+      color:var(--muted);
+      font-size:13px;
+      font-style:italic;
+      line-height:1.45;
+    }
+
+    section{scroll-margin-top:24px}
+    .section{
+      margin-top:54px;
+    }
+
+    .section-head{
+      margin-bottom:17px;
+    }
+
+    .section-head h2{
+      margin:0 0 5px;
+      font-size:25px;
+      line-height:1.1;
+      letter-spacing:-.025em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      font-style:italic;
+      font-size:14px;
+      max-width:720px;
+    }
+
+    .section-label{
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      margin-top:14px;
+      padding:5px 9px;
+      background:var(--surface-2);
+      border-radius:999px;
+      color:#5e5955;
+      font-size:11px;
+      font-weight:600;
+    }
+
+    .work-grid{
+      display:grid;
+      grid-template-columns:repeat(2, 1fr);
+      gap:16px;
+    }
+
+    .case-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      overflow:hidden;
+      cursor:pointer;
+      transition:transform .17s ease, box-shadow .17s ease, border-color .17s ease;
+    }
+
+    .case-card:hover{
+      transform:translateY(-2px);
+      border-color:#ddd6d0;
+      box-shadow:0 9px 24px rgba(47,45,43,.055);
+    }
+
+    .case-visual{
+      height:195px;
+      background:var(--surface);
+      position:relative;
+      padding:18px;
+      overflow:hidden;
+    }
+
+    .case-kicker{
+      position:absolute;
+      top:15px;
+      left:16px;
+      color:var(--soft);
+      font-size:9px;
+      letter-spacing:.13em;
+      text-transform:uppercase;
+      font-weight:700;
+    }
+
+    .case-body{
+      padding:16px 16px 17px;
+    }
+
+    .case-title-row{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .case-title-row h3{
+      margin:0;
+      font-size:17px;
+      line-height:1.25;
+      letter-spacing:-.018em;
+    }
+
+    .case-card p{
+      color:var(--muted);
+      margin:7px 0 12px;
+      font-size:12.5px;
+      line-height:1.5;
+      min-height:38px;
+    }
+
+    .tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:5px;
+      margin-bottom:12px;
+    }
+
+    .tag{
+      padding:3px 7px;
+      border-radius:999px;
+      background:var(--surface);
+      border:1px solid var(--line);
+      color:#625d59;
+      font-size:9.5px;
+      font-weight:600;
+    }
+
+    .impact-row{
+      border-top:1px solid var(--line);
+      padding-top:10px;
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:10px;
+    }
+
+    .impact-row span{
+      color:var(--soft);
+      font-size:9px;
+      text-transform:uppercase;
+      letter-spacing:.10em;
+    }
+
+    .impact-row strong{
+      text-align:right;
+      font-size:12px;
+      line-height:1.25;
+    }
+
+    /* NF diagram */
+    .nf-map{
+      position:absolute;
+      inset:44px 22px 18px;
+    }
+
+    .entity{
+      position:absolute;
+      padding:8px 9px;
+      min-width:74px;
+      text-align:center;
+      border-radius:8px;
+      background:#fff;
+      border:1px solid var(--line);
+      font-size:10px;
+      font-weight:700;
+      z-index:2;
+    }
+
+    .entity.nf{
+      left:50%;
+      top:50%;
+      transform:translate(-50%,-50%);
+      background:var(--accent-soft);
+      min-width:70px;
+      font-size:12px;
+    }
+    .e-pedido{left:0;top:49%;transform:translateY(-50%)}
+    .e-sap{right:0;top:49%;transform:translateY(-50%)}
+    .e-entrega{left:50%;bottom:0;transform:translateX(-50%)}
+    .e-cobranca{left:50%;top:0;transform:translateX(-50%)}
+
+    .edge{
+      position:absolute;
+      background:#d8d1ca;
+      height:1px;
+      z-index:1;
+      transform-origin:left center;
+    }
+    .edge.h1{left:20%;top:50%;width:29%}
+    .edge.h2{left:51%;top:50%;width:29%}
+    .edge.v1{left:50%;top:24%;width:27%;transform:rotate(90deg)}
+    .edge.v2{left:50%;top:51%;width:25%;transform:rotate(90deg)}
+
+    /* auth chart */
+    .auth-chart{
+      position:absolute;
+      left:22px;
+      right:22px;
+      top:60px;
+    }
+    .auth-numbers{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      margin-bottom:14px;
+    }
+    .auth-numbers strong{
+      font-size:28px;
+      letter-spacing:-.04em;
+    }
+    .auth-numbers span{
+      color:var(--muted);
+      font-size:10px;
+    }
+    .progress{
+      height:7px;
+      background:#ece7e3;
+      border-radius:999px;
+      position:relative;
+      overflow:hidden;
+    }
+    .progress-fill{
+      position:absolute;
+      inset:0 auto 0 0;
+      width:73%;
+      background:#8e7c6b;
+      border-radius:inherit;
+    }
+    .goal{
+      position:absolute;
+      left:75%;
+      top:-5px;
+      width:1px;
+      height:17px;
+      background:#59534f;
+    }
+    .goal-text{
+      margin-top:8px;
+      text-align:right;
+      color:var(--soft);
+      font-size:9px;
+    }
+
+    /* crm */
+    .crm-flow{
+      position:absolute;
+      inset:54px 22px 18px;
+      display:grid;
+      grid-template-columns:1fr 42px 1fr;
+      align-items:center;
+      gap:7px;
+    }
+    .flowbox{
+      border:1px solid var(--line);
+      border-radius:9px;
+      background:#fff;
+      padding:12px;
+      min-height:76px;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+    }
+    .flowbox strong{font-size:11px}
+    .flowbox small{color:var(--muted);font-size:9px;margin-top:3px}
+    .flowarrow{text-align:center;color:var(--accent);font-size:20px}
+
+    /* group */
+    .group-map{
+      position:absolute;
+      inset:54px 24px 18px;
+    }
+    .root{
+      position:absolute;
+      left:50%;top:0;
+      transform:translateX(-50%);
+      background:var(--accent-soft);
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:9px 11px;
+      font-size:10px;
+      font-weight:700;
+      z-index:2;
+    }
+    .child{
+      position:absolute;
+      bottom:4px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:8px;
+      padding:8px 10px;
+      font-size:9px;
+      font-weight:600;
+      z-index:2;
+    }
+    .c-a{left:0}
+    .c-b{left:50%;transform:translateX(-50%)}
+    .c-c{right:0}
+    .tree-line{
+      position:absolute;
+      height:1px;
+      background:#d8d1ca;
+      transform-origin:left center;
+    }
+    .tl1{left:50%;top:33px;width:33%;transform:rotate(135deg)}
+    .tl2{left:50%;top:33px;width:44%;transform:rotate(90deg)}
+    .tl3{left:50%;top:33px;width:33%;transform:rotate(45deg)}
+
+    .manage-panel{
+      background:var(--surface);
+      border-radius:12px;
+      padding:24px;
+      border:1px solid #f1eeeb;
+    }
+
+    .manage-flow{
+      display:grid;
+      grid-template-columns:1fr 36px 1fr 36px 1fr;
+      align-items:stretch;
+      gap:8px;
+    }
+
+    .manage-step{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:10px;
+      padding:14px;
+      min-height:112px;
+    }
+
+    .manage-step b{
+      display:block;
+      font-size:12px;
+      margin-bottom:8px;
+    }
+    .manage-step p{
+      margin:0;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.5;
+      min-height:0;
+    }
+    .manage-arrow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:var(--soft);
+      font-size:18px;
+    }
+
+    .manage-note{
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      margin-top:16px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .micro-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+
+    .micro{
+      border:1px solid var(--line);
+      border-radius:11px;
+      padding:17px;
+      min-height:155px;
+      background:#fff;
+    }
+    .micro .micro-label{
+      font-size:9px;
+      text-transform:uppercase;
+      color:var(--soft);
+      letter-spacing:.12em;
+      font-weight:700;
+    }
+    .micro h3{
+      margin:7px 0 8px;
+      font-size:16px;
+      letter-spacing:-.015em;
+    }
+    .micro p{
+      margin:0;
+      color:var(--muted);
+      font-size:12px;
+      line-height:1.5;
+    }
+    .big-result{
+      margin-top:17px;
+      display:flex;
+      align-items:baseline;
+      gap:7px;
+      font-weight:700;
+      letter-spacing:-.02em;
+    }
+    .big-result strong{font-size:24px}
+    .big-result span{font-size:12px;color:var(--muted)}
+
+    .experience{
+      border-top:1px solid var(--line);
+    }
+
+    .exp-row{
+      display:grid;
+      grid-template-columns:1.1fr .9fr 2fr;
+      gap:20px;
+      padding:17px 0;
+      border-bottom:1px solid var(--line);
+      align-items:start;
+    }
+    .exp-row strong{font-size:13px}
+    .exp-row span,
+    .exp-row p{font-size:12px;color:var(--muted);margin:0}
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.12fr .88fr;
+      gap:48px;
+    }
+
+    .about-copy{
+      margin:0;
+      font-size:16px;
+      line-height:1.65;
+      max-width:520px;
+    }
+
+    .skills{
+      display:grid;
+      gap:14px;
+    }
+    .skill{
+      border-top:1px solid var(--line);
+      padding-top:10px;
+    }
+    .skill b{
+      display:block;
+      margin-bottom:4px;
+      font-size:11px;
+    }
+    .skill span{color:var(--muted);font-size:12px}
+
+    footer{
+      margin-top:66px;
+      padding:22px 0 4px;
+      border-top:1px solid var(--line);
+      display:flex;
+      justify-content:space-between;
+      gap:16px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      font-size:11px;
+    }
+
+    .side-dashes{
+      position:fixed;
+      right:18px;
+      top:50%;
+      transform:translateY(-50%);
+      display:flex;
+      flex-direction:column;
+      gap:7px;
+      z-index:10;
+    }
+    .side-dashes a{
+      width:14px;
+      height:2px;
+      background:#e8e5e2;
+      border-radius:3px;
+      transition:width .16s ease, background .16s ease;
+    }
+    .side-dashes a:hover,
+    .side-dashes a.active{
+      width:23px;
+      background:#81766c;
+    }
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(39,36,33,.28);
+      backdrop-filter:blur(4px);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+      z-index:100;
+    }
+    .modal.open{display:flex}
+
+    .modal-card{
+      width:min(720px,100%);
+      max-height:88vh;
+      overflow:auto;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:26px;
+      box-shadow:0 24px 70px rgba(30,28,26,.13);
+    }
+
+    .modal-header{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:18px;
+      margin-bottom:16px;
+    }
+
+    .modal-eyebrow{
+      color:var(--soft);
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:9px;
+      font-weight:700;
+    }
+
+    .modal h2{
+      margin:5px 0 0;
+      font-size:24px;
+      letter-spacing:-.025em;
+    }
+
+    .close{
+      width:34px;height:34px;
+      border:1px solid var(--line);
+      border-radius:8px;
+      background:#fff;
+      cursor:pointer;
+    }
+
+    .detail{
+      display:grid;
+      gap:15px;
+    }
+
+    .detail-block{
+      border-top:1px solid var(--line);
+      padding-top:11px;
+    }
+
+    .detail-block h4{
+      margin:0 0 6px;
+      color:var(--soft);
+      text-transform:uppercase;
+      letter-spacing:.11em;
+      font-size:9px;
+    }
+    .detail-block p,
+    .detail-block li{
+      color:#56514d;
+      font-size:12.5px;
+      line-height:1.55;
+    }
+    .detail-block p{margin:0}
+    .detail-block ul{
+      margin:0;
+      padding-left:17px;
+      display:grid;
+      gap:4px;
+    }
+
+    .modal-metric{
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+      padding:15px;
+      background:var(--surface);
+      border-radius:10px;
+    }
+    .modal-metric strong{
+      font-size:27px;
+      line-height:1;
+      letter-spacing:-.035em;
+      white-space:nowrap;
+    }
+    .modal-metric span{
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.45;
+    }
+
+    .case-card:focus-visible,
+    .btn:focus-visible,
+    .close:focus-visible,
+    a:focus-visible{
+      outline:2px solid #918477;
+      outline-offset:3px;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        color-scheme:light;
+        --bg:#ffffff;
+        --surface:#faf8f6;
+        --surface-2:#f5f2ef;
+        --surface-3:#efebe7;
+        --text:#2f2d2b;
+        --muted:#7b7671;
+        --soft:#a8a29d;
+        --line:#e9e5e1;
+        --accent:#8e7c6b;
+        --accent-soft:#eee7e1;
+        --dark:#2d2b29;
+      }
+      html,body{background:#fff;color:#2f2d2b}
+    }
+
+    @media (max-width:780px){
+      .container{padding-top:40px}
+      .top-title{margin-bottom:34px}
+      .hero{grid-template-columns:1fr;gap:26px}
+      .hero-copy p{max-width:520px}
+      .hero-art{min-height:260px}
+      .quick{grid-template-columns:1fr;gap:10px;margin-top:36px}
+      .quick-card{min-height:auto}
+      .work-grid,
+      .micro-grid{grid-template-columns:1fr}
+      .manage-flow{grid-template-columns:1fr}
+      .manage-arrow{transform:rotate(90deg);height:24px}
+      .exp-row{grid-template-columns:1fr;gap:4px}
+      .about-grid{grid-template-columns:1fr;gap:28px}
+      .side-dashes{display:none}
+    }
+
+    @media (max-width:480px){
+      .container{width:min(var(--max), calc(100% - 24px))}
+      .top-title{font-size:32px}
+      .hero h1{font-size:30px}
+      .hero-copy p{font-size:15px}
+      .hero-art{padding:14px}
+      .product-map{transform:scale(.9)}
+      .case-visual{height:178px}
+      .modal{padding:8px}
+      .modal-card{padding:19px}
+      .manage-note{flex-direction:column}
+      footer{margin-top:50px}
+    }
+  </style>
+</head>
+<body>
+  <nav class="side-dashes" aria-label="Navegação rápida">
+    <a href="#top" aria-label="Início"></a>
+    <a href="#work" aria-label="Cases"></a>
+    <a href="#manage" aria-label="Gestão de produto"></a>
+    <a href="#experience" aria-label="Experiência"></a>
+    <a href="#about" aria-label="Sobre"></a>
+  </nav>
+
+  <main class="container" id="top">
+    <h1 class="top-title">Product Portfolio</h1>
+
+    <section class="hero" aria-labelledby="hero-name">
+      <div class="hero-copy">
+        <div class="role">Product Manager · Produtos Digitais B2B</div>
+        <h1 id="hero-name">Jamilly Danielle</h1>
+        <p>Transformo operações complexas em produtos digitais B2B mais simples, escaláveis e integrados.</p>
+        <div class="actions">
+          <a class="btn primary" href="#work">→ Ver cases</a>
+          <a class="btn" href="https://linkedin.com/in/jamillydanielle" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn" href="https://drive.google.com/file/d/1UjMTFn2EsPcrxRx2tp8CK9OxYqkxGqfL/view?usp=sharing" title="Currículo">Currículo</a>
+        </div>
+      </div>
+
+      <div class="hero-art" aria-label="Mapa visual entre produto, negócio e tecnologia">
+        <div class="product-map">
+          <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div>
+          <div class="node n1"><b>SAP / ERP</b><span>dados e processos</span></div>
+          <div class="node n2"><b>APIs</b><span>integrações</span></div>
+          <div class="node n3"><b>Produto B2B</b><span>decisão + escala</span></div>
+          <div class="node n4"><b>Financeiro</b><span>cobrança e operação</span></div>
+          <div class="node n5"><b>Logística</b><span>fluxos e eficiência</span></div>
+        </div>
+        <div class="hero-caption">
+          <span>Produto × Negócio × Tecnologia</span>
+          <span>Discovery → MVP → Impacto</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="quick" aria-label="Especialidades">
+      <div class="quick-card">
+        <strong>B2B</strong>
+        <span>Produtos digitais e operações complexas</span>
+      </div>
+      <div class="quick-card">
+        <strong>SAP + APIs</strong>
+        <span>ERP, integrações e sistemas internos</span>
+      </div>
+      <div class="quick-card">
+        <strong>Financeiro + Logística</strong>
+        <span>Processos críticos de ponta a ponta</span>
+      </div>
+    </section>
+
+    <section class="section" id="work">
+      <div class="section-head">
+        <h2>Selected work</h2>
+        <p>Problemas complexos transformados em decisões, estruturas de produto e resultados observáveis.</p>
+        <div class="section-label">▣ 4 cases principais</div>
+      </div>
+
+      <div class="work-grid">
+        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Nota Fiscal como backbone operacional" data-case="nf">
+          <div class="case-visual">
+            <div class="case-kicker">Case 01 · Operação + ERP</div>
+            <div class="nf-map">
+              <div class="edge h1"></div><div class="edge h2"></div><div class="edge v1"></div><div class="edge v2"></div>
+              <div class="entity e-pedido">Pedido</div>
+              <div class="entity e-sap">SAP</div>
+              <div class="entity e-cobranca">Cobrança</div>
+              <div class="entity e-entrega">Entrega</div>
+              <div class="entity nf">NF</div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-title-row">
+              <h3>NF como backbone operacional</h3>
+              <span>↗</span>
+            </div>
+            <p>De documentos descentralizados a uma entidade conectada a pedidos, entregas, cobranças e SAP.</p>
+            <div class="tags"><span class="tag">SAP</span><span class="tag">B2B</span><span class="tag">Operações</span></div>
+            <div class="impact-row"><span>Impacto</span><strong>até 92% de utilização do importador</strong></div>
+          </div>
+        </article>
+
+        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Autenticação e gestão de usuários" data-case="auth">
+          <div class="case-visual">
+            <div class="case-kicker">Case 02 · Plataforma</div>
+            <div class="auth-chart">
+              <div class="auth-numbers">
+                <div><strong>20%</strong><span> início</span></div>
+                <div><strong>73%</strong><span> atual</span></div>
+              </div>
+              <div class="progress"><div class="progress-fill"></div><div class="goal"></div></div>
+              <div class="goal-text">meta 75%</div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-title-row">
+              <h3>Autenticação & gestão de usuários</h3>
+              <span>↗</span>
+            </div>
+            <p>Estrutura de plataforma para APP, Portal, múltiplos CNPJs e jornadas digitais seguras.</p>
+            <div class="tags"><span class="tag">Plataforma</span><span class="tag">Multi-CNPJ</span><span class="tag">Segurança</span></div>
+            <div class="impact-row"><span>Resultado</span><strong>20% → 73% autenticados</strong></div>
+          </div>
+        </article>
+
+        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Desligamento do CRM" data-case="crm">
+          <div class="case-visual">
+            <div class="case-kicker">Case 03 · Modernização</div>
+            <div class="crm-flow">
+              <div class="flowbox"><strong>CRM externo</strong><small>dependências operacionais</small></div>
+              <div class="flowarrow">→</div>
+              <div class="flowbox"><strong>Sistema interno</strong><small>capacidades internalizadas</small></div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-title-row">
+              <h3>Desligamento de CRM</h3>
+              <span>↗</span>
+            </div>
+            <p>Internalização de capacidades críticas antes da retirada de uma dependência externa.</p>
+            <div class="tags"><span class="tag">Make or buy</span><span class="tag">Automação</span><span class="tag">Integrações</span></div>
+            <div class="impact-row"><span>Impacto</span><strong>R$ 160/mês por usuário eliminado</strong></div>
+          </div>
+        </article>
+
+        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Grupo empresarial" data-case="group">
+          <div class="case-visual">
+            <div class="case-kicker">Case 04 · Modelagem B2B</div>
+            <div class="group-map">
+              <div class="tree-line tl1"></div><div class="tree-line tl2"></div><div class="tree-line tl3"></div>
+              <div class="root">Grupo empresarial</div>
+              <div class="child c-a">Filial</div>
+              <div class="child c-b">Matriz</div>
+              <div class="child c-c">Filial</div>
+            </div>
+          </div>
+          <div class="case-body">
+            <div class="case-title-row">
+              <h3>Grupo empresarial & dados B2B</h3>
+              <span>↗</span>
+            </div>
+            <p>De gestão manual para uma estrutura escalável de matriz, filiais, CNPJs, status e regras.</p>
+            <div class="tags"><span class="tag">Dados</span><span class="tag">B2B</span><span class="tag">Automação</span></div>
+            <div class="impact-row"><span>Impacto</span><strong>fim da gestão manual de grupos</strong></div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="manage">
+      <div class="section-head">
+        <h2>How I manage product</h2>
+        <p>Conduzo discovery, acompanho o fluxo do time e conecto objetivos, métricas e decisões ao longo de todo o ciclo do produto.</p>
+      </div>
+
+      <div class="manage-panel">
+        <div class="manage-flow">
+          <div class="manage-step">
+            <b>Discover</b>
+            <p>Entrevistas · entendimento de contexto · hipóteses · problemas reais</p>
+          </div>
+          <div class="manage-arrow">→</div>
+          <div class="manage-step">
+            <b>Shape</b>
+            <p>Estruturação do zero · MVP · escopo · regras de negócio · priorização • critérios • objetivos</p>
+          </div>
+          <div class="manage-arrow">→</div>
+          <div class="manage-step">
+            <b>Manage</b>
+            <p>Ritos do time · OKRs · KPIs · Lead time · CFD · adoção · CES</p>
+          </div>
+        </div>
+        <div class="manage-note">
+          <span>Estruturo MVPs, construo OKRs e KPIs por quarter/semestre e uso os dados para reposicionar prioridades, escopo e fluxo do time.</span>
+          <span>CES é indicador acompanhado da jornada, sem atribuição causal exclusiva às minhas entregas.</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="other">
+      <div class="section-head">
+        <h2>Other work</h2>
+        <p>Microcases que complementam a leitura sobre iniciativa, modernização e proximidade técnica.</p>
+      </div>
+
+      <div class="micro-grid">
+        <article class="micro">
+          <div class="micro-label">Performance</div>
+          <h3>Problema identificado antes de virar demanda</h3>
+          <p>Identifiquei uma tela crítica lenta, investiguei requisições desnecessárias, estruturei a necessidade e levei a otimização para priorização.</p>
+          <div class="big-result"><strong>5,92 s → ≤ 1,2 s</strong></div>
+        </article>
+
+        <article class="micro">
+          <div class="micro-label">Modernização</div>
+          <h3>Migração de sistema legado</h3>
+          <p>Reconstrução de fluxos e requisitos, prototipação, User Stories, critérios, priorização do que migrava, homologação e acompanhamento da adoção.</p>
+          <div class="big-result"><span>C#/.NET → novo ecossistema com Rails + React</span></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <h2>Experience</h2>
+        <p>Trajetória resumida — o detalhe fica nos cases.</p>
+      </div>
+
+      <div class="experience">
+        <div class="exp-row">
+          <strong>Product Manager Pleno</strong>
+          <span>Gooxxy · Jun 2024 — Atual</span>
+          <p>Produtos digitais B2B, discovery e entrevistas, estruturação de MVPs, priorização, integrações, ritos de time, OKRs/KPIs e evolução de processos críticos.</p>
+        </div>
+        <div class="exp-row">
+          <strong>Product Owner Jr</strong>
+          <span>Gooxxy · Jun 2023 — Jun 2024</span>
+          <p>Backlog, requisitos, User Stories, critérios de aceite e interface diária com desenvolvimento.</p>
+        </div>
+        <div class="exp-row">
+          <strong>UX/UI Designer Jr</strong>
+          <span>Gooxxy · Fev 2023 — Jun 2024</span>
+          <p>Prototipação, pesquisa e aplicação de UX na evolução do produto.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+
+      <div class="about-grid">
+        <p class="about-copy">
+          Trabalho na interseção entre produto, negócio e tecnologia, transformando operações complexas em produtos B2B mais simples, rastreáveis e escaláveis. Minha atuação combina discovery e delivery ponta a ponta através de entrevistas, fluxo BPMN, estruturação de MVPs, modelagem de processos, integrações, ritos de time, definição de OKRs/KPIs e acompanhamento do produto após a entrega.
+        </p>
+
+        <div class="skills">
+          <div class="skill">
+            <b>Product</b>
+            <span>Discovery · Interviews · MVP Structuring · Prioritization · OKRs/KPIs · Stakeholder Management</span>
+          </div>
+          <div class="skill">
+            <b>Business</b>
+            <span>B2B · Financial Processes · Logistics · Operational Processes</span>
+          </div>
+          <div class="skill">
+            <b>Technology</b>
+            <span>SAP / ERP · APIs & Integrations · Data · AI & Automation</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <span>Jamilly Danielle · Product Manager</span>
+      <div>
+        <a href="mailto:jamillydanieli@gmail.com">E-mail</a>
+        &nbsp;·&nbsp;
+        <a href="https://linkedin.com/in/jamillydanielle" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </footer>
+  </main>
+
+  <div class="modal" id="caseModal" aria-hidden="true">
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-header">
+        <div>
+          <div class="modal-eyebrow" id="modalEyebrow">Case</div>
+          <h2 id="modalTitle">Case</h2>
+        </div>
+        <button class="close" id="closeModal" aria-label="Fechar">×</button>
+      </div>
+      <div class="detail" id="modalContent"></div>
+    </div>
+  </div>
+
+  <script>
+    const caseData = {
+      nf: {
+        eyebrow: "Operação · ERP · SAP",
+        title: "NF como backbone operacional",
+        content: `
+          <div class="detail-block">
+            <h4>Context</h4>
+            <p>A gestão de NFs começou com documentos descentralizados e sem vínculo adequado com a operação. Ao longo da evolução, a NF passou a conectar pedidos, entregas, cobranças, processos financeiros e acompanhamento de metas.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Problem</h4>
+            <p>O desafio não era apenas armazenar documentos, mas contextualizar a NF dentro da operação e transformá-la em uma estrutura confiável para outros fluxos do produto.</p>
+          </div>
+          <div class="detail-block">
+            <h4>My role</h4>
+            <ul>
+              <li>Discovery, entrevistas e identificação do problema raiz.</li>
+              <li>Definição de MVP, requisitos, protótipos e critérios de aceite.</li>
+              <li>Priorização, homologação e acompanhamento de adoção.</li>
+              <li>Evolução da estrutura e integração com SAP.</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Key decision</h4>
+            <p>Tratar a NF como entidade de domínio ligada à operação — e não como simples arquivo — permitindo que novas capacidades fossem construídas sobre a mesma estrutura.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Impact</h4>
+            <div class="modal-metric"><strong>até 92%</strong><span>de utilização do importador de NF no período acompanhado, após a evolução da automação via SAP.</span></div>
+          </div>
+          <div class="detail-block">
+            <h4>What I learned</h4>
+            <p>Uma necessidade inicialmente operacional pode se tornar infraestrutura estratégica quando a modelagem do domínio é tratada como produto.</p>
+          </div>
+        `
+      },
+      auth: {
+        eyebrow: "Plataforma · Segurança · Multi-CNPJ",
+        title: "Autenticação & gestão de usuários",
+        content: `
+          <div class="detail-block">
+            <h4>Context</h4>
+            <p>APP e Portal precisavam suportar múltiplos CNPJs, diferentes vínculos empresariais e jornadas sensíveis que não deveriam depender de links públicos.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Problem</h4>
+            <p>Contato, usuário e vínculo empresarial tinham responsabilidades diferentes; o produto precisava refletir isso sem comprometer atualização de dados, acesso e escalabilidade.</p>
+          </div>
+          <div class="detail-block">
+            <h4>My role</h4>
+            <ul>
+              <li>Estruturação de regras entre contato, usuário e vínculo.</li>
+              <li>Mapeamento de cenários multi-CNPJ e múltiplos administradores.</li>
+              <li>Conexão entre decisões de autenticação e jornadas de APP/Portal.</li>
+              <li>Acompanhamento da cobertura de autenticação após a entrega.</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Key decision</h4>
+            <p>Separar responsabilidades de contato e usuário, preservando a relação necessária entre as entidades para permitir atualização de dados sem confundir regras de acesso.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Impact</h4>
+            <div class="modal-metric"><strong>20% → 73%</strong><span>de compradores ativos autenticados. Meta definida: 75%. O trabalho também viabilizou a migração de jornadas sensíveis para experiências autenticadas.</span></div>
+          </div>
+        `
+      },
+      crm: {
+        eyebrow: "Modernização · Integrações · Eficiência",
+        title: "Desligamento de CRM",
+        content: `
+          <div class="detail-block">
+            <h4>Context</h4>
+            <p>Um CRM externo concentrava processos e integrações importantes. O desligamento só seria seguro se as capacidades necessárias fossem cobertas pelo ecossistema interno.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Problem</h4>
+            <p>Reduzir dependência e custo sem interromper processos como integração cadastral com Receita, qualificação automática de leads e outras rotinas de clientes.</p>
+          </div>
+          <div class="detail-block">
+            <h4>My role</h4>
+            <ul>
+              <li>Mapeamento das dependências e capacidades necessárias.</li>
+              <li>Priorização da cobertura dos fluxos antes do desligamento.</li>
+              <li>Conexão entre processos de negócio, integrações e sistema interno.</li>
+              <li>Acompanhamento até a retirada efetiva do CRM.</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Key decision</h4>
+            <p>Não tratar o cancelamento como uma ação financeira isolada: primeiro internalizar ou substituir capacidades críticas, depois retirar a ferramenta.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Impact</h4>
+            <div class="modal-metric"><strong>R$ 160/mês</strong><span>por usuário/licença eliminada após o desligamento do CRM, com os processos necessários cobertos internamente.</span></div>
+          </div>
+        `
+      },
+      group: {
+        eyebrow: "B2B · Dados · Modelagem de domínio",
+        title: "Grupo empresarial & estrutura de clientes",
+        content: `
+          <div class="detail-block">
+            <h4>Context</h4>
+            <p>A relação entre empresas, matriz, filiais e CNPJs exigia gestão manual e gerava risco de inconsistência na base e nos fluxos dependentes.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Problem</h4>
+            <p>Transformar uma lógica empresarial complexa em regras de produto e dados suficientemente claras para automatizar a gestão dos grupos.</p>
+          </div>
+          <div class="detail-block">
+            <h4>My role</h4>
+            <ul>
+              <li>Discovery com negócio e tecnologia.</li>
+              <li>Modelagem de fluxos e regras de grupo empresarial.</li>
+              <li>Refinamento de matriz/filial, raiz de CNPJ, status e movimentações.</li>
+              <li>Validação com stakeholders e apoio ao saneamento da base.</li>
+            </ul>
+          </div>
+          <div class="detail-block">
+            <h4>Key decision</h4>
+            <p>Estruturar o grupo a partir de regras consistentes de relacionamento empresarial, reduzindo a dependência de cadastro e manutenção manual.</p>
+          </div>
+          <div class="detail-block">
+            <h4>Impact</h4>
+            <p>Eliminação do cadastro e da gestão manual de grupos empresariais e melhoria estrutural da modelagem de clientes B2B.</p>
+          </div>
+        `
+      }
+    };
+
+    const modal = document.getElementById("caseModal");
+    const modalEyebrow = document.getElementById("modalEyebrow");
+    const modalTitle = document.getElementById("modalTitle");
+    const modalContent = document.getElementById("modalContent");
+    const closeModal = document.getElementById("closeModal");
+
+    function openCase(key){
+      const data = caseData[key];
+      if(!data) return;
+      modalEyebrow.textContent = data.eyebrow;
+      modalTitle.textContent = data.title;
+      modalContent.innerHTML = data.content;
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+      closeModal.focus();
+    }
+
+    function closeCase(){
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+
+    document.querySelectorAll(".case-card").forEach(card => {
+      card.addEventListener("click", () => openCase(card.dataset.case));
+      card.addEventListener("keydown", e => {
+        if(e.key === "Enter" || e.key === " "){
+          e.preventDefault();
+          openCase(card.dataset.case);
+        }
+      });
+    });
+
+    closeModal.addEventListener("click", closeCase);
+    modal.addEventListener("click", e => {
+      if(e.target === modal) closeCase();
+    });
+    document.addEventListener("keydown", e => {
+      if(e.key === "Escape" && modal.classList.contains("open")) closeCase();
+    });
+
+    const sections = [...document.querySelectorAll("main section[id], main#top")];
+    const navLinks = [...document.querySelectorAll(".side-dashes a")];
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+        }
+      });
+    }, {rootMargin:"-40% 0px -50% 0px", threshold:0});
+
+    document.querySelectorAll("#work,#manage,#experience,#about").forEach(s => observer.observe(s));
+  </script>
+</body>
+</html>
