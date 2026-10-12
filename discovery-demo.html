@@ -1346,25 +1346,25 @@ button {
   wi.innerHTML = `<div class="context-box">
     <div class="context-box-header"><strong>✓ Contexto carregado</strong><span>Informações consideradas nesta análise</span></div>
     <div class="context-source-list">
-    <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Feature ${link(2481)}</strong><span class="context-source-title">Automatizar o acompanhamento de cobranças</span></div>
-    <div class="context-source"><span class="context-source-label">Parent</span><strong>Epic ${link(2400)}</strong><span class="context-source-title">Evolução da jornada financeira</span></div>
+    <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Feature ${link(2481)}</strong><span class="context-source-title">[Hipótese] Como podemos reduzir o esforço manual na confirmação de pagamentos?</span></div>
+    <div class="context-source"><span class="context-source-label">Parent</span><strong>Epic ${link(2400)}</strong><span class="context-source-title">[Objetivo] Reduzir o tempo operacional no acompanhamento de cobranças</span></div>
     <div class="context-source"><span class="context-source-label">Work Items vinculados</span><strong>3 itens</strong><span class="context-source-title">2 filhos • 1 relacionado</span></div></div>
     <details class="related-details"><summary>Ver 3 Work Items considerados</summary><div class="related-items-list">
-      <div class="related-item"><div><strong>User Story ${link(2482)}</strong><span>Mapear regras de pagamento</span></div><span class="related-state">Active</span></div>
-      <div class="related-item"><div><strong>User Story ${link(2483)}</strong><span>Exibir cobranças ao cliente</span></div><span class="related-state">New</span></div>
-      <div class="related-item"><div><strong>Task ${link(2484)}</strong><span>Validar dados de conciliação</span></div><span class="related-state">New</span></div>
+      <div class="related-item"><div><strong>User Story ${link(2482)}</strong><span>[Discovery] Entrevista com GoFinance — processo atual de confirmação de pagamentos</span></div><span class="related-state">Active</span></div>
+      <div class="related-item"><div><strong>User Story ${link(2483)}</strong><span>[Discovery] Investigar oportunidades para disponibilizar status de pagamento ao cliente</span></div><span class="related-state">New</span></div>
+      <div class="related-item"><div><strong>Task ${link(2484)}</strong><span>[Discovery] Avaliação técnica — disponibilidade e confiabilidade dos dados de pagamento</span></div><span class="related-state">New</span></div>
     </div></details><p class="context-note">A IA considera título, status e descrição do Work Item atual, do Parent e dos Work Items vinculados.</p></div>`;
   analyzeButton.disabled=false;
   actions.forEach(a=>{a.disabled=false;a.removeAttribute('title')});
   const labels={benchmark:'Benchmark',interview:'Entrevista',csd:'Matriz CSD',bpmn:'BPMN / AS IS','risk-analysis':'Análise de riscos','product-decision':'Decisão de Produto',prototype:'Protótipo'};
   const sections={
-  benchmark:'<h3>Referências a investigar</h3><p>Compare soluções com conciliação automática, notificações e acompanhamento de pagamentos. Levante limitações e decisões relevantes.</p>',
-  interview:'<h3>Roteiro de entrevista</h3><ol><li>Como a cobrança é conciliada hoje?</li><li>Quando são necessários ajustes manuais?</li><li>Quais evidências confirmam o pagamento?</li></ol>',
-  csd:'<h3>Matriz CSD</h3><p><b>Certezas:</b> há acompanhamento manual.</p><p><b>Suposições:</b> uma integração pode reduzir retrabalho.</p><p><b>Dúvidas:</b> como são tratados pagamentos divergentes?</p>',
-  bpmn:'<h3>Mapeamento AS IS</h3><p>Pedido formalizado → Cobrança gerada → Conferência financeira → Confirmação manual → Atualização do status.</p>',
+  benchmark:'<h3>Referências a investigar</h3><p>Investigue como outras soluções apoiam a confirmação de pagamentos, sem assumir que a automação é a resposta. Compare alternativas e critérios de avaliação.</p>',
+  interview:'<h3>Roteiro de entrevista</h3><ol><li>Como funciona hoje a confirmação do pagamento, do início ao fim?</li><li>Em quais etapas ocorrem intervenções manuais, atrasos ou retrabalho?</li><li>Que evidências indicariam uma oportunidade real de melhoria?</li></ol>',
+  csd:'<h3>Matriz CSD</h3><p><b>Certeza:</b> existe uma hipótese registrada sobre reduzir o esforço manual.</p><p><b>Suposição:</b> integração ou centralização poderiam diminuir retrabalho.</p><p><b>Dúvidas:</b> onde estão os gargalos, qual a frequência das exceções e quais dados estão disponíveis?</p>',
+  bpmn:'<h3>Mapeamento AS IS</h3><p>Fluxo preliminar a validar: cobrança disponibilizada → verificação do pagamento → tratamento de exceções → atualização do acompanhamento.</p>',
   'risk-analysis':'<h3>Riscos levantados</h3><ul><li>Inconsistência dos dados entre sistemas.</li><li>Falhas de disponibilidade da integração.</li><li>Regras insuficientes para pagamentos divergentes.</li></ul>',
-  'product-decision':'<h3>Decisão de Produto</h3><p>Validar regras financeiras e priorizar uma visão centralizada das cobranças antes de automatizar a conciliação.</p>',
-  prototype:'<h3>Protótipo inicial</h3><p>Conceito de tela com lista de cobranças, situação de pagamento, detalhes e histórico de atualizações.</p>'
+  'product-decision':'<h3>Decisão de Produto</h3><p>Não decidir pela automação antes da investigação. Priorizar a coleta de evidências sobre problemas, frequência e impacto.</p>',
+  prototype:'<h3>Protótipo inicial</h3><p>Hipótese de interface para validação: visão de cobranças com estados e histórico, sem presumir solução aprovada.</p>'
   };
 
   const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
@@ -1379,20 +1379,20 @@ button {
   const diagnostic = () => '<div class="analysis" style="display:flex;flex-direction:column;gap:16px">'+
     '<h2>🧠 Análise do Discovery</h2>'+
     section('Fatos conhecidos',list([
-      ['O acompanhamento de cobranças depende de ações manuais do Financeiro.',[2481,2482]],
-      ['Existem funcionalidades planejadas para exibir o andamento do pagamento.',[2483]]
+      ['O objetivo registrado é investigar oportunidades para reduzir o esforço manual na confirmação de pagamentos.',[2481,2482]],
+      ['Há uma investigação vinculada sobre a disponibilização do status de pagamento ao cliente.',[2483]]
     ]))+
     section('Lacunas',list([
-      ['Não está definida a regra para conciliar pagamentos com divergência de valores.',[2482,2484]],
-      ['Ainda falta validar os responsáveis pelas exceções do fluxo financeiro.',[2481]]
+      ['Não há evidências suficientes para definir como divergências e exceções são tratadas atualmente.',[2482,2484]],
+      ['Ainda é necessário compreender com os envolvidos quem executa cada etapa do processo.',[2481]]
     ]))+
     section('Premissas / suposições',list([
-      ['A centralização das informações poderá diminuir o esforço operacional.',[2481]],
-      ['Uma integração poderá fornecer eventos de pagamento confiáveis.',[2483]]
+      ['A hipótese é que tornar o acompanhamento mais centralizado poderá reduzir o trabalho manual; ainda precisa ser validada.',[2481]],
+      ['Supõe-se que existam dados disponíveis para automatizar parte da confirmação, mas a viabilidade técnica ainda é desconhecida.',[2483]]
     ]))+
-    section('Principal lacuna','<p>Definir as regras de confirmação e exceções para os pagamentos.</p>'+evidence([2482,2484]))+
-    '<div class="recommendation" style="width:100%"><span class="label">Próxima ação sugerida</span><h3>🎤 Entrevista</h3><p>Validar com Financeiro a conciliação atual, exceções e permissões de confirmação.</p>'+evidence([2481,2482])+
-    '<p class="reason"><strong>Por quê:</strong> A definição das regras de negócio é necessária antes de construir a automação.</p>'+
+    section('Principal lacuna','<p>Compreender o processo atual de confirmação de pagamentos e identificar onde realmente ocorre o retrabalho.</p>'+evidence([2482,2484]))+
+    '<div class="recommendation" style="width:100%"><span class="label">Próxima ação sugerida</span><h3>🎤 Entrevista</h3><p>Entrevistar GoFinance para compreender a jornada atual, as exceções e testar a hipótese de redução de esforço manual.</p>'+evidence([2481,2482])+
+    '<p class="reason"><strong>Por quê:</strong> O contexto apresenta uma hipótese, não uma solução validada. A entrevista gera evidências para decidir se automatizar é o caminho mais adequado.</p>'+
     '<div class="recommendation-actions"><button id="createDiscoveryTaskButton" class="primary-button recommendation-create-button" type="button">✨ Criar Discovery Task</button></div></div>'+
     section('Essa análise foi útil?','<p>Seu feedback ajuda a identificar quando a recomendação está relevante ou quando a IA perdeu contexto.</p>'+
       '<div class="feedback-actions"><button class="secondary-button feedback-button" data-feedback="useful">👍 Útil</button><button class="secondary-button feedback-button" data-feedback="partial">🟡 Parcial</button><button class="secondary-button feedback-button" data-feedback="not-useful">👎 Não útil</button></div>'+
