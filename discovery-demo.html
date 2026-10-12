@@ -1,0 +1,61 @@
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Discovery Insights — Demonstração</title>
+<style>
+:root{--purple:#6f54df;--deep:#583cc7;--light:#eeeaff;--ink:#242424;--muted:#667085;--line:#e4e7ec;--bg:#f7f7fa}*{box-sizing:border-box}
+body{margin:0;font:14px/1.5 "Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+.shell{max-width:970px;margin:0 auto;padding:18px 20px 30px}
+.hero{background:linear-gradient(125deg,var(--deep),#987ef0);color:#fff;border-radius:14px;padding:23px 26px 57px;display:flex;justify-content:space-between;gap:10px}
+.hero h1{margin:0;font-size:23px}.hero p{margin:4px 0 0;opacity:.9}.version{font-size:12px;opacity:.85}
+.analyze{position:relative;max-width:780px;margin:-35px auto 25px;background:#fff;border-radius:14px;padding:24px;text-align:center;box-shadow:0 10px 30px #1513281c}
+.brain{font-size:30px}.analyze h2{font-size:19px;margin:4px 0 8px}.analyze p{color:var(--muted);margin:0 auto;max-width:580px}
+.context{display:flex;gap:7px;justify-content:center;align-items:center;flex-wrap:wrap;margin:17px 0}
+.context span{font-size:11px;color:var(--deep);background:var(--light);padding:5px 9px;border-radius:20px;font-weight:600}.context em{font-style:normal;color:#aaa}
+.workitem{background:#f7f8fc;border:1px solid var(--line);border-radius:9px;text-align:left;padding:13px;margin:0 auto 17px;max-width:650px}
+.workitem b{font-size:12px}.workitem p{font-size:12px;margin:5px 0}.state{display:inline-block;border-radius:20px;background:#e8f4ee;color:#26714f;font-size:11px;padding:2px 8px;margin-top:6px}
+button{font:inherit;cursor:pointer}.primary{border:0;border-radius:7px;background:#0078d4;color:#fff;padding:10px 18px;font-weight:650}.primary:hover{filter:brightness(.94)}
+.heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 0 12px}.heading h2{margin:0;font-size:19px}.heading p{margin:3px 0 0;color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.tool{display:flex;text-align:left;gap:12px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:11px;align-items:flex-start;min-height:82px;transition:border-color .15s,background .15s}
+.tool:hover,.tool:focus-visible{border-color:#ad9bec;background:#fbfaff}.ico{font-size:22px}.tool strong{display:block;margin-bottom:3px;font-size:13px}.tool small{color:var(--muted);font-size:11px}
+.demo-note{font-size:11px;color:var(--muted);margin:18px 0 0;text-align:center}
+.overlay{display:none;position:fixed;inset:0;background:#1b1b2780;align-items:center;justify-content:center;padding:18px;z-index:5}.overlay.open{display:flex}
+.dialog{background:white;border-radius:14px;width:min(620px,100%);max-height:86vh;overflow:auto;padding:25px;border:1px solid var(--line);box-shadow:0 20px 60px #0002}
+.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog h2{font-size:20px;margin:0}.close{border:1px solid var(--line);background:#fff;border-radius:8px;height:34px;width:34px}
+.dialog p,.dialog li{color:#515c70}.dialog ul{padding-left:20px}.dialog .mock{padding:13px;background:#f8f6ff;border-left:3px solid var(--purple);border-radius:4px;margin:18px 0}
+.secondary{border:1px solid var(--line);background:white;padding:9px 14px;border-radius:7px}
+@media(max-width:560px){.shell{padding:12px}.grid{grid-template-columns:1fr}.analyze{padding:18px}.hero{padding:20px 20px 55px}.hero h1{font-size:20px}}
+</style></head><body>
+<main class="shell">
+<section class="hero"><div><h1>🧠 Discovery Insights</h1><p>Apoio à análise e evolução de hipóteses</p></div><span class="version">v0.1 · Demo</span></section>
+<section class="analyze"><div class="brain">🧠</div><h2>Analisar contexto do Discovery</h2><p>Analise o contexto disponível para identificar lacunas, premissas, riscos e possíveis próximos passos.</p>
+<div class="context"><span>Work Item atual</span><em>+</em><span>Parent</span><em>+</em><span>Work Items vinculados</span></div>
+<div class="workitem"><b>#2481 · Automatizar análise de cobrança</b><p>Como analista de Produto, desejo reduzir atividades manuais para acompanhar cobranças de maneira consistente.</p><span class="state">Contexto de exemplo carregado</span></div>
+<button class="primary" data-demo="context">✨ Analisar contexto</button></section>
+<div class="heading"><div><h2>Ferramentas de Discovery</h2><p>Experimente uma análise usando informações fictícias.</p></div></div>
+<div class="grid">
+<button class="tool" data-demo="benchmark"><span class="ico">🔎</span><span><strong>Benchmark</strong><small>Buscar referências externas</small></span></button>
+<button class="tool" data-demo="interview"><span class="ico">🎤</span><span><strong>Entrevista</strong><small>Entender processos, regras e stakeholders</small></span></button>
+<button class="tool" data-demo="csd"><span class="ico">🧩</span><span><strong>Matriz CSD</strong><small>Organizar certezas, suposições e dúvidas</small></span></button>
+<button class="tool" data-demo="bpmn"><span class="ico">🔄</span><span><strong>BPMN / AS IS</strong><small>Mapear fluxo, decisões e handoffs</small></span></button>
+<button class="tool" data-demo="risk"><span class="ico">⚠️</span><span><strong>Análise de riscos</strong><small>Identificar impactos e dependências</small></span></button>
+<button class="tool" data-demo="decision"><span class="ico">✅</span><span><strong>Decisão de Produto</strong><small>Consolidar uma decisão baseada em evidências</small></span></button>
+<button class="tool" data-demo="prototype"><span class="ico">✒️</span><span><strong>Protótipo</strong><small>Estruturar proposta inicial de prototipação</small></span></button>
+</div><p class="demo-note">Demonstração fictícia baseada na estrutura do projeto. Nenhuma análise real é executada.</p>
+</main>
+<div class="overlay" id="overlay" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close" id="close" aria-label="Fechar">×</button></div><div id="dialogBody"></div><button class="secondary" id="back">Voltar às ferramentas</button></div></div>
+<script>
+const examples={
+context:["Análise de contexto","<p>A avaliação do Work Item de exemplo identificou pontos a investigar antes de priorizar a solução.</p><ul><li><b>Lacuna:</b> confirmar quem realiza a conciliação hoje.</li><li><b>Premissa:</b> os dados da cobrança estarão disponíveis no sistema.</li><li><b>Próximo passo:</b> entrevistar Financeiro e validar regras de exceção.</li></ul>"],
+benchmark:["Benchmark","<p>Plano ilustrativo para buscar soluções comparáveis:</p><ul><li>Identificar produtos com conciliação de cobranças.</li><li>Comparar estados, notificações e tratamento de erros.</li><li>Registrar diferenças relevantes para o contexto B2B.</li></ul>"],
+interview:["Entrevista","<p>Roteiro de exemplo para conversar com o time Financeiro:</p><ul><li>Como a cobrança é conciliada atualmente?</li><li>Quando ocorrem ajustes manuais?</li><li>Que informações são necessárias para confirmar o pagamento?</li></ul>"],
+csd:["Matriz CSD","<p><b>Certeza:</b> há acompanhamento manual de cobranças.</p><p><b>Suposição:</b> a integração reduziria retrabalho.</p><p><b>Dúvida:</b> como são tratados pagamentos divergentes?</p>"],
+bpmn:["BPMN / AS IS","<div class='mock'>Cobrança gerada → Conferência manual → Pagamento identificado → Atualização do status</div><p>Fluxo simplificado apenas para ilustrar o tipo de saída da ferramenta.</p>"],
+risk:["Análise de riscos","<ul><li><b>Dados inconsistentes:</b> risco de status incorreto.</li><li><b>Integração indisponível:</b> necessidade de procedimento alternativo.</li><li><b>Permissões:</b> restringir confirmação de pagamentos por perfil.</li></ul>"],
+decision:["Decisão de Produto","<p><b>Hipótese:</b> centralizar o acompanhamento em uma interface única.</p><p><b>Condição para seguir:</b> validar a origem dos dados e os casos excepcionais.</p><p><b>Métrica sugerida:</b> tempo de conciliação por cobrança.</p>"],
+prototype:["Protótipo","<p><b>Proposta ilustrativa:</b> tela de cobranças com filtros por status, detalhe da cobrança e histórico.</p><div class='mock'>Cobranças &nbsp;│&nbsp; Pendentes &nbsp;│&nbsp; Confirmadas &nbsp;│&nbsp; Divergentes</div><p>Validar o fluxo com as pessoas responsáveis antes do desenvolvimento.</p>"]
+};
+const overlay=document.getElementById('overlay'),close=document.getElementById('close');
+document.querySelectorAll('[data-demo]').forEach(b=>b.addEventListener('click',()=>{const x=examples[b.dataset.demo];document.getElementById('dialogTitle').textContent=x[0];document.getElementById('dialogBody').innerHTML='<div class="mock">Resultado ilustrativo · Dados simulados</div>'+x[1];overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');close.focus()}));
+function dismiss(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true')}
+close.addEventListener('click',dismiss);document.getElementById('back').addEventListener('click',dismiss);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))dismiss()});
+</script></body></html>
