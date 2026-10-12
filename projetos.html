@@ -313,6 +313,12 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
 @keyframes explore-breathing{0%,100%{transform:scale(.94);opacity:.28}50%{transform:scale(1.16);opacity:.85}}
 .explore-pulse:hover:before,.explore-pulse:focus-visible:before{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){.explore-pulse:before{animation:none;opacity:.25}}
+
+/* Ícone informativo neutro e tooltip em formato de balão */
+.simulation-info-button,.simulation-info-button:hover,.simulation-info-button:focus-visible{color:#a0abb0!important;background:transparent!important;box-shadow:none!important}
+.simulation-info-popover{right:-16px;top:calc(100% + 17px);width:min(310px,85vw);border:1px solid #dce3e5;border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(30,49,55,.1);transform:translateY(-4px)}
+.simulation-info-popover:before{content:"";position:absolute;top:-10px;right:20px;width:18px;height:18px;transform:rotate(45deg);border-top:1px solid #dce3e5;border-left:1px solid #dce3e5;background:#fff;border-top-left-radius:4px}
+.simulation-info-wrap:hover .simulation-info-popover,.simulation-info-wrap:focus-within .simulation-info-popover,.simulation-info-wrap.is-open .simulation-info-popover{transform:translateY(0)}
 </style>
 </head>
 <body>
