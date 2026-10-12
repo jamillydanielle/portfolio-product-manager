@@ -1417,11 +1417,13 @@
     .nf-map .nf{grid-area:3 / 3}
     .nf-map .e-sap{grid-area:3 / 5}
     .nf-map .e-entrega{grid-area:5 / 3}
-    .nf-connector{background:#c8d8d9;align-self:center;justify-self:stretch;z-index:1}
-    .nf-to-pedido{grid-area:3 / 2;height:1px}
-    .nf-to-sap{grid-area:3 / 4;height:1px}
-    .nf-to-cobranca{grid-area:2 / 3;width:1px;height:100%;justify-self:center}
-    .nf-to-entrega{grid-area:4 / 3;width:1px;height:100%;justify-self:center}
+    .nf-connector{background:#c8d8d9;z-index:1}
+    .nf-to-pedido,.nf-to-sap{height:1px;align-self:center;justify-self:stretch}
+    .nf-to-pedido{grid-area:3 / 2}
+    .nf-to-sap{grid-area:3 / 4}
+    .nf-to-cobranca,.nf-to-entrega{width:1px;height:100%;align-self:stretch;justify-self:center}
+    .nf-to-cobranca{grid-area:2 / 3}
+    .nf-to-entrega{grid-area:4 / 3}
 </style>
 </head>
 <body>
