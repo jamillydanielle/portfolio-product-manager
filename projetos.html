@@ -2,9 +2,9 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#ffffff"><title>Jamilly Danielle • Projetos</title>
+<meta name="color-scheme" content="light"><meta name="theme-color" content="#ffffff"><title>Jamilly Danielle • Projetos</title>
 <style>
-:root{--accent:#a2bebf;--accent-dark:#587f81;--ink:#102b2d;--muted:#64787a;--line:#dbe7e7;--soft:#f4f8f8}
+:root{color-scheme:light;--accent:#a2bebf;--accent-dark:#587f81;--ink:#102b2d;--muted:#64787a;--line:#dbe7e7;--soft:#f4f8f8}
 *{box-sizing:border-box}html{scroll-behavior:smooth}
 body{margin:0;background:#fff;color:var(--ink);font:15px/1.65 Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
 a{color:inherit;text-decoration:none}a:focus-visible{outline:2px solid var(--accent-dark);outline-offset:4px}
@@ -427,6 +427,12 @@ header.topbar .brand-text{line-height:1.12}
 header.topbar .brand-text strong{font-size:14px;letter-spacing:-.01em}
 header.topbar .brand-text small{font-size:10px;margin-top:3px}
 @media(max-width:680px){header.topbar .topbar-inner{height:64px;min-height:64px}}
+
+/* Barra de rolagem clara, consistente com o portfólio inicial */
+html{scrollbar-width:thin;scrollbar-color:#bdd0d1 transparent}
+html::-webkit-scrollbar{width:10px}
+html::-webkit-scrollbar-track{background:#fff}
+html::-webkit-scrollbar-thumb{background:#bdd0d1;border-radius:10px;border:2px solid #fff}
 </style>
 </head>
 <body>
