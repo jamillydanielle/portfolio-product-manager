@@ -1467,6 +1467,23 @@
       .modal-header{padding:19px 19px 14px}
       .modal-card .detail{padding:0 19px 19px}
     }
+
+    .case-card{cursor:default}
+    .case-detail-link{
+      appearance:none;
+      background:transparent;
+      border:0;
+      padding:0;
+      font:inherit;
+      font-size:12px;
+      font-weight:700;
+      color:#587f81;
+      cursor:pointer;
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+    .case-detail-link:hover,.case-detail-link:focus-visible{color:#587f81}
+    .case-detail-link:focus-visible{outline:2px solid #587f81;outline-offset:4px;border-radius:2px}
 </style>
 </head>
 <body>
@@ -1542,7 +1559,7 @@
       </div>
 
       <div class="work-grid">
-        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Nota Fiscal como infraestrutura principal operacional" data-case="nf">
+        <article class="case-card" data-case="nf">
           <div class="case-visual">
             <div class="case-kicker">01 · Operação + ERP</div>
             <div class="nf-map">
@@ -1568,13 +1585,13 @@
               <span class="tag">Processos B2B</span>
               <span class="tag">Backbone</span>
             </div>
-              <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
+              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
             </div>
             <div class="impact-row"><span>Impacto</span><strong>até 92% de utilização do importador</strong></div>
           </div>
         </article>
 
-        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Autenticação e gestão de usuários" data-case="auth">
+        <article class="case-card" data-case="auth">
           <div class="case-visual">
             <div class="case-kicker">Case 02 · Plataforma</div>
             <div class="auth-chart">
@@ -1594,13 +1611,13 @@
             <p>Estrutura de plataforma para APP, Portal, múltiplos CNPJs e jornadas digitais seguras.</p>
             <div class="case-tags-row">
               <div class="tags"><span class="tag">Plataforma</span><span class="tag">Multi-CNPJ</span><span class="tag">Segurança</span></div>
-              <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
+              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
             </div>
             <div class="impact-row"><span>Resultado</span><strong>20% → 73% autenticados</strong></div>
           </div>
         </article>
 
-        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Desligamento do CRM" data-case="crm">
+        <article class="case-card" data-case="crm">
           <div class="case-visual">
             <div class="case-kicker">Case 03 · Modernização</div>
             <div class="crm-flow">
@@ -1617,13 +1634,13 @@
             <p>Internalização de capacidades críticas antes da retirada de uma dependência externa.</p>
             <div class="case-tags-row">
               <div class="tags"><span class="tag">Make or buy</span><span class="tag">Automação</span><span class="tag">Integrações</span></div>
-              <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
+              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
             </div>
             <div class="impact-row"><span>Impacto</span><strong>R$ 160/mês por usuário eliminado</strong></div>
           </div>
         </article>
 
-        <article class="case-card" tabindex="0" role="button" aria-label="Abrir case Grupo empresarial" data-case="group">
+        <article class="case-card" data-case="group">
           <div class="case-visual">
             <div class="case-kicker">Case 04 · Modelagem B2B</div>
             <div class="group-map">
@@ -1642,7 +1659,7 @@
             <p>De gestão manual para uma estrutura escalável de matriz, filiais, CNPJs, status e regras.</p>
             <div class="case-tags-row">
               <div class="tags"><span class="tag">Dados</span><span class="tag">B2B</span><span class="tag">Automação</span></div>
-              <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
+              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
             </div>
             <div class="impact-row"><span>Impacto</span><strong>fim da gestão manual de grupos</strong></div>
           </div>
@@ -1934,14 +1951,8 @@
       document.body.style.overflow = "";
     }
 
-    document.querySelectorAll(".case-card").forEach(card => {
-      card.addEventListener("click", () => openCase(card.dataset.case));
-      card.addEventListener("keydown", e => {
-        if(e.key === "Enter" || e.key === " "){
-          e.preventDefault();
-          openCase(card.dataset.case);
-        }
-      });
+    document.querySelectorAll(".case-card .case-detail-link").forEach(button => {
+      button.addEventListener("click", () => openCase(button.closest(".case-card").dataset.case));
     });
 
     closeModal.addEventListener("click", closeCase);
