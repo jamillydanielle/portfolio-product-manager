@@ -9,85 +9,72 @@
     <style>* {
   box-sizing: border-box;
 }
-
 :root {
   --purple: #6f54df;
   --purple-dark: #583cc7;
   --purple-light: #987ef0;
-
   --blue: #0078d4;
-
   --text: #242424;
   --secondary: #667085;
-
   --border: #e4e7ec;
   --background: #f7f7fa;
-
   --card: #ffffff;
 }
-
 body {
   margin: 0;
-
   font-family:
     "Segoe UI",
     Arial,
     sans-serif;
-
   background: var(--background);
   color: var(--text);
 }
-
 .container {
   width: 100%;
   max-width: 1080px;
   margin: 0 auto;
   padding: 22px 28px 60px;
 }
-
 .hero {
   height: 175px;
   padding: 26px 30px;
   border-radius: 16px;
-  background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
+  background:
+    linear-gradient(
+      135deg,
+      var(--purple-dark),
+      var(--purple-light));
   color: white;
 }
-
 .hero-content {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
 }
-
 .hero-title {
   display: flex;
   align-items: center;
   gap: 14px;
 }
-
 .hero-icon {
   width: 52px;
   height: 52px;
   object-fit: contain;
 }
-
 .hero h1 {
   margin: 0;
   font-size: 25px;
   font-weight: 700;
 }
-
 .hero p {
   margin: 5px 0 0;
   opacity: 0.9;
   font-size: 14px;
 }
-
 .version {
   font-size: 12px;
   opacity: 0.85;
 }
-
 .analyze-card {
   position: relative;
   width: calc(100% - 90px);
@@ -100,24 +87,20 @@ body {
   border-radius: 16px;
   box-shadow: 0 14px 35px rgba(16, 24, 40, 0.13);
 }
-
 .brain {
   margin-bottom: 8px;
   font-size: 37px;
 }
-
 .analyze-card h2 {
   margin: 0 0 9px;
   font-size: 21px;
 }
-
 .analyze-description {
   max-width: 600px;
   margin: 0 auto;
   color: var(--secondary);
   line-height: 1.5;
 }
-
 .context-info {
   display: flex;
   justify-content: center;
@@ -126,7 +109,6 @@ body {
   margin-top: 18px;
   flex-wrap: wrap;
 }
-
 .context-info span {
   padding: 5px 9px;
   border-radius: 20px;
@@ -135,11 +117,9 @@ body {
   font-size: 12px;
   font-weight: 600;
 }
-
 button {
   font-family: inherit;
 }
-
 .primary-button {
   margin-top: 22px;
   padding: 11px 21px;
@@ -151,69 +131,56 @@ button {
   cursor: pointer;
   transition: 0.18s;
 }
-
 .primary-button:hover {
   transform: translateY(-1px);
   filter: brightness(0.95);
 }
-
 .hidden {
   display: none;
 }
-
 .analysis-result {
   max-width: 900px;
   margin: 0 auto 35px;
   scroll-margin-top: 24px;
 }
-
 .analysis {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
   gap: 18px;
 }
-
-.analysis>h2 {
+.analysis > h2 {
   grid-column: 1 / -1;
 }
-
 .analysis-section {
   padding: 20px;
   border: 1px solid var(--border);
   border-radius: 13px;
   background: white;
 }
-
 .analysis-section h3 {
   margin-top: 0;
 }
-
 .analysis-section p,
 .analysis-section li {
   color: #475467;
   line-height: 1.5;
 }
-
 .analysis-insight-list {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
-
 .analysis-insight {
   padding-bottom: 14px;
   border-bottom: 1px solid #f0f1f3;
 }
-
 .analysis-insight:last-child {
   padding-bottom: 0;
   border-bottom: 0;
 }
-
 .analysis-insight p {
   margin: 0 0 7px;
 }
-
 .analysis-evidence {
   display: inline-flex;
   align-items: center;
@@ -225,16 +192,13 @@ button {
   font-size: 11px;
   line-height: 1.3;
 }
-
 .analysis-evidence-empty {
   background: #f7f7f8;
   color: #98a2b3;
 }
-
 .analysis-more {
   margin-top: 2px;
 }
-
 .analysis-more summary {
   display: inline-flex;
   align-items: center;
@@ -246,45 +210,40 @@ button {
   list-style: none;
   user-select: none;
 }
-
 .analysis-more summary::-webkit-details-marker {
   display: none;
 }
-
 .analysis-more summary:hover {
   text-decoration: underline;
 }
-
 .analysis-more-close {
   display: none;
 }
-
 .analysis-more[open] .analysis-more-open {
   display: none;
 }
-
 .analysis-more[open] .analysis-more-close {
   display: inline;
 }
-
 .analysis-insight-list-more {
   margin-top: 14px;
 }
-
 .recommendation {
   padding: 22px;
   border: 1px solid #d7ceff;
   border-radius: 14px;
-  background: linear-gradient(135deg, rgba(111, 84, 223, 0.11), rgba(236, 72, 153, 0.06));
+  background:
+    linear-gradient(
+      135deg,
+      rgba(111, 84, 223, 0.11),
+      rgba(236, 72, 153, 0.06));
   box-shadow: 0 6px 20px rgba(94, 70, 190, 0.08);
 }
-
 .recommendation h3 {
   margin: 9px 0;
   color: var(--purple-dark);
   font-size: 20px;
 }
-
 .label {
   display: block;
   margin-bottom: 6px;
@@ -294,13 +253,11 @@ button {
   text-transform: uppercase;
   letter-spacing: 0.4px;
 }
-
 .reason {
   margin-top: 16px;
   color: #475467;
   line-height: 1.5;
 }
-
 .status-badge {
   display: inline-flex;
   align-items: center;
@@ -311,14 +268,12 @@ button {
   font-size: 12px;
   font-weight: 600;
 }
-
 .analysis-actions {
   grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   gap: 9px;
 }
-
 .secondary-button {
   padding: 10px 16px;
   border: 1px solid #d0d5dd;
@@ -327,37 +282,30 @@ button {
   color: #344054;
   cursor: pointer;
 }
-
 .secondary-button:hover {
   background: #f8f9fb;
 }
-
-.secondary-button: {
+.secondary-button:disabled {
   cursor: default;
   opacity: 0.65;
 }
-
 .feedback-section {
   border-style: dashed;
   background: #fcfcfd;
 }
-
-.feedback-section>p {
+.feedback-section > p {
   margin-top: -4px;
   max-width: 680px;
 }
-
 .feedback-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-top: 14px;
 }
-
 .feedback-button {
   min-width: 100px;
 }
-
 .selected-feedback {
   border-color: #7f6be8;
   background: #f4f3ff;
@@ -365,7 +313,6 @@ button {
   font-weight: 600;
   opacity: 1 !important;
 }
-
 .feedback-reason-panel {
   margin-top: 18px;
   padding: 18px;
@@ -373,26 +320,22 @@ button {
   border-radius: 11px;
   background: #ffffff;
 }
-
 .feedback-reason-header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
 }
-
 .feedback-reason-header h4 {
   margin: 0;
   font-size: 15px;
 }
-
 .feedback-reason-header p {
   margin: 4px 0 0;
   color: #667085;
   font-size: 12px;
 }
-
-.feedback-reason-header>span {
+.feedback-reason-header > span {
   flex-shrink: 0;
   padding: 4px 7px;
   border-radius: 999px;
@@ -401,14 +344,12 @@ button {
   font-size: 10px;
   font-weight: 700;
 }
-
 .feedback-reason-options {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px;
   margin-top: 14px;
 }
-
 .feedback-reason-option {
   display: flex;
   align-items: flex-start;
@@ -424,29 +365,24 @@ button {
   cursor: pointer;
   transition: 0.15s ease;
 }
-
 .feedback-reason-option:hover {
   border-color: #cfc5f7;
   background: #fbfaff;
 }
-
 .feedback-reason-option.selected-reason {
   border-color: #8e79e5;
   background: #f6f4ff;
   color: #4f3db5;
   box-shadow: 0 0 0 2px rgba(111, 84, 223, 0.08);
 }
-
 .feedback-reason-option input {
   flex-shrink: 0;
   margin: 2px 0 0;
   accent-color: var(--purple);
 }
-
 .feedback-reason-other {
   margin-top: 12px;
 }
-
 .feedback-reason-other label {
   display: block;
   margin-bottom: 6px;
@@ -454,7 +390,6 @@ button {
   font-size: 12px;
   font-weight: 600;
 }
-
 .feedback-reason-other textarea {
   width: 100%;
   min-height: 78px;
@@ -469,27 +404,23 @@ button {
   font-size: 12px;
   line-height: 1.45;
 }
-
 .feedback-reason-other textarea:focus {
   border-color: #8e79e5;
   box-shadow: 0 0 0 3px rgba(111, 84, 223, 0.1);
 }
-
-.feedback-reason-other>span {
+.feedback-reason-other > span {
   display: block;
   margin-top: 4px;
   color: #98a2b3;
   font-size: 10px;
   text-align: right;
 }
-
 .feedback-reason-actions {
   display: flex;
   justify-content: flex-end;
   gap: 8px;
   margin-top: 15px;
 }
-
 .feedback-reason-submit {
   padding: 9px 14px;
   border: 1px solid var(--blue);
@@ -500,29 +431,24 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
-
-.feedback-reason-submit: {
+.feedback-reason-submit:disabled {
   border-color: #d1d5db;
   background: #e5e7eb;
   color: #6b7280;
   cursor: not-allowed;
 }
-
 .feedback-status {
   min-height: 18px;
   margin-top: 12px;
   color: #667085;
   font-size: 12px;
 }
-
 .feedback-status-loading {
   color: #667085;
 }
-
 .feedback-status-error {
   color: #b42318;
 }
-
 .feedback-confirmation {
   display: inline-flex;
   align-items: center;
@@ -533,7 +459,6 @@ button {
   background: #ecfdf3;
   color: #067647;
 }
-
 .feedback-confirmation-icon {
   display: inline-flex;
   align-items: center;
@@ -541,33 +466,27 @@ button {
   font-size: 12px;
   font-weight: 700;
 }
-
 .feedback-confirmation strong,
 .feedback-confirmation span {
   display: block;
 }
-
 .feedback-confirmation strong {
   font-size: 12px;
 }
-
-.feedback-confirmation div>span {
+.feedback-confirmation div > span {
   margin-top: 1px;
   color: #478766;
   font-size: 11px;
 }
-
 .work-item-link {
   color: inherit;
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
 }
-
 .work-item-link:hover {
   color: var(--purple-dark);
 }
-
 .selected-action {
   grid-column: 1 / -1;
   margin-top: 5px;
@@ -577,33 +496,27 @@ button {
   background: #ecfdf3;
   color: #067647;
 }
-
 .tools-section {
   max-width: 900px;
   margin: 0 auto;
 }
-
 .section-header {
   margin-bottom: 17px;
 }
-
 .section-header h2 {
   margin: 0;
   font-size: 19px;
 }
-
 .section-header p {
   margin: 5px 0 0;
   color: var(--secondary);
   font-size: 13px;
 }
-
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 12px;
 }
-
 .tool-card {
   display: flex;
   align-items: flex-start;
@@ -617,35 +530,29 @@ button {
   cursor: pointer;
   transition: 0.18s;
 }
-
 .tool-card:hover {
   transform: translateY(-2px);
   border-color: #baaef6;
   box-shadow: 0 7px 18px rgba(16, 24, 40, 0.07);
 }
-
 .tool-icon {
   font-size: 23px;
 }
-
 .tool-card strong {
   display: block;
   margin-bottom: 4px;
   font-size: 15px;
 }
-
 .tool-card span {
   display: block;
   color: var(--secondary);
   font-size: 12px;
   line-height: 1.4;
 }
-
 .work-item-context {
   margin: 16px auto 0;
   max-width: 680px;
 }
-
 .context-title {
   max-width: 330px;
   overflow: hidden;
@@ -653,7 +560,6 @@ button {
   white-space: nowrap;
   color: #667085;
 }
-
 .context-box {
   margin-top: 16px;
   padding: 16px 18px;
@@ -662,30 +568,25 @@ button {
   border-radius: 12px;
   text-align: left;
 }
-
 .context-box-header {
   margin-bottom: 14px;
 }
-
 .context-box-header strong {
   display: block;
   color: #067647;
   font-size: 13px;
 }
-
 .context-box-header span {
   display: block;
   margin-top: 3px;
   color: #667085;
   font-size: 12px;
 }
-
 .context-source-list {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
 }
-
 .context-source {
   min-width: 0;
   padding: 11px 12px;
@@ -693,7 +594,6 @@ button {
   border: 1px solid #ebe8f8;
   border-radius: 9px;
 }
-
 .context-source-label {
   display: block;
   margin-bottom: 5px;
@@ -701,12 +601,10 @@ button {
   font-size: 11px;
   font-weight: 600;
 }
-
 .context-source strong {
   display: block;
   font-size: 12px;
 }
-
 .context-source-title {
   display: block;
   margin-top: 3px;
@@ -716,14 +614,12 @@ button {
   color: #667085;
   font-size: 11px;
 }
-
 .related-details {
   margin-top: 12px;
   background: white;
   border: 1px solid #ebe8f8;
   border-radius: 9px;
 }
-
 .related-details summary {
   padding: 11px 13px;
   color: #5f4acb;
@@ -731,13 +627,11 @@ button {
   font-weight: 600;
   cursor: pointer;
 }
-
 .related-items-list {
   max-height: 230px;
   overflow-y: auto;
   padding: 0 12px 12px;
 }
-
 .related-item {
   display: flex;
   align-items: center;
@@ -746,17 +640,14 @@ button {
   padding: 9px 4px;
   border-top: 1px solid #f0f0f3;
 }
-
 .related-item div {
   min-width: 0;
 }
-
 .related-item strong {
   display: block;
   font-size: 11px;
 }
-
-.related-item div>span {
+.related-item div > span {
   display: block;
   margin-top: 2px;
   overflow: hidden;
@@ -765,7 +656,6 @@ button {
   color: #667085;
   font-size: 11px;
 }
-
 .related-state {
   flex-shrink: 0;
   padding: 3px 7px;
@@ -775,65 +665,51 @@ button {
   color: #475467;
   font-size: 10px;
 }
-
 .context-note {
   margin: 11px 2px 0;
   color: #98a2b3;
   font-size: 10px;
   line-height: 1.4;
 }
-
 @media (max-width: 800px) {
   .tools-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
   .analysis {
     grid-template-columns: 1fr;
   }
-
   .analyze-card {
     width: calc(100% - 30px);
   }
-
   .context-source-list {
     grid-template-columns: 1fr;
   }
 }
-
 @media (max-width: 520px) {
   .tools-grid {
     grid-template-columns: 1fr;
   }
-
   .container {
     padding: 15px;
   }
-
   .feedback-actions {
     flex-direction: column;
   }
-
   .feedback-reason-options {
     grid-template-columns: 1fr;
   }
-
   .feedback-reason-header {
     flex-direction: column;
     gap: 8px;
   }
-
   .feedback-reason-actions {
     flex-direction: column-reverse;
   }
-
   .feedback-reason-actions button {
     width: 100%;
   }
 }
-
-/* DIAGNÓSTICO: somente Fatos, Lacunas, Premissas e Principal lacuna */
-.analysis>.analysis-section:not(.feedback-section) {
+.analysis > .analysis-section:not(.feedback-section) {
   padding: 0;
   overflow: hidden;
   border-color: #e7e2fb;
@@ -841,8 +717,7 @@ button {
   background: #ffffff;
   box-shadow: 0 2px 8px rgba(62, 45, 120, 0.035);
 }
-
-.analysis>.analysis-section:not(.feedback-section)>h3 {
+.analysis > .analysis-section:not(.feedback-section) > h3 {
   margin: 0;
   padding: 14px 18px;
   border-bottom: 1px solid #eeeaf8;
@@ -851,41 +726,33 @@ button {
   font-size: 16px;
   font-weight: 650;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight-list {
   gap: 0;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight {
   padding: 14px 18px;
   border-bottom: 1px solid #f0f0f3;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight:last-child {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight:last-child {
   padding-bottom: 14px;
   border-bottom: 0;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight p {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight p {
   margin: 0 0 8px;
 }
-
-.analysis>.analysis-section:not(.feedback-section)>p {
+.analysis > .analysis-section:not(.feedback-section) > p {
   margin: 0;
   padding: 15px 18px 8px;
 }
-
-.analysis>.analysis-section:not(.feedback-section)>.analysis-evidence {
+.analysis > .analysis-section:not(.feedback-section) > .analysis-evidence {
   margin: 0 18px 16px;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-more {
+.analysis > .analysis-section:not(.feedback-section) .analysis-more {
   margin: 0;
   border-top: 1px solid #eeeaf8;
   background: #ffffff;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-more summary {
+.analysis > .analysis-section:not(.feedback-section) .analysis-more summary {
   display: flex;
   width: 100%;
   align-items: center;
@@ -896,33 +763,27 @@ button {
   font-weight: 600;
   text-decoration: none;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-more summary::before {
-  content: "▸";
+.analysis > .analysis-section:not(.feedback-section) .analysis-more summary::before {
+  content: "\25b8";
   color: #6f54df;
   font-size: 11px;
   line-height: 1;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-more[open] summary::before {
-  content: "▾";
+.analysis > .analysis-section:not(.feedback-section) .analysis-more[open] summary::before {
+  content: "\25be";
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-more summary:hover {
+.analysis > .analysis-section:not(.feedback-section) .analysis-more summary:hover {
   background: #faf9ff;
   text-decoration: none;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list-more {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight-list-more {
   margin-top: 0;
   border-top: 1px solid #f0f0f3;
 }
-
-.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list-more .analysis-insight {
+.analysis > .analysis-section:not(.feedback-section) .analysis-insight-list-more .analysis-insight {
   padding-left: 18px;
   padding-right: 18px;
 }
-
 .context-loading {
   display: flex;
   align-items: center;
@@ -931,16 +792,13 @@ button {
   gap: 9px;
   margin: 14px auto 4px;
   padding: 8px 14px;
-
   color: #6041c7;
   background: #f5f2ff;
   border: 1px solid #e7e0ff;
   border-radius: 999px;
-
   font-size: 13px;
   font-weight: 600;
 }
-
 .context-spinner {
   flex-shrink: 0;
   width: 12px;
@@ -950,21 +808,18 @@ button {
   border-radius: 50%;
   animation: context-spin 0.8s linear infinite;
 }
-
 @keyframes context-spin {
   to {
     transform: rotate(360deg);
   }
 }
-
-.primary-button: {
+.primary-button:disabled {
   background: #d1d5db;
   color: #6b7280;
   cursor: not-allowed;
   opacity: 1;
 }
-
-.feedback-button: {
+.feedback-button:disabled {
   background: #f3f4f6;
   border-color: #d1d5db;
   color: #6b7280;
@@ -972,14 +827,12 @@ button {
   cursor: not-allowed;
   box-shadow: none;
 }
-
-.feedback-button.selected-feedback: {
+.feedback-button.selected-feedback:disabled {
   background: #e5e7eb;
   border-color: #9ca3af;
   color: #374151;
   font-weight: 600;
 }
-
 .analysis-loading {
   display: grid;
   grid-template-columns: 52px minmax(0, 1fr);
@@ -991,7 +844,6 @@ button {
   background: #ffffff;
   box-shadow: 0 12px 30px rgb(31 42 68 / 7%);
 }
-
 .analysis-loading-icon {
   position: relative;
   display: grid;
@@ -1003,7 +855,6 @@ button {
   font-size: 24px;
   isolation: isolate;
 }
-
 .analysis-loading-icon::before {
   content: "";
   position: absolute;
@@ -1015,25 +866,21 @@ button {
   border-radius: 50%;
   animation: analysis-spin 1.2s linear infinite;
 }
-
 .analysis-loading-icon span {
   animation: analysis-breathe 1.5s ease-in-out infinite;
 }
-
 .analysis-loading-copy h3 {
   margin: 1px 0 5px;
   font-size: 18px;
   line-height: 1.35;
 }
-
-.analysis-loading-copy>p {
+.analysis-loading-copy > p {
   min-height: 21px;
   margin: 0;
   color: #667085;
   font-size: 14px;
   line-height: 1.5;
 }
-
 .analysis-loading-progress {
   position: relative;
   height: 5px;
@@ -1042,7 +889,6 @@ button {
   border-radius: 999px;
   background: #eeeafd;
 }
-
 .analysis-loading-progress::after {
   content: "";
   position: absolute;
@@ -1050,13 +896,14 @@ button {
   left: -38%;
   width: 38%;
   border-radius: inherit;
-  background: linear-gradient(90deg,
+  background:
+    linear-gradient(
+      90deg,
       #a58be9,
       #6845d6,
       #a58be9);
   animation: analysis-progress 1.4s ease-in-out infinite;
 }
-
 .analysis-loading-stage {
   display: inline-flex;
   align-items: center;
@@ -1070,7 +917,6 @@ button {
   font-size: 12px;
   font-weight: 600;
 }
-
 .analysis-loading-dot {
   width: 7px;
   height: 7px;
@@ -1079,56 +925,47 @@ button {
   box-shadow: 0 0 0 4px rgb(104 69 214 / 12%);
   animation: analysis-pulse 1s ease-in-out infinite;
 }
-
 @keyframes analysis-spin {
   to {
     transform: rotate(360deg);
   }
 }
-
 @keyframes analysis-progress {
   to {
     left: 105%;
   }
 }
-
 @keyframes analysis-breathe {
   50% {
     transform: scale(1.08);
   }
 }
-
 @keyframes analysis-pulse {
   50% {
     opacity: 0.5;
   }
 }
-
 @media (max-width: 560px) {
   .analysis-loading {
     grid-template-columns: 1fr;
     padding: 20px;
   }
 }
-
-.tool-card: {
+.tool-card:disabled {
   opacity: 0.5;
   cursor: not-allowed;
   background: #f8f9fb;
 }
-
 .tool-card:disabled:hover {
   transform: none;
   border-color: var(--border);
   box-shadow: none;
 }
-
-.primary-button: {
+.primary-button:disabled {
   opacity: 0.7;
   cursor: wait;
   transform: none;
 }
-
 .recommendation-actions {
   display: flex;
   align-items: center;
@@ -1137,54 +974,43 @@ button {
   padding-top: 16px;
   border-top: 1px solid rgba(111, 84, 223, 0.16);
 }
-
 .recommendation-create-button {
   margin-top: 0;
   flex-shrink: 0;
 }
-
 .discovery-task-status {
   color: #667085;
   font-size: 12px;
   line-height: 1.4;
 }
-
 .discovery-task-status-loading {
   color: #5f4acb;
 }
-
 .discovery-task-status-success {
   color: #067647;
 }
-
 .discovery-task-status-error {
   color: #b42318;
 }
-
 .tool-card-status {
   min-height: 16px;
   margin-top: 8px;
   font-weight: 600;
 }
-
 .tool-card-loading {
   opacity: 1 !important;
   border-color: #baaef6 !important;
   background: #fbfaff !important;
 }
-
 .tool-card-loading .tool-icon {
   animation: tool-loading-pulse 1s ease-in-out infinite;
 }
-
 @keyframes tool-loading-pulse {
   50% {
     transform: scale(1.12);
     opacity: 0.65;
   }
 }
-
-/* Modal de confirmação das ferramentas de Discovery */
 .discovery-modal-overlay {
   position: fixed;
   inset: 0;
@@ -1202,63 +1028,150 @@ button {
   background: #fff;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 20px 70px rgba(0,0,0,.3);
+  box-shadow: 0 20px 70px rgba(0, 0, 0, .3);
   color: #242424;
 }
-.discovery-modal-header { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
-.discovery-modal-header h2 { margin:0 0 6px; font-size:21px; }
-.discovery-modal-subtitle { margin:0 0 20px; font-size:13px; color:#667085; }
-.discovery-modal-x { border:0; background:transparent; font-size:25px; cursor:pointer; color:#667085; padding:0 4px; }
-.discovery-modal-x: { opacity:.4; cursor:default; }
-.discovery-modal-label { display:block; margin-bottom:8px; font-weight:600; font-size:14px; }
-.discovery-modal-label span { font-weight:400; color:#667085; }
-.discovery-modal-textarea { resize:vertical; width:100%; min-height:106px; padding:12px; border:1px solid #d0d5dd; border-radius:9px; font:inherit; font-size:14px; }
-.discovery-modal-textarea:focus { outline:2px solid #987ef0; outline-offset:1px; }
-.discovery-modal-help { margin:7px 0 16px; font-size:12px; color:#667085; }
-.discovery-modal-reminder { padding:14px 16px; border-radius:10px; background:#f5f3ff; border:1px solid #e9e3ff; font-size:13px; }
-.discovery-modal-reminder ul { margin:8px 0 0; padding-left:20px; }
-.discovery-modal-reminder li { margin:4px 0; }
-.discovery-modal-progress { display:flex; gap:10px; align-items:center; margin-top:16px; color:#583cc7; font-size:13px; font-weight:600; }
-.discovery-modal-progress[hidden] { display:none; }
-.discovery-modal-spinner { flex:none; width:18px; height:18px; border:2px solid #ddd4ff; border-top-color:#6f54df; border-radius:50%; animation:discovery-modal-spin .8s linear infinite; }
-@keyframes discovery-modal-spin { to { transform:rotate(360deg); } }
-.discovery-modal-footer { display:flex; justify-content:flex-end; gap:10px; margin-top:22px; flex-wrap:wrap; }
-.discovery-modal-footer button { border-radius:9px; padding:11px 16px; font-weight:600; cursor:pointer; }
-.discovery-modal-cancel { background:white; color:#344054; border:1px solid #d0d5dd; }
-.discovery-modal-confirm { background:#6f54df; color:white; border:1px solid #6f54df; }
-.discovery-modal-footer button: { opacity:.65; cursor:wait; }
-@media (max-width:540px) { .discovery-modal { padding:18px; } .discovery-modal-footer button { flex:1; } }
+.discovery-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 14px;
+}
+.discovery-modal-header h2 {
+  margin: 0 0 6px;
+  font-size: 21px;
+}
+.discovery-modal-subtitle {
+  margin: 0 0 20px;
+  font-size: 13px;
+  color: #667085;
+}
+.discovery-modal-x {
+  border: 0;
+  background: transparent;
+  font-size: 25px;
+  cursor: pointer;
+  color: #667085;
+  padding: 0 4px;
+}
+.discovery-modal-x:disabled {
+  opacity: .4;
+  cursor: default;
+}
+.discovery-modal-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-size: 14px;
+}
+.discovery-modal-label span {
+  font-weight: 400;
+  color: #667085;
+}
+.discovery-modal-textarea {
+  resize: vertical;
+  width: 100%;
+  min-height: 106px;
+  padding: 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 14px;
+}
+.discovery-modal-textarea:focus {
+  outline: 2px solid #987ef0;
+  outline-offset: 1px;
+}
+.discovery-modal-help {
+  margin: 7px 0 16px;
+  font-size: 12px;
+  color: #667085;
+}
+.discovery-modal-reminder {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: #f5f3ff;
+  border: 1px solid #e9e3ff;
+  font-size: 13px;
+}
+.discovery-modal-reminder ul {
+  margin: 8px 0 0;
+  padding-left: 20px;
+}
+.discovery-modal-reminder li {
+  margin: 4px 0;
+}
+.discovery-modal-progress {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 16px;
+  color: #583cc7;
+  font-size: 13px;
+  font-weight: 600;
+}
+.discovery-modal-progress[hidden] {
+  display: none;
+}
+.discovery-modal-spinner {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #ddd4ff;
+  border-top-color: #6f54df;
+  border-radius: 50%;
+  animation: discovery-modal-spin .8s linear infinite;
+}
+@keyframes discovery-modal-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.discovery-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+.discovery-modal-footer button {
+  border-radius: 9px;
+  padding: 11px 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.discovery-modal-cancel {
+  background: white;
+  color: #344054;
+  border: 1px solid #d0d5dd;
+}
+.discovery-modal-confirm {
+  background: #6f54df;
+  color: white;
+  border: 1px solid #6f54df;
+}
+.discovery-modal-footer button:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+@media (max-width: 540px) {
+  .discovery-modal {
+    padding: 18px;
+  }
+  .discovery-modal-footer button {
+    flex: 1;
+  }
+}
 </style>
-  <style>
-.demo-devops{font:13px "Segoe UI",Arial,sans-serif;color:#242424;background:#fff}
-.devops-bar{background:#0078d4;color:#fff;display:flex;align-items:center;gap:16px;padding:11px 20px;font-weight:600}
-.devops-toolbar{border-bottom:1px solid #e1e4e8;padding:12px 20px;color:#57606a;background:#fff}
-.devops-columns{display:grid;grid-template-columns:190px minmax(0,1fr)}
-.devops-side{background:#f6f8fa;border-right:1px solid #e1e4e8;padding:18px 12px;display:grid;align-content:start;gap:15px;min-height:900px}
-.devops-side b{color:#0078d4}.devops-content{min-width:0;background:#f7f7fa}
-.devops-workitem{background:#fff;padding:22px 28px;border-bottom:1px solid #e1e4e8}
-.devops-workitem h2{font-size:21px;margin:5px 0}.demo-workitem{background:#f8f7ff;text-align:left;padding:13px;border-radius:8px;border:1px solid #e6e1fb;margin:16px auto 0;max-width:610px}
-.demo-workitem p{margin:4px 0 7px;text-align:left;font-size:12px}.demo-workitem span{font-size:11px;color:#667085}
-.demo-sim-note{background:#f2f7ff;border-bottom:1px solid #d7e5fa;padding:9px 20px;font-size:12px;color:#425d82}
-.context-loading{display:none}
-.demo-mask{display:none;position:fixed;inset:0;background:#1c223381;align-items:center;justify-content:center;padding:20px;z-index:80}
-.demo-mask.open{display:flex}.demo-dialog{background:white;width:min(750px,100%);max-height:85vh;overflow:auto;padding:26px 30px;border-radius:12px;box-shadow:0 25px 60px #0003}
-.demo-dialog-top{display:flex;justify-content:space-between;align-items:center;gap:18px}.demo-dialog-top h2{margin:0}.demo-close{border:1px solid #e1e4e8;background:#fff;border-radius:6px;padding:8px 12px}
-.demo-response{margin-top:17px;line-height:1.7;color:#475467}.demo-response h3{font-size:15px}.demo-response li{margin-bottom:8px}
-@media(max-width:750px){.devops-columns{grid-template-columns:1fr}.devops-side{display:none}.devops-bar{padding:10px}.devops-workitem{padding:14px}.demo-dialog{padding:19px}}
-</style></head>
+  <style>body{min-width:0}.tool-card:not(:disabled){cursor:pointer} .context-source-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} @media(max-width:640px){.context-source-list{grid-template-columns:1fr}}</style></head>
 
-  <body><div class="demo-devops"><div class="devops-bar"><span>▦ Azure DevOps</span><span>Recoloca / Boards</span></div><div class="devops-toolbar">Boards › Work Items › #2481 · Discovery</div><div class="devops-columns"><aside class="devops-side"><strong>Overview</strong><span>Boards</span><b>Work Items</b><span>Backlogs</span><span>Sprints</span><span>Queries</span><span>Delivery Plans</span></aside><div class="devops-content"><div class="devops-workitem"><small>FEATURE 2481 · Active · Demo</small><h2>Automatizar conciliação de cobrança</h2><span>Assigned To: Product Team • Iteration: 2026 Q4</span></div><div class="demo-sim-note">Ambiente de demonstração • Dados fictícios • Nenhuma alteração no Azure DevOps</div>
+  <body>
     <main class="container">
       <!-- HEADER -->
       <section class="hero">
         <div class="hero-content">
           <div class="hero-title">
-            <img
-              src="https://raw.githubusercontent.com/jamillydanielle/discovery-insights/main/dist/images/icon.png"
-              class="hero-icon"
-              alt="Discovery Insights"
-            />
+            <span class="hero-icon" aria-hidden="true" style="font-size:38px;display:flex;align-items:center">🧠</span>
 
             <div>
               <h1>Discovery Insights</h1>
@@ -1290,7 +1203,14 @@ button {
           <span>Work Items vinculados</span>
         </div>
 
-        <div id="workItemContext" class="work-item-context"><div class="demo-workitem"><strong>#2481 · Automatizar conciliação de cobrança</strong><p>Como analista de Produto, desejo automatizar o acompanhamento de cobranças.</p><span>Work Item fictício • Active</span></div></div><button id="analyzeButton" class="primary-button" >
+        <div id="workItemContext" class="work-item-context">
+          <div class="context-loading" role="status" aria-live="polite">
+            <span class="context-spinner" aria-hidden="true"></span>
+            <span>Preparando o contexto...</span>
+          </div>
+</div>
+
+        <button id="analyzeButton" class="primary-button" disabled>
           ✨ Analisar contexto
         </button>
       </section>
@@ -1312,7 +1232,7 @@ button {
   <button
     class="tool-card"
     data-action="benchmark"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">🔎</div>
@@ -1327,7 +1247,7 @@ button {
   <button
     class="tool-card"
     data-action="interview"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">🎤</div>
@@ -1342,7 +1262,7 @@ button {
   <button
     class="tool-card"
     data-action="csd"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">🧩</div>
@@ -1357,7 +1277,7 @@ button {
   <button
     class="tool-card"
     data-action="bpmn"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">🔄</div>
@@ -1372,7 +1292,7 @@ button {
   <button
     class="tool-card"
     data-action="risk-analysis"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">⚠️</div>
@@ -1387,7 +1307,7 @@ button {
   <button
     class="tool-card"
     data-action="product-decision"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">✅</div>
@@ -1401,7 +1321,7 @@ button {
   <button
     class="tool-card"
     data-action="prototype"
-    
+    disabled
     title="Disponível quando o contexto do Work Item terminar de carregar."
   >
     <div class="tool-icon">✒️</div>
@@ -1415,22 +1335,59 @@ button {
       </section>
     </main>
 
-    
-  </div></div></div><div class="demo-mask" id="demoMask"><div class="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="demoTitle"><div class="demo-dialog-top"><h2 id="demoTitle">Resultado simulado</h2><button class="demo-close" id="demoClose">Fechar ×</button></div><div class="demo-response" id="demoResponse"></div></div></div>
-<script>
-const results={
-"contexto":["Análise do contexto","<h3>Diagnóstico de Discovery</h3><p>Dados ilustrativos: uma necessidade de automatização da conciliação de cobranças.</p><ul><li><b>Problema:</b> atualizações manuais geram retrabalho.</li><li><b>Lacuna:</b> validar responsáveis e exceções da conciliação.</li><li><b>Premissa:</b> os eventos bancários podem ser relacionados à cobrança.</li><li><b>Próximo passo:</b> entrevista com Financeiro e avaliação técnica.</li></ul>"],
-"benchmark":["Benchmark","<p>Referências a investigar: fluxos de conciliação bancária, notificações e gestão de pagamentos.</p><ul><li>Comparar visões de status.</li><li>Investigar tratamento de divergências.</li><li>Mapear boas práticas de rastreabilidade.</li></ul>"],
-"interview":["Entrevista","<h3>Roteiro com o time Financeiro</h3><ol><li>Como acontece a conciliação atualmente?</li><li>Que dados são conferidos manualmente?</li><li>Em que situações há exceções?</li><li>Como o resultado é comunicado?</li></ol>"],
-"csd":["Matriz CSD","<p><b>Certeza:</b> existe etapa de conferência manual.</p><p><b>Suposição:</b> integrações podem reduzir o esforço.</p><p><b>Dúvida:</b> como identificar pagamentos duplicados ou divergentes?</p>"],
-"bpmn":["BPMN / AS IS","<h3>Fluxo atual ilustrativo</h3><p>Receber cobrança → Consultar pagamento → Conferir dados → Atualizar status → Comunicar resultado.</p><p>Validar atividades e responsáveis em entrevista.</p>"],
-"risk-analysis":["Análise de riscos","<ul><li><b>Integração:</b> indisponibilidade temporária da API.</li><li><b>Dados:</b> cobrança conciliada incorretamente.</li><li><b>Operação:</b> ausência de tratamento manual de contingência.</li></ul>"],
-"product-decision":["Decisão de Produto","<p><b>Decisão ilustrativa:</b> validar primeiro o processo de confirmação e suas exceções antes de automatizar.</p><p><b>Métrica:</b> tempo médio de conciliação por cobrança.</p>"],
-"prototype":["Protótipo","<h3>Proposta de interface</h3><div style='padding:16px;background:#f6f5ff;border:1px solid #e5e0fc;border-radius:9px'><b>Cobranças</b><hr>Filtro: Pendentes | Confirmadas | Divergentes<br><br>#2481 — Pagamento pendente — R$ 1.250,00</div><p>Ilustração textual da interface para discussão.</p>"]
-};
-function showDemo(type){const [title,body]=results[type]||results.contexto;document.getElementById("demoTitle").textContent=title;document.getElementById("demoResponse").innerHTML="<small>Resultado gerado para demonstração · Dados fictícios</small>"+body;document.getElementById("demoMask").classList.add("open")}
-document.getElementById("analyzeButton").addEventListener("click",()=>showDemo("contexto"));
-document.querySelectorAll("[data-action]").forEach(button=>button.addEventListener("click",()=>showDemo(button.dataset.action)));
-document.getElementById("demoClose").addEventListener("click",()=>document.getElementById("demoMask").classList.remove("open"));
-</script></body>
+    <script>
+/* Demo pública: usa o HTML e CSS originais. Apenas a camada Azure/IA é simulada. */
+(() => {
+  const wi = document.getElementById('workItemContext');
+  const analyzeButton = document.getElementById('analyzeButton');
+  const result = document.getElementById('analysisResult');
+  const actions = [...document.querySelectorAll('.tool-card')];
+  const link = id => '<span class="work-item-link" style="color:#0078d4">' + id + '</span>';
+  wi.innerHTML = `<div class="context-box">
+    <div class="context-box-header"><strong>✓ Contexto carregado</strong><span>Informações consideradas nesta análise</span></div>
+    <div class="context-source-list">
+    <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Feature ${link(2481)}</strong><span class="context-source-title">Automatizar o acompanhamento de cobranças</span></div>
+    <div class="context-source"><span class="context-source-label">Parent</span><strong>Epic ${link(2400)}</strong><span class="context-source-title">Evolução da jornada financeira</span></div>
+    <div class="context-source"><span class="context-source-label">Work Items vinculados</span><strong>3 itens</strong><span class="context-source-title">2 filhos • 1 relacionado</span></div></div>
+    <details class="related-details"><summary>Ver 3 Work Items considerados</summary><div class="related-items-list">
+      <div class="related-item"><div><strong>User Story ${link(2482)}</strong><span>Mapear regras de pagamento</span></div><span class="related-state">Active</span></div>
+      <div class="related-item"><div><strong>User Story ${link(2483)}</strong><span>Exibir cobranças ao cliente</span></div><span class="related-state">New</span></div>
+      <div class="related-item"><div><strong>Task ${link(2484)}</strong><span>Validar dados de conciliação</span></div><span class="related-state">New</span></div>
+    </div></details><p class="context-note">A IA considera título, status e descrição do Work Item atual, do Parent e dos Work Items vinculados.</p></div>`;
+  analyzeButton.disabled=false;
+  actions.forEach(a=>{a.disabled=false;a.removeAttribute('title')});
+  const labels={benchmark:'Benchmark',interview:'Entrevista',csd:'Matriz CSD',bpmn:'BPMN / AS IS','risk-analysis':'Análise de riscos','product-decision':'Decisão de Produto',prototype:'Protótipo'};
+  const sections={
+  benchmark:'<h3>Referências a investigar</h3><p>Compare soluções com conciliação automática, notificações e acompanhamento de pagamentos. Levante limitações e decisões relevantes.</p>',
+  interview:'<h3>Roteiro de entrevista</h3><ol><li>Como a cobrança é conciliada hoje?</li><li>Quando são necessários ajustes manuais?</li><li>Quais evidências confirmam o pagamento?</li></ol>',
+  csd:'<h3>Matriz CSD</h3><p><b>Certezas:</b> há acompanhamento manual.</p><p><b>Suposições:</b> uma integração pode reduzir retrabalho.</p><p><b>Dúvidas:</b> como são tratados pagamentos divergentes?</p>',
+  bpmn:'<h3>Mapeamento AS IS</h3><p>Pedido formalizado → Cobrança gerada → Conferência financeira → Confirmação manual → Atualização do status.</p>',
+  'risk-analysis':'<h3>Riscos levantados</h3><ul><li>Inconsistência dos dados entre sistemas.</li><li>Falhas de disponibilidade da integração.</li><li>Regras insuficientes para pagamentos divergentes.</li></ul>',
+  'product-decision':'<h3>Decisão de Produto</h3><p>Validar regras financeiras e priorizar uma visão centralizada das cobranças antes de automatizar a conciliação.</p>',
+  prototype:'<h3>Protótipo inicial</h3><p>Conceito de tela com lista de cobranças, situação de pagamento, detalhes e histórico de atualizações.</p>'
+  };
+  function showResult(markup){
+    result.classList.remove('hidden');
+    result.innerHTML='<div class="analysis-section"><span class="label">Demonstração · Resultado fictício</span>'+markup+'</div>';
+    result.scrollIntoView({behavior:'smooth',block:'nearest'});
+  }
+  analyzeButton.addEventListener('click',()=>showResult('<h2>Diagnóstico do Discovery</h2><div class="analysis"><section class="analysis-section"><h3>O que sabemos</h3><p>Existe acompanhamento manual de cobranças.</p><h3>Lacunas</h3><p>Confirmar regras de conciliação e exceções.</p></section><section class="analysis-section"><h3>Próximo passo recomendado</h3><p>Realizar entrevista com Financeiro e levantar regras de negócio.</p><h3>Ponto de atenção</h3><p>Validar a consistência dos estados de pagamento.</p></section></div>'));
+  function openTask(action){
+    const overlay=document.createElement('div'); overlay.className='discovery-modal-overlay';
+    overlay.innerHTML='<section class="discovery-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle"><div class="discovery-modal-header"><div><h2 id="demoModalTitle">✨ Criar Discovery Task</h2><p class="discovery-modal-subtitle">Ferramenta selecionada: '+labels[action]+'</p></div><button type="button" class="discovery-modal-x" aria-label="Fechar">×</button></div><label class="discovery-modal-label" for="discoveryExtraInstructions">Instruções adicionais <span>(opcional)</span></label><textarea id="discoveryExtraInstructions" class="discovery-modal-textarea" rows="5" maxlength="2500" placeholder="Ex.: Priorize o fluxo de aprovação do cliente, inclua exceções e perguntas para validação."></textarea><p class="discovery-modal-help">Direcione o resultado da IA. Se deixar em branco, será usado o template padrão da ferramenta.</p><div class="discovery-modal-reminder"><strong>Antes de finalizar a Discovery Task:</strong><ul><li>Revise o conteúdo gerado pela IA.</li><li>Inclua as tags relevantes.</li><li>Relacione o Parent do Work Item criado.</li></ul></div><div class="discovery-modal-footer"><button type="button" class="discovery-modal-cancel">Cancelar</button><button type="button" class="discovery-modal-confirm">✨ Confirmar e gerar</button></div></section>';
+    document.body.appendChild(overlay);
+    const close=()=>overlay.remove();
+    overlay.querySelector('.discovery-modal-x').addEventListener('click',close);
+    overlay.querySelector('.discovery-modal-cancel').addEventListener('click',close);
+    overlay.querySelector('.discovery-modal-confirm').addEventListener('click',()=>{
+      const extra=overlay.querySelector('textarea').value.trim();
+      close();
+      showResult('<h2>'+labels[action]+'</h2>'+sections[action]+(extra?'<p><b>Instrução simulada:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Este conteúdo é fictício e nenhuma Discovery Task foi criada no Azure DevOps.</p>');
+    });
+  }
+  function escapeText(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+  actions.forEach(button=>button.addEventListener('click',()=>openTask(button.dataset.action)));
+})();
+</script>
+  </body>
 </html>
