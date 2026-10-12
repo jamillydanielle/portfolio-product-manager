@@ -115,6 +115,8 @@ body.demo-fullscreen-open{overflow:hidden}
 .demo-fullscreen .demo-cover{display:none!important}
 .demo-fullscreen .demo-child-modal-open{overflow:hidden}
 @media(max-width:700px){.demo-modal-head{padding:8px 11px;flex-wrap:wrap;gap:6px}.demo-modal-brand span{display:none}.demo-modal-nav{order:3;width:100%;justify-content:center}.demo-modal-nav button{padding:8px 11px;font-size:12px}.demo-launch{flex-direction:column;align-items:flex-start}.demo-fullscreen .demo-stage{min-height:0!important}}
+.demo-portfolio-credit{font-size:10px!important;font-weight:650;letter-spacing:.02em;color:#587f81!important;margin-bottom:2px}.demo-portfolio-credit span{padding:0 3px;color:#91a9aa}
+@media(max-width:700px){.demo-modal-brand .demo-portfolio-credit{display:block;font-size:9px!important}.demo-modal-brand>span:last-child{display:none}}
 </style>
 </head>
 <body>
@@ -133,7 +135,7 @@ body.demo-fullscreen-open{overflow:hidden}
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
       <div class="demo-launch"><div><strong>Explore o Discovery Insights</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div><button type="button" class="demo-button primary" id="openDiscovery">Explorar projeto</button></div>
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
-      <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span>Experiência interativa do projeto</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">Fechar ×</button></div>
+      <div class="demo-modal-head"><div class="demo-modal-brand"><span class="demo-portfolio-credit">Portfólio de Jamilly Danielle <span aria-hidden="true">/</span> Projeto autoral</span><strong>Discovery Insights</strong><span>Experiência interativa do projeto</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">× Fechar</button></div>
       <div class="demo-shell" id="discoveryShowcase">
         <div class="simulation-ribbon" role="note"><span class="simulation-status-dot" aria-hidden="true"></span><strong>Ambiente de simulação</strong><span>Interaja livremente: os dados são fictícios e nenhuma ação é registrada em sistemas reais.</span></div>
         <div class="demo-stage" id="demoStage" hidden>
