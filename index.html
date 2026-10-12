@@ -519,20 +519,20 @@
     }
     .org-root{background:var(--accent-soft);min-width:125px}
     .org-root-line{width:1px;height:13px;background:var(--tree-stroke);flex-shrink:0}
-    .org-branches{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
+    .org-branches{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative;--branch-gap:22px}
     .org-branches::before{
-      content:"";position:absolute;top:0;left:25%;right:25%;
+      content:"";position:absolute;top:0;left:calc(25% - var(--branch-gap)/4);right:calc(25% - var(--branch-gap)/4);
       border-top:1px solid var(--tree-stroke)
     }
     .org-branch{display:flex;align-items:center;flex-direction:column;padding-top:12px;position:relative;min-width:0}
     .org-branch::before{content:"";position:absolute;top:0;left:50%;height:12px;border-left:1px solid var(--tree-stroke)}
     .org-matrix{min-width:72px;background:var(--accent-soft)}
-    .org-children{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;padding-top:25px;margin-top:0}
+    .org-children{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;padding-top:25px;margin-top:0;--leaf-gap:8px}
     .org-children::before{content:"";position:absolute;top:0;left:50%;height:13px;border-left:1px solid var(--tree-stroke)}
-    .org-children::after{content:"";position:absolute;top:13px;left:25%;right:25%;border-top:1px solid var(--tree-stroke)}
+    .org-children::after{content:"";position:absolute;top:13px;left:calc(25% - var(--leaf-gap)/4);right:calc(25% - var(--leaf-gap)/4);border-top:1px solid var(--tree-stroke)}
     .org-leaf{min-width:0;font-size:9px}
     .org-leaf::before{content:"";position:absolute;bottom:100%;left:50%;height:12px;border-left:1px solid var(--tree-stroke)}
-    @media(max-width:400px){.group-map{inset:42px 10px 12px}.org-branches{gap:12px}.org-children{gap:4px}.org-leaf{font-size:8px;padding:4px 2px}}
+    @media(max-width:400px){.group-map{inset:42px 10px 12px}.org-branches{gap:12px;--branch-gap:12px}.org-children{gap:4px;--leaf-gap:4px}.org-leaf{font-size:8px;padding:4px 2px}}
     
     .manage-panel{
       background:var(--surface);
