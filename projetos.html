@@ -175,6 +175,7 @@ main.wrap>#ferramentas h2{margin:0 0 4px}
 main.wrap>#ferramentas .section-desc{margin:0 0 14px}
 @media(max-width:600px){main.wrap{padding-top:18px!important}main.wrap>#ferramentas{margin-top:14px!important}main.wrap>#autorais .demo-launch{padding:12px 14px}}
 .project-title-inline{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.project-title-inline small{line-height:1.2;vertical-align:middle}
+.simulation-ribbon[hidden]{display:none!important}
 </style>
 </head>
 <body>
@@ -195,7 +196,7 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
       <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span class="demo-portfolio-credit">· Portfólio de Jamilly Danielle</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">× Fechar</button></div>
       <div class="demo-shell" id="discoveryShowcase">
-        <div class="simulation-ribbon" role="note"><span class="simulation-status-dot" aria-hidden="true"></span><strong>Ambiente de simulação</strong><span>Interaja livremente: os dados são fictícios e nenhuma ação é registrada em sistemas reais.</span></div>
+        <div class="simulation-ribbon" id="simulationRibbon" role="note" hidden><span class="simulation-status-dot" aria-hidden="true"></span><strong>Ambiente de simulação</strong><span>Interaja livremente: os dados são fictícios e nenhuma ação é registrada em sistemas reais.</span></div>
         <div class="demo-stage" id="demoStage" hidden>
           <iframe class="demo-frame" id="discoveryFrame" data-src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
           <div class="demo-cover" id="demoCover" hidden>
@@ -286,6 +287,7 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
    intro.hidden=name!=='intro';
    stage.hidden=name!=='simulation';
    structure.hidden=name!=='structure';
+   document.getElementById('simulationRibbon').hidden=name!=='simulation';
    nav.forEach(b=>{const active=b.dataset.demoView===name;b.classList.toggle('selected',active);b.setAttribute('aria-current',active?'page':'false')});
    document.getElementById('discoveryShowcase').scrollTop=0;
  }
