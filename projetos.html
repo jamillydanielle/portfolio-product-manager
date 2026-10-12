@@ -304,6 +304,15 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
 .project-heading-actions .demo-hover-preview{top:calc(100% + 12px);bottom:auto}
 @media(max-width:700px){.project-heading-row{align-items:flex-start;flex-direction:column;gap:15px}.project-heading-actions{width:100%}.project-heading-actions .demo-preview-trigger{flex:1}.project-heading-actions .demo-button{width:100%}}
 @media(prefers-reduced-motion:reduce){.explore-pulse{animation:none}.simulation-info-popover{transition:none}}
+
+/* Info preenchido e halo difuso em ciclo de expansão e contração */
+.simulation-info-button{width:26px;height:26px;padding:0;border:0;border-radius:50%;background:transparent;color:#587f81;box-shadow:none}
+.simulation-info-button:hover,.simulation-info-button:focus-visible{background:transparent;color:#365f62}
+.explore-pulse{position:relative;isolation:isolate;animation:none!important}
+.explore-pulse:before{content:"";position:absolute;inset:-4px;border-radius:12px;z-index:-1;pointer-events:none;background:rgba(88,127,129,.23);filter:blur(7px);animation:explore-breathing 2.6s ease-in-out infinite}
+@keyframes explore-breathing{0%,100%{transform:scale(.94);opacity:.28}50%{transform:scale(1.16);opacity:.85}}
+.explore-pulse:hover:before,.explore-pulse:focus-visible:before{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){.explore-pulse:before{animation:none;opacity:.25}}
 </style>
 </head>
 <body>
@@ -320,7 +329,7 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
       <div class="project-heading-row">
         <h2 class="project-title-inline"><button type="button" class="project-title-button" id="openDiscoveryTitle" aria-label="Explorar Discovery Insights">Discovery Insights</button><small>· Projeto autoral</small></h2>
         <div class="project-heading-actions">
-          <div class="demo-preview-trigger"><button type="button" class="demo-button primary explore-pulse" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto <span aria-hidden="true">↗</span></button>
+          <div class="demo-preview-trigger"><button type="button" class="demo-button primary explore-pulse" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto</button>
         <div class="demo-hover-preview" id="demoPreviewHint" aria-hidden="true">
           <div class="preview-real-banner"><div class="preview-banner-title"><span class="preview-brain">🧠</span><div><strong>Discovery Insights</strong><small>Apoio à análise e evolução de hipóteses</small></div></div><span class="preview-version">v0.1</span></div>
           <div class="preview-real-card">
@@ -332,7 +341,7 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
           <div class="preview-real-footer">Prévia ilustrativa · Clique para explorar</div>
         </div>
           </div>
-          <div class="simulation-info-wrap"><button type="button" class="simulation-info-button" id="simulationInfoButton" aria-label="Informações sobre a simulação" aria-controls="simulationInfoText" aria-expanded="false">ⓘ</button><div class="simulation-info-popover" id="simulationInfoText" role="tooltip"><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div></div>
+          <div class="simulation-info-wrap"><button type="button" class="simulation-info-button" id="simulationInfoButton" aria-label="Informações sobre a simulação" aria-controls="simulationInfoText" aria-expanded="false"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.69-.246l-.088.416c-.255.307-.817.53-1.3.53-.868 0-1.236-.52-.996-1.65l.738-3.468c.064-.292.006-.399-.287-.399h-.52l.094-.438 2.365-.183zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg></button><div class="simulation-info-popover" id="simulationInfoText" role="tooltip"><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div></div>
         </div>
       </div>
       <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
