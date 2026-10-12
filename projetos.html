@@ -29,6 +29,13 @@ h2{font-size:clamp(24px,3vw,31px);letter-spacing:-.03em;margin:0 0 12px}
 footer{border-top:1px solid var(--line);padding:22px 0 50px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;color:var(--muted);font-size:12px}
 footer a{color:var(--accent-dark)}
 @media(max-width:600px){main{padding-top:46px}section{margin-top:60px}.tools{grid-template-columns:1fr;gap:21px}.topbar{min-height:70px}.project h3{font-size:21px}}
+
+.project-links{display:flex;flex-wrap:wrap;gap:12px 25px;margin:12px 0 30px}
+.project-links a{font-size:13px;color:var(--accent-dark);font-weight:650;text-decoration:underline;text-underline-offset:3px}
+.demo-label{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 16px;margin-bottom:11px;font-size:13px}
+.demo-label span{color:var(--muted);font-size:12px}
+.demo-frame{display:block;border:1px solid var(--line);border-radius:12px;width:100%;height:735px;background:#f7f7fa}
+@media(max-width:600px){.demo-frame{height:780px}}
 </style>
 </head>
 <body>
@@ -46,7 +53,9 @@ footer a{color:var(--accent-dark)}
       <div class="project-meta">Product Builder · IA · Automação</div>
       <h3>Discovery Insights</h3>
       <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
-      <div class="notes">Projeto em evolução · Demonstração e documentação serão adicionadas aqui.</div>
+      <div class="project-links"><a href="https://github.com/jamillydanielle/discovery-insights" target="_blank" rel="noopener noreferrer">Ver repositório no GitHub ↗</a><a href="./discovery-demo.html" target="_blank" rel="noopener noreferrer">Abrir demonstração em nova aba ↗</a></div>
+      <div class="demo-label"><strong>Demonstração interativa</strong><span>Simulação com dados fictícios · Sem conexão com Azure DevOps ou IA</span></div>
+      <iframe class="demo-frame" src="./discovery-demo.html" title="Demonstração interativa simulada do Discovery Insights" loading="lazy"></iframe>
     </article>
   </section>
   <section aria-labelledby="ferramentas">
