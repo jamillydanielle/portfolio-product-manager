@@ -1502,6 +1502,37 @@
     }
     .featured-badge span{color:#f4d375;font-size:13px}
     @media(max-width:400px){.featured-badge{font-size:9px;right:10px;padding:5px 8px}.case-kicker{font-size:8px}}
+
+    /* Lista editorial — títulos abrem o case, conteúdo completo nas modais */
+    .work-grid.editorial-list{display:block;max-width:100%;gap:0}
+    .editorial-case{padding:24px 0 30px;border-bottom:1px solid var(--line)}
+    .editorial-case:first-child{padding-top:12px}
+    .editorial-keywords{color:#6f9193;font-size:11px;font-weight:700;letter-spacing:.11em;text-transform:uppercase;margin-bottom:10px}
+    .editorial-case h3{margin:0 0 10px;line-height:1.25}
+    .case-title-link{font:inherit;font-size:clamp(20px,2.1vw,27px);font-weight:700;letter-spacing:-.025em;line-height:1.25;text-align:left;color:#587f81;background:none;border:0;padding:0;cursor:pointer}
+    .case-title-link:hover{text-decoration:underline;text-underline-offset:4px}
+    .editorial-case p{font-size:15px;line-height:1.6;color:var(--muted);margin:0 0 12px;max-width:790px}
+    .editorial-impact{font-size:13px;color:var(--muted)}
+    .editorial-impact strong{color:var(--dark)}
+    /* Modal grande com preview e rolagem interna */
+    .modal-card{width:min(1040px,calc(100vw - 36px));max-height:92dvh;border-radius:24px}
+    .modal-header{padding:30px 36px 18px}
+    .modal-card .detail{padding:0 36px 34px;gap:18px}
+    .modal-card .detail > .case-visual{position:relative;height:290px;min-height:290px;border-radius:12px;overflow:hidden;border:1px solid var(--line);flex-shrink:0}
+    .modal-card .detail > .case-visual .nf-map{inset:45px 35px 24px}
+    .modal-card .detail > .case-visual .group-map{inset:45px 32px 25px}
+    .modal-card .detail > .case-visual .auth-chart{top:95px;left:36px;right:36px}
+    .modal-card .detail > .case-visual .crm-flow{inset:75px 38px 40px}
+    @media(max-width:650px){
+      .modal-card{width:calc(100vw - 20px);max-height:94dvh;border-radius:18px}
+      .modal-header{padding:20px 18px 14px}
+      .modal-card .detail{padding:0 18px 22px}
+      .modal-card .detail > .case-visual{height:225px;min-height:225px}
+      .modal-card .detail > .case-visual .nf-map{inset:45px 10px 20px}
+      .modal-card .detail > .case-visual .group-map{inset:45px 10px 12px}
+      .modal-card .detail > .case-visual .crm-flow{inset:65px 12px 20px;grid-template-columns:1fr 24px 1fr}
+      .modal-card .detail > .case-visual .auth-chart{top:80px;left:18px;right:18px}
+    }
 </style>
 </head>
 <body>
@@ -1574,119 +1605,33 @@
         <div class="section-label">✦ Resultados</div>
       </div>
 
-      <div class="work-grid">
-        <article class="case-card" data-case="nf">
-          <div class="case-visual">
-            <div class="case-kicker">01 · BACKBONE NF-S</div>
-            <div class="nf-map">
-              <div class="nf-connector nf-to-cobranca" aria-hidden="true"></div>
-              <div class="nf-connector nf-to-pedido" aria-hidden="true"></div>
-              <div class="nf-connector nf-to-sap" aria-hidden="true"></div>
-              <div class="nf-connector nf-to-entrega" aria-hidden="true"></div>
-              <div class="entity e-pedido">Pedido</div>
-              <div class="entity e-sap">SAP</div>
-              <div class="entity e-cobranca">Cobrança</div>
-              <div class="entity e-entrega">Entrega</div>
-              <div class="entity nf">Nota Fiscal</div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-title-row">
-              <h3>Nota Fiscal como infraestrutura principal operacional</h3>
-            </div>
-            <p>De documentos descentralizados a uma entidade conectada a pedidos, entregas, cobranças e SAP e centralização de processos.</p>
-            <div class="case-tags-row">
-              <div class="tags">
-              <span class="tag">Integração SAP</span>
-              <span class="tag">Processos B2B</span>
-              <span class="tag">Backbone</span>
-            </div>
-              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
-            </div>
-            <div class="impact-row"><span>Impacto</span><strong>até 92% de utilização do importador</strong></div>
-          </div>
+      <div class="work-grid editorial-list">
+        <article class="editorial-case" data-case="nf">
+          <div class="editorial-keywords">Integração SAP · Processos B2B · Backbone</div>
+          <h3><button type="button" class="case-title-link" aria-label="Abrir detalhes: Nota Fiscal como infraestrutura principal operacional">Nota Fiscal como infraestrutura principal operacional</button></h3>
+          <p>De documentos descentralizados a uma entidade conectada a pedidos, entregas, cobranças e SAP e centralização de processos.</p>
+          <div class="editorial-impact">Impacto: <strong>até 92% de utilização do importador</strong></div>
         </article>
 
-        <article class="case-card" data-case="auth">
-          <div class="case-visual">
-            <div class="case-kicker">02 · APP / Portal do Comprador</div>
-            <span class="featured-badge"><span aria-hidden="true">★</span> Projeto em destaque</span>
-            <div class="auth-chart">
-              <div class="auth-numbers">
-                <div><strong>20%</strong><span> início</span></div>
-                <div><strong>80%</strong><span> atual</span></div>
-              </div>
-              <div class="progress"><div class="progress-fill"></div><div class="goal"></div></div>
-              <div class="goal-text">meta 75%</div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-title-row">
-              <h3>Autenticação e gestão de usuários</h3>
-              <!--<span>↗</span>-->
-            </div>
-            <p>Estrutura de login para APP/ Portal do comprador (B2B), múltiplos CNPJs e jornada digital (autosserviço).</p>
-            <div class="case-tags-row">
-              <div class="tags"><span class="tag">APP</span><span class="tag">Multi-CNPJs</span><span class="tag">Autosserviço B2B</span></div>
-              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
-            </div>
-            <div class="impact-row"><span>Resultado</span><strong>20% → 80% autenticados</strong></div>
-          </div>
+        <article class="editorial-case" data-case="auth">
+          <div class="editorial-keywords">APP · Multi-CNPJs · Autosserviço B2B</div>
+          <h3><button type="button" class="case-title-link" aria-label="Abrir detalhes: Autenticação e gestão de usuários">Autenticação e gestão de usuários</button></h3>
+          <p>Estrutura de login para APP/ Portal do comprador (B2B), múltiplos CNPJs e jornada digital (autosserviço).</p>
+          <div class="editorial-impact">Resultado: <strong>20% → 80% autenticados</strong></div>
         </article>
 
-        <article class="case-card" data-case="crm">
-          <div class="case-visual">
-            <div class="case-kicker">03 · Centralização de clientes</div>
-            <div class="crm-flow">
-              <div class="flowbox"><strong>CRM Externo</strong><small>Dependências operacionais</small></div>
-              <div class="flowarrow">→</div>
-              <div class="flowbox"><strong>Sistema Interno</strong><small>Gestão dos dados</small></div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-title-row">
-              <h3>Gestão de clientes</h3>
-              <!--<span>↗</span>-->
-            </div>
-            <p>Centralização de dados de clientes, eliminando a dependência externa (de forma escalável).</p>
-            <div class="case-tags-row">
-              <div class="tags"><span class="tag">Make or buy</span><span class="tag">LATAM</span><span class="tag">Integrações Receita Federal</span></div>
-              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
-            </div>
-            <div class="impact-row"><span>Impacto</span><strong>R$ 160/mês por usuário eliminado</strong></div>
-          </div>
+        <article class="editorial-case" data-case="crm">
+          <div class="editorial-keywords">Make or buy · LATAM · Integrações Receita Federal</div>
+          <h3><button type="button" class="case-title-link" aria-label="Abrir detalhes: Gestão de clientes">Gestão de clientes</button></h3>
+          <p>Centralização de dados de clientes, eliminando a dependência externa (de forma escalável).</p>
+          <div class="editorial-impact">Impacto: <strong>R$ 160/mês por usuário eliminado</strong></div>
         </article>
 
-        <article class="case-card" data-case="group">
-          <div class="case-visual">
-            <div class="case-kicker">04 · Estrutura de Multi-CNPJs</div>
-            <div class="group-map" aria-label="Árvore de grupo empresarial com duas matrizes e quatro filiais">
-              <div class="org-root">Grupo empresarial</div>
-              <div class="org-root-line"></div>
-              <div class="org-branches">
-                <div class="org-branch">
-                  <div class="org-matrix">Matriz A</div>
-                  <div class="org-children"><div class="org-leaf">Filial 1</div><div class="org-leaf">Filial 2</div></div>
-                </div>
-                <div class="org-branch">
-                  <div class="org-matrix">Matriz B</div>
-                  <div class="org-children"><div class="org-leaf">Filial 1</div><div class="org-leaf">Filial 2</div></div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="case-body">
-            <div class="case-title-row">
-              <h3>Grupo econômico e empresarial</h3>
-              <!--<span>↗</span>-->
-            </div>
-            <p>De gestão manual para uma estrutura automatizável de árvore por grupo econômico de matriz, filiais, CNPJs, status e regras.</p>
-            <div class="case-tags-row">
-              <div class="tags"><span class="tag">Gestão de grupo de empresas</span><!--<span class="tag">Rastreabilidade de indicadores</span>--><span class="tag">Automação</span></div>
-              <button class="case-detail-link" type="button" aria-label="Ver detalhes deste case">Ver detalhes</button>
-            </div>
-            <div class="impact-row"><span>Impacto</span><strong>fim da gestão manual de grupos econômicos</strong></div>
-          </div>
+        <article class="editorial-case" data-case="group">
+          <div class="editorial-keywords">Gestão de grupo de empresas · Rastreabilidade de indicadores · Automação</div>
+          <h3><button type="button" class="case-title-link" aria-label="Abrir detalhes: Grupo econômico e empresarial">Grupo econômico e empresarial</button></h3>
+          <p>De gestão manual para uma estrutura automatizável de árvore por grupo econômico de matriz, filiais, CNPJs, status e regras.</p>
+          <div class="editorial-impact">Impacto: <strong>fim da gestão manual de grupos econômicos</strong></div>
         </article>
       </div>
     </section>
@@ -1808,6 +1753,13 @@ Universidade Federal de Lavras (UFLA).</p>
   </div>
 
   <script>
+    const casePreviews = {
+      "nf": "<div class=\"case-visual\">\n            <div class=\"case-kicker\">01 · BACKBONE NF-S</div>\n            <div class=\"nf-map\">\n              <div class=\"nf-connector nf-to-cobranca\" aria-hidden=\"true\"></div>\n              <div class=\"nf-connector nf-to-pedido\" aria-hidden=\"true\"></div>\n              <div class=\"nf-connector nf-to-sap\" aria-hidden=\"true\"></div>\n              <div class=\"nf-connector nf-to-entrega\" aria-hidden=\"true\"></div>\n              <div class=\"entity e-pedido\">Pedido</div>\n              <div class=\"entity e-sap\">SAP</div>\n              <div class=\"entity e-cobranca\">Cobrança</div>\n              <div class=\"entity e-entrega\">Entrega</div>\n              <div class=\"entity nf\">Nota Fiscal</div>\n            </div>\n          </div>",
+      "auth": "<div class=\"case-visual\">\n            <div class=\"case-kicker\">02 · APP / Portal do Comprador</div>\n            <span class=\"featured-badge\"><span aria-hidden=\"true\">★</span> Projeto em destaque</span>\n            <div class=\"auth-chart\">\n              <div class=\"auth-numbers\">\n                <div><strong>20%</strong><span> início</span></div>\n                <div><strong>80%</strong><span> atual</span></div>\n              </div>\n              <div class=\"progress\"><div class=\"progress-fill\"></div><div class=\"goal\"></div></div>\n              <div class=\"goal-text\">meta 75%</div>\n            </div>\n          </div>",
+      "crm": "<div class=\"case-visual\">\n            <div class=\"case-kicker\">03 · Centralização de clientes</div>\n            <div class=\"crm-flow\">\n              <div class=\"flowbox\"><strong>CRM Externo</strong><small>Dependências operacionais</small></div>\n              <div class=\"flowarrow\">→</div>\n              <div class=\"flowbox\"><strong>Sistema Interno</strong><small>Gestão dos dados</small></div>\n            </div>\n          </div>",
+      "group": "<div class=\"case-visual\">\n            <div class=\"case-kicker\">04 · Estrutura de Multi-CNPJs</div>\n            <div class=\"group-map\" aria-label=\"Árvore de grupo empresarial com duas matrizes e quatro filiais\">\n              <div class=\"org-root\">Grupo empresarial</div>\n              <div class=\"org-root-line\"></div>\n              <div class=\"org-branches\">\n                <div class=\"org-branch\">\n                  <div class=\"org-matrix\">Matriz A</div>\n                  <div class=\"org-children\"><div class=\"org-leaf\">Filial 1</div><div class=\"org-leaf\">Filial 2</div></div>\n                </div>\n                <div class=\"org-branch\">\n                  <div class=\"org-matrix\">Matriz B</div>\n                  <div class=\"org-children\"><div class=\"org-leaf\">Filial 1</div><div class=\"org-leaf\">Filial 2</div></div>\n                </div>\n              </div>\n            </div>\n          </div>"
+};
+
     const caseData = {
       nf: {
         eyebrow: "Integração SAP · Processos B2B · Backbone",
@@ -1960,7 +1912,7 @@ Universidade Federal de Lavras (UFLA).</p>
       if(!data) return;
       modalEyebrow.textContent = data.eyebrow;
       modalTitle.textContent = data.title;
-      modalContent.innerHTML = data.content;
+      modalContent.innerHTML = casePreviews[key] + data.content;
       modal.classList.add("open");
       modal.setAttribute("aria-hidden","false");
       document.body.style.overflow = "hidden";
@@ -1973,8 +1925,8 @@ Universidade Federal de Lavras (UFLA).</p>
       document.body.style.overflow = "";
     }
 
-    document.querySelectorAll(".case-card .case-detail-link").forEach(button => {
-      button.addEventListener("click", () => openCase(button.closest(".case-card").dataset.case));
+    document.querySelectorAll(".editorial-case .case-title-link").forEach(button => {
+      button.addEventListener("click", () => openCase(button.closest(".editorial-case").dataset.case));
     });
 
     closeModal.addEventListener("click", closeCase);
