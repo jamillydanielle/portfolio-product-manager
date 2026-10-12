@@ -79,7 +79,7 @@ footer a{color:var(--accent-dark)}
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório ↗</a></div>
       <div class="demo-shell" id="discoveryShowcase">
         <div class="demo-stage" id="demoStage">
-          <iframe class="demo-frame" id="discoveryFrame" src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
+          <iframe class="demo-frame" id="discoveryFrame" data-src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
           <div class="demo-cover" id="demoCover">
             <div class="demo-cover-content">
               <span class="demo-overline">DISCOVERY INSIGHTS</span>
@@ -137,6 +137,7 @@ footer a{color:var(--accent-dark)}
    stage.hidden=false;
    cover.hidden=true;
    stage.classList.add('is-active');
+   if(!frame.getAttribute('src')) frame.src=frame.dataset.src;
    stage.scrollIntoView({behavior:'smooth',block:'start'});
  }
  function showStructure(){stage.hidden=true;structure.hidden=false;structure.scrollIntoView({behavior:'smooth',block:'start'});}
