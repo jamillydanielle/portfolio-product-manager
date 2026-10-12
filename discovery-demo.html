@@ -1198,6 +1198,33 @@ body.demo-modal-open{overflow:hidden!important}
 .analysis-section.feedback-section .feedback-actions{margin:0 0 0;gap:12px}
 .analysis-section.feedback-section #feedbackThanks:not(:empty){display:block;margin:20px 0 0;padding:13px 16px;border-radius:8px}
 @media(max-width:600px){.analysis-section.feedback-section{padding:18px!important}}
+
+.ado-fidelity{max-width:1280px;height:min(94vh,940px);border-radius:4px}
+.ado-fidelity .ado-toolbar{background:#fff;padding:10px 20px;gap:12px}
+.ado-commandbar{display:flex;align-items:center;gap:9px}
+.ado-command{border:1px solid #0078d4;background:#fff;color:#0078d4;border-radius:3px;padding:7px 12px;cursor:pointer;font-size:12px}
+.ado-command.ado-done{background:#0078d4;color:white}
+.ado-save-status{font-size:11px;color:#23764c}
+.ado-wi-head{padding:15px 26px;border-bottom:1px solid #e3e7ec}
+.ado-wi-head .ado-type{margin:0 0 9px}.ado-task-icon{color:#e18bbb}
+.ado-wi-title{width:100%;border:1px solid transparent;border-radius:3px;padding:5px;font:600 23px/1.3 "Segoe UI",Arial,sans-serif;color:#242b37}
+.ado-wi-title:hover,.ado-wi-title:focus{border-color:#aec3d5;outline:0}
+.ado-workitem-meta{color:#738299;font-size:11px;margin-top:6px}
+.ado-fidelity .ado-workitem-body{grid-template-columns:minmax(0,1fr) 255px;gap:24px;padding-top:0}
+.ado-fidelity .ado-tabs{padding-top:15px;gap:0;margin-bottom:20px}
+.ado-tab{border:0;background:none;border-bottom:2px solid transparent;padding:9px 15px;color:#5d6d83;font-size:13px;cursor:pointer}
+.ado-tab.ado-active{border-color:#0078d4;color:#0078d4;font-weight:600}
+.ado-tab-panel[hidden]{display:none!important}
+.ado-fields label{display:flex;flex-direction:column;gap:6px}
+.ado-state{border:1px solid #dce1e6;background:#fff;padding:6px 8px;border-radius:3px}
+.ado-richtext[contenteditable]{min-height:230px}.ado-richtext[contenteditable]:focus{outline:1px solid #0078d4}
+.ado-comment{display:block;min-height:70px;width:100%;font:13px "Segoe UI",Arial,sans-serif;padding:12px;border:1px solid #dce1e6;resize:vertical}
+.ado-comment-send{margin-top:8px;padding:8px 15px;border:1px solid #c5d6e4;background:white;color:#0078d4;cursor:pointer}
+.ado-comments p{padding:9px;border-bottom:1px solid #eee;font-size:12px}
+.ado-fidelity .ado-aside{padding-top:25px}
+.ado-sidebar-input{max-width:100%;padding:7px;border:1px solid #dce1e6;font-size:12px}
+.ado-taglist{display:flex;gap:6px}.ado-taglist span{background:#edf2f7;border-radius:3px;padding:4px 8px;color:#536b86}
+@media(max-width:700px){.ado-fidelity .ado-toolbar{flex-wrap:wrap}.ado-fidelity .ado-workitem-body{grid-template-columns:1fr}.ado-wi-head{padding:12px 17px}.ado-wi-title{font-size:18px}.ado-save-status{display:none}}
 </style></head>
 
   <body>
@@ -1496,23 +1523,33 @@ body.demo-modal-open{overflow:hidden!important}
     const title=titles[action]||'[Discovery Task] Análise sobre confirmação de pagamentos';
     const modal=document.createElement('div');
     modal.className='ado-demo-backdrop';
-    modal.innerHTML='<section class="ado-workitem" role="dialog" aria-modal="true" aria-labelledby="adoDemoTitle">'+
-      '<header class="ado-toolbar"><div><span class="ado-breadcrumb">Recoloca / Boards / Work Items</span><div class="ado-type"><span class="ado-type-icon">◉</span> Discovery Task <strong>'+id+'</strong> <span class="ado-new-badge">New</span></div></div><button class="ado-x" type="button" aria-label="Fechar Work Item">×</button></header>'+
-      '<div class="ado-workitem-body"><div class="ado-main"><h2 id="adoDemoTitle">'+escapeText(title)+'</h2>'+
-      '<div class="ado-tabs"><span class="ado-active">Details</span><span>History</span><span>Links</span></div>'+
-      '<div class="ado-fields"><div><small>State</small><strong>◯ New</strong></div><div><small>Reason</small><strong>New</strong></div><div><small>Area</small><strong>Recoloca</strong></div><div><small>Iteration</small><strong>Recoloca\\26Q4</strong></div></div>'+
-      '<h3>Description</h3><div class="ado-richtext"><p><strong>Objetivo:</strong> '+escapeText(title)+'</p><p><strong>Contexto:</strong> a hipótese [Automatizar pagamento] busca investigar como sistematizar a confirmação de pagamentos, compreendendo o processo atual antes da definição da solução.</p>'+
-      '<p><strong>Resultado do Discovery Insights</strong></p>'+sections[action]+
-      (extra?'<p><strong>Instruções adicionais:</strong> '+escapeText(extra)+'</p>':'')+
-      '<p><strong>Próximo passo:</strong> revisar evidências e validar as informações com os responsáveis pelo processo.</p></div>'+
-      '<h3>Discussion</h3><div class="ado-richtext ado-discussion">Adicionar um comentário...</div></div>'+
-      '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><strong>Não atribuído</strong></div><div><small>Parent</small><strong><span class="ado-link">Hypothesis 2481</span></strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Tags</small><strong>Discovery · AI</strong></div><h3>Related Work</h3><div><small>Parent Objective</small><strong><span class="ado-link">2400</span> · [OKR-26Q4] Lead-time financeiro</strong></div></aside></div>'+
-      '<footer class="ado-footer"><span>Discovery Task criada na simulação · Nenhum Work Item real foi registrado</span><button type="button" class="ado-done">Fechar</button></footer></section>';
+    modal.innerHTML='<section class="ado-workitem ado-fidelity" role="dialog" aria-modal="true" aria-labelledby="adoDemoTitle">'+
+      '<header class="ado-toolbar"><div class="ado-breadcrumb">Recoloca / Boards / Work Items / 28156</div><div class="ado-commandbar"><span class="ado-save-status" role="status">✓ Discovery Task criada</span><button type="button" class="ado-command ado-save">Save</button><button type="button" class="ado-command ado-done">Save & Close</button><button type="button" class="ado-x" aria-label="Fechar">×</button></div></header>'+
+      '<div class="ado-wi-head"><div class="ado-type"><span class="ado-task-icon">◆</span><strong>Discovery Task</strong><span>28156</span><span class="ado-new-badge">New</span></div><input class="ado-wi-title" id="adoDemoTitle" aria-label="Título da Discovery Task" value="'+escapeText(title)+'"><div class="ado-workitem-meta">Created by Discovery Insights · New</div></div>'+
+      '<div class="ado-workitem-body"><main class="ado-main"><nav class="ado-tabs" aria-label="Abas do Work Item"><button class="ado-tab ado-active" data-tab="details">Details</button><button class="ado-tab" data-tab="history">History</button><button class="ado-tab" data-tab="links">Links</button></nav>'+
+      '<div class="ado-tab-panel" data-panel="details"><div class="ado-fields"><label><small>State</small><select class="ado-state"><option>New</option><option>Active</option><option>Resolved</option><option>Closed</option></select></label><div><small>Reason</small><strong>New</strong></div><div><small>Area</small><strong>Recoloca</strong></div><div><small>Iteration</small><strong>Recoloca / 26Q4</strong></div></div>'+
+      '<h3>Description</h3><div class="ado-richtext" contenteditable="true" role="textbox" aria-label="Descrição da Discovery Task" aria-multiline="true"><p><strong>Objetivo</strong></p><p>'+escapeText(title)+'</p><p><strong>Contexto</strong></p><p>Investigar como sistematizar a confirmação de pagamentos, sem assumir a solução antes do discovery.</p><p><strong>Resultado do Discovery Insights</strong></p>'+sections[action]+(extra?'<p><strong>Instruções adicionais:</strong> '+escapeText(extra)+'</p>':'')+'<p><strong>Próximo passo</strong></p><p>Validar as evidências com as pessoas envolvidas.</p></div>'+
+      '<h3>Discussion</h3><textarea class="ado-comment" aria-label="Comentário" placeholder="Use @ para mencionar alguém. Adicionar um comentário..."></textarea><button type="button" class="ado-comment-send">Comment</button><div class="ado-comments"></div></div>'+
+      '<div class="ado-tab-panel" data-panel="history" hidden><h3>History</h3><p>Discovery Insights criou Discovery Task 28156 no estado New.</p></div>'+
+      '<div class="ado-tab-panel" data-panel="links" hidden><h3>Related Work</h3><p>Parent · Hypothesis 2481 — [Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</p><p>Objective 2400 — [OKR-26Q4] Lead-time financeiro</p></div></main>'+
+      '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><input class="ado-sidebar-input" placeholder="Unassigned" aria-label="Assigned To"></div><div><small>Area</small><strong>Recoloca</strong></div><div><small>Iteration</small><strong>Recoloca / 26Q4</strong></div><h3>Classification</h3><div><small>Tags</small><div class="ado-taglist"><span>Discovery</span><span>AI</span></div></div><h3>Related Work</h3><div><small>Parent</small><strong class="ado-link">Hypothesis 2481</strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Objective</small><strong class="ado-link">2400</strong><span>[OKR-26Q4] Lead-time financeiro</span></div></aside></div>'+
+      '<footer class="ado-footer"><span>Ambiente de simulação · Nenhum Work Item foi registrado no Azure DevOps.</span><span>Discovery Insights</span></footer></section>';
     document.body.appendChild(modal);
     document.body.classList.add('demo-modal-open');
     const close=()=>{modal.remove();document.body.classList.remove('demo-modal-open')};
     modal.querySelector('.ado-x').addEventListener('click',close);
     modal.querySelector('.ado-done').addEventListener('click',close);
+    modal.querySelector('.ado-save').addEventListener('click',()=>{modal.querySelector('.ado-save-status').textContent='✓ Salvo na simulação'});
+    modal.querySelectorAll('[data-tab]').forEach(tab=>tab.addEventListener('click',()=>{
+      modal.querySelectorAll('[data-tab]').forEach(t=>t.classList.toggle('ado-active',t===tab));
+      modal.querySelectorAll('[data-panel]').forEach(panel=>panel.hidden=panel.dataset.panel!==tab.dataset.tab);
+    }));
+    modal.querySelector('.ado-comment-send').addEventListener('click',()=>{
+      const input=modal.querySelector('.ado-comment');
+      if(!input.value.trim())return;
+      const p=document.createElement('p');p.textContent='Comentário: '+input.value.trim();
+      modal.querySelector('.ado-comments').appendChild(p);input.value='';
+    });
     modal.querySelector('.ado-x').focus();
   }
   function escapeText(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
