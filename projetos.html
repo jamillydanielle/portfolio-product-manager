@@ -39,7 +39,8 @@ footer a{color:var(--accent-dark)}
 .project h2 small{font-size:13px;color:var(--muted);font-weight:400;letter-spacing:0}.project{border:0;padding-top:0}#autorais{margin-top:50px}.project-links span{color:var(--accent-dark);font-size:13px}
 .demo-shell{position:relative;margin-top:26px}
 .demo-stage{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:14px;min-height:900px;background:#f7f7fa}
-.demo-stage .demo-frame{border:0;border-radius:0}
+.demo-stage .demo-frame{border:0;border-radius:0;pointer-events:none}
+.demo-stage.is-active .demo-frame{pointer-events:auto}
 .demo-cover{position:absolute;inset:0;display:flex;align-items:flex-start;justify-content:center;z-index:5;background:rgba(243,248,248,.74);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);padding:110px 24px 30px}
 .demo-cover[hidden],.demo-stage[hidden],.structure-panel[hidden]{display:none!important}
 .demo-cover-content{max-width:530px;width:100%;background:#fff;border:1px solid var(--line);border-radius:16px;padding:34px;box-shadow:0 16px 48px rgba(16,43,45,.1)}
@@ -78,7 +79,7 @@ footer a{color:var(--accent-dark)}
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório ↗</a></div>
       <div class="demo-shell" id="discoveryShowcase">
         <div class="demo-stage" id="demoStage">
-          <iframe class="demo-frame" id="discoveryFrame" src="./discovery-demo.html" title="Interface do Discovery Insights" loading="lazy"></iframe>
+          <iframe class="demo-frame" id="discoveryFrame" src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
           <div class="demo-cover" id="demoCover">
             <div class="demo-cover-content">
               <span class="demo-overline">DISCOVERY INSIGHTS</span>
@@ -131,7 +132,13 @@ footer a{color:var(--accent-dark)}
  const cover=document.getElementById('demoCover');
  const structure=document.getElementById('structurePanel');
  const frame=document.getElementById('discoveryFrame');
- function simulate(){structure.hidden=true;stage.hidden=false;cover.hidden=true;frame.focus();stage.scrollIntoView({behavior:'smooth',block:'start');}
+ function simulate(){
+   structure.hidden=true;
+   stage.hidden=false;
+   cover.hidden=true;
+   stage.classList.add('is-active');
+   stage.scrollIntoView({behavior:'smooth',block:'start'});
+ }
  function showStructure(){stage.hidden=true;structure.hidden=false;structure.scrollIntoView({behavior:'smooth',block:'start'});}
  document.getElementById('startDemo').addEventListener('click',simulate);
  document.getElementById('startFromStructure').addEventListener('click',simulate);
