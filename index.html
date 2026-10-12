@@ -1507,7 +1507,6 @@
   <nav class="side-dashes" aria-label="Navegação rápida">
     <a href="#top" aria-label="Início"></a>
     <a href="#work" aria-label="Cases"></a>
-    <a href="#manage" aria-label="Gestão de produto"></a>
     <a href="#experience" aria-label="Experiência"></a>
     <a href="#about" aria-label="Sobre"></a>
   </nav>
@@ -1521,7 +1520,6 @@
       </a>
       <nav class="main-nav" aria-label="Navegação principal">
         <a href="#work">Principais trabalhos</a><span class="nav-dot"> ∙ </span>
-        <a href="#manage">Gestão</a><span class="nav-dot"> ∙ </span>
         <a href="#experience">Experiência</a><span class="nav-dot"> ∙ </span>
         <a href="#about">Sobre</a>
       </nav>
@@ -1692,35 +1690,6 @@
       </div>
     </section>
 
-    <section class="section" id="manage">
-      <div class="section-head">
-        <!--<h2>Gestão de produto</h2>-->
-        <!--<p>Conduzo discovery, acompanho o fluxo do time (delivery) e conecto objetivos, métricas e decisões ao longo de todo o ciclo do produto.</p>-->
-      </div>
-
-      <!--<div class="manage-panel">
-        <div class="manage-flow">
-          <div class="manage-step">
-            <b>Descoberta</b>
-            <p>levantamento de contexto e hipóteses <span class="nav-dot"> ∙ </span> identificação de problemas</p>
-          </div>
-          <div class="manage-arrow">→</div>
-          <div class="manage-step">
-            <b>Escopo</b>
-            <p>estruturação do zero <span class="nav-dot"> ∙ </span> MVP <span class="nav-dot"> ∙ </span> regras de negócio <span class="nav-dot"> ∙ </span> priorização <span class="nav-dot"> ∙ </span> critérios <span class="nav-dot"> ∙ </span> objetivos</p>
-          </div>
-          <div class="manage-arrow">→</div>
-          <div class="manage-step">
-            <b>Gestão</b>
-            <p>Ritos do time <span class="nav-dot"> ∙ </span> OKRs <span class="nav-dot"> ∙ </span> KPIs <span class="nav-dot"> ∙ </span> Lead time <span class="nav-dot"> ∙ </span> CFD <span class="nav-dot"> ∙ </span> adoção <span class="nav-dot"> ∙ </span> CES</p>
-          </div>
-        </div>
-        <div class="manage-note">
-          <span>✦ Conduzo discovery, acompanho o fluxo do time (delivery) e conecto objetivos, métricas e decisões ao longo de todo o ciclo do produto, estruturando MVPs, OKRs e KPIs por quarter/semestre e uso os dados para reposicionar prioridades, escopo e fluxo do time, bem como conduzo reuniões de alinhamento e priorização.</span>
-        </div>
-      </div>-->
-    </section>
-
     <section class="section" id="other">
       <div class="section-head">
         <h3>Outros trabalhos</h3>
@@ -1743,7 +1712,7 @@
       </div>
     </section>
 
-    <section class="section" id="experience" style="border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
+    <section class="section" id="experience" style="margin-top: 112px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
       <div class="section-head">
         <h2>Experiência</h2>
         <p>Trajetória resumida (os detalhes estão nos principais trabalhos)</p>
@@ -1771,7 +1740,7 @@
       </div>
     </section>
 
-    <section class="section" id="about">
+    <section class="section" id="about" style="margin-top: 112px;">
       <div class="section-head">
         <h2>Sobre</h2>
       </div>
@@ -1998,7 +1967,7 @@
     // A modal fecha exclusivamente pelo botão X.
 
     const navLinks = [...document.querySelectorAll(".side-dashes a")];
-    const trackedSections = ["work","manage","experience","about"]
+    const trackedSections = ["work","experience","about"]
       .map(id => document.getElementById(id))
       .filter(Boolean);
 
