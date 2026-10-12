@@ -1390,7 +1390,39 @@
       }
       html,body{background:#fff;color:var(--text)}
     }
-  </style>
+  
+    /* NF: conectores encaixados às bordas das entidades, sem sobras */
+    .nf-map{
+      display:grid;
+      grid-template-columns: minmax(74px,92px) minmax(0,1fr) 90px minmax(0,1fr) minmax(74px,92px);
+      grid-template-rows: 36px minmax(10px,1fr) 36px minmax(10px,1fr) 36px;
+      align-items:stretch;
+      justify-items:stretch;
+    }
+    .nf-map .entity{
+      position:relative;
+      inset:auto;
+      min-width:0;
+      width:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:4px 6px;
+      transform:none;
+      z-index:2;
+    }
+    .nf-map .entity.nf{left:auto;top:auto;transform:none;min-width:0}
+    .nf-map .e-cobranca{grid-area:1 / 3}
+    .nf-map .e-pedido{grid-area:3 / 1}
+    .nf-map .nf{grid-area:3 / 3}
+    .nf-map .e-sap{grid-area:3 / 5}
+    .nf-map .e-entrega{grid-area:5 / 3}
+    .nf-connector{background:#c8d8d9;align-self:center;justify-self:stretch;z-index:1}
+    .nf-to-pedido{grid-area:3 / 2;height:1px}
+    .nf-to-sap{grid-area:3 / 4;height:1px}
+    .nf-to-cobranca{grid-area:2 / 3;width:1px;height:100%;justify-self:center}
+    .nf-to-entrega{grid-area:4 / 3;width:1px;height:100%;justify-self:center}
+</style>
 </head>
 <body>
   <nav class="side-dashes" aria-label="Navegação rápida">
@@ -1469,7 +1501,10 @@
           <div class="case-visual">
             <div class="case-kicker">Case 01 · Operação + ERP</div>
             <div class="nf-map">
-              <div class="edge h1"></div><div class="edge h2"></div><div class="edge v1"></div><div class="edge v2"></div>
+              <div class="nf-connector nf-to-cobranca" aria-hidden="true"></div>
+              <div class="nf-connector nf-to-pedido" aria-hidden="true"></div>
+              <div class="nf-connector nf-to-sap" aria-hidden="true"></div>
+              <div class="nf-connector nf-to-entrega" aria-hidden="true"></div>
               <div class="entity e-pedido">Pedido</div>
               <div class="entity e-sap">SAP</div>
               <div class="entity e-cobranca">Cobrança</div>
@@ -1857,18 +1892,31 @@
       if(e.key === "Escape" && modal.classList.contains("open")) closeCase();
     });
 
-    const sections = [...document.querySelectorAll("main section[id], main#top")];
     const navLinks = [...document.querySelectorAll(".side-dashes a")];
+    const trackedSections = ["work","manage","experience","about"]
+      .map(id => document.getElementById(id))
+      .filter(Boolean);
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          navLinks.forEach(a => a.classList.toggle("active", a.getAttribute("href") === "#" + entry.target.id));
+    function updateActiveSection(){
+      const threshold = window.scrollY + window.innerHeight * 0.4;
+      let activeId = "top";
+      for(const section of trackedSections){
+        if(section.getBoundingClientRect().top + window.scrollY <= threshold){
+          activeId = section.id;
         }
+      }
+      navLinks.forEach(link => {
+        const isActive = link.getAttribute("href") === "#" + activeId;
+        link.classList.toggle("active", isActive);
+        if(isActive) link.setAttribute("aria-current","location");
+        else link.removeAttribute("aria-current");
       });
-    }, {rootMargin:"-40% 0px -50% 0px", threshold:0});
+    }
 
-    document.querySelectorAll("#work,#manage,#experience,#about").forEach(s => observer.observe(s));
+    window.addEventListener("scroll", updateActiveSection, {passive:true});
+    window.addEventListener("resize", updateActiveSection);
+    window.addEventListener("hashchange", updateActiveSection);
+    updateActiveSection();
   </script>
 </body>
 </html>
