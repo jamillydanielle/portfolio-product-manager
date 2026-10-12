@@ -1166,6 +1166,21 @@ button {
   <style>body{min-width:0}.tool-card:not(:disabled){cursor:pointer} .context-source-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} @media(max-width:640px){.context-source-list{grid-template-columns:1fr}}
 .context-box-header strong{display:inline-flex;align-items:center;width:fit-content;padding:5px 10px;border-radius:999px;background:#e8f6ee;border:1px solid #cfeada;color:#23764c;font-size:12px;font-weight:650;line-height:1.35}
 .context-box-header span{margin-top:7px}
+
+.ado-demo-backdrop{position:fixed;inset:0;z-index:1000;background:#1c293d99;display:flex;align-items:center;justify-content:center;padding:18px}
+.ado-workitem{background:#fff;color:#242b37;font-family:"Segoe UI",Arial,sans-serif;max-width:1120px;width:100%;height:min(90vh,850px);display:flex;flex-direction:column;border-radius:5px;box-shadow:0 20px 70px #0003;overflow:hidden}
+.ado-toolbar{border-bottom:1px solid #d8dfe8;padding:15px 23px;display:flex;justify-content:space-between;align-items:center;background:#fafbfc}
+.ado-breadcrumb{color:#64748b;font-size:12px}
+.ado-type{display:flex;align-items:center;gap:9px;font-size:14px;margin-top:7px}.ado-type-icon{color:#8e68dc}.ado-new-badge{background:#edf2fa;border:1px solid #d4ddeb;border-radius:16px;font-size:11px;padding:2px 8px}
+.ado-x{border:1px solid #dce1e6;background:#fff;border-radius:4px;font-size:24px;cursor:pointer;width:36px;height:36px}
+.ado-workitem-body{overflow:auto;display:grid;grid-template-columns:minmax(0,1fr) 250px;gap:25px;padding:22px 26px;flex:1}
+.ado-main h2{font-size:22px;line-height:1.3;margin:0 0 24px}.ado-tabs{border-bottom:1px solid #dce1e6;display:flex;gap:24px;font-size:13px;color:#667085;padding-bottom:10px;margin-bottom:19px}.ado-active{font-weight:700;color:#0078d4}
+.ado-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px;border-bottom:1px solid #e5e9ee;padding-bottom:22px;margin-bottom:20px}
+.ado-fields>div,.ado-aside>div{display:flex;flex-direction:column;gap:5px}.ado-fields small,.ado-aside small{font-size:11px;color:#64748b}.ado-fields strong,.ado-aside strong{font-size:13px;font-weight:500}.ado-main h3,.ado-aside h3{font-size:14px;margin:18px 0 10px}.ado-richtext{border:1px solid #dce1e6;padding:14px 17px;border-radius:3px;font-size:13px;line-height:1.6}.ado-richtext p{margin:0 0 12px}.ado-richtext h3{margin:12px 0 6px}.ado-richtext ul,.ado-richtext ol{padding-left:23px}.ado-discussion{color:#7f8898;min-height:56px}
+.ado-aside{border-left:1px solid #e5e9ee;padding-left:23px;display:flex;flex-direction:column;gap:18px}.ado-aside h3{margin:0}.ado-aside span{font-size:11px;color:#607089}.ado-link{color:#0078d4!important}
+.ado-footer{padding:12px 22px;background:#f4f7fa;border-top:1px solid #e0e6eb;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;color:#667085}
+.ado-done{border:0;background:#0078d4;color:white;padding:8px 19px;border-radius:3px;cursor:pointer}
+@media(max-width:700px){.ado-demo-backdrop{padding:7px}.ado-workitem{height:96vh}.ado-workitem-body{grid-template-columns:1fr;padding:18px}.ado-aside{border-left:0;border-top:1px solid #e5e9ee;padding:15px 0}.ado-main h2{font-size:18px}}
 </style></head>
 
   <body>
@@ -1321,19 +1336,7 @@ button {
       <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
     </div>
   </button>
-  <button
-    class="tool-card"
-    data-action="prototype"
-    disabled
-    title="Disponível quando o contexto do Work Item terminar de carregar."
-  >
-    <div class="tool-icon">✒️</div>
-    <div>
-      <strong>Protótipo</strong>
-      <span>Estruturar proposta inicial de prototipação</span>
-      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
-    </div>
-  </button>
+  
 </div>
       </section>
     </main>
@@ -1459,8 +1462,40 @@ button {
       status.textContent='Finalizando a tarefa simulada…';
       await pause(900);
       close();
-      showResult('<div class="analysis" style="display:flex;flex-direction:column;gap:16px"><h2>✨ '+labels[action]+'</h2>'+section('Discovery Task gerada',sections[action]+(extra?'<p><b>Instrução adicional:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Revise o conteúdo gerado antes de finalizar.</p>')+'</div>');
+      showCreatedTask(action,extra);
     });
+  }
+
+  function showCreatedTask(action,extra){
+    const id='28156';
+    const titles={
+      benchmark:'[Benchmark] Referências para sistematizar a confirmação de pagamentos',
+      interview:'[Entrevista] Mapeamento do processo atual de confirmação de pagamentos',
+      csd:'[Matriz CSD] Certezas, suposições e dúvidas sobre confirmação de pagamentos',
+      bpmn:'[BPMN] Mapeamento AS IS do fluxo de confirmação de pagamentos',
+      'risk-analysis':'[Análise de risco] Disponibilidade e confiabilidade dos dados de pagamento',
+      'product-decision':'[Decisão de Produto] Avaliação das alternativas para confirmação de pagamentos'
+    };
+    const title=titles[action]||'[Discovery Task] Análise sobre confirmação de pagamentos';
+    const modal=document.createElement('div');
+    modal.className='ado-demo-backdrop';
+    modal.innerHTML='<section class="ado-workitem" role="dialog" aria-modal="true" aria-labelledby="adoDemoTitle">'+
+      '<header class="ado-toolbar"><div><span class="ado-breadcrumb">Recoloca / Boards / Work Items</span><div class="ado-type"><span class="ado-type-icon">◉</span> Discovery Task <strong>'+id+'</strong> <span class="ado-new-badge">New</span></div></div><button class="ado-x" type="button" aria-label="Fechar Work Item">×</button></header>'+
+      '<div class="ado-workitem-body"><div class="ado-main"><h2 id="adoDemoTitle">'+escapeText(title)+'</h2>'+
+      '<div class="ado-tabs"><span class="ado-active">Details</span><span>History</span><span>Links</span></div>'+
+      '<div class="ado-fields"><div><small>State</small><strong>◯ New</strong></div><div><small>Reason</small><strong>New</strong></div><div><small>Area</small><strong>Recoloca</strong></div><div><small>Iteration</small><strong>Recoloca\\26Q4</strong></div></div>'+
+      '<h3>Description</h3><div class="ado-richtext"><p><strong>Objetivo:</strong> '+escapeText(title)+'</p><p><strong>Contexto:</strong> a hipótese [Automatizar pagamento] busca investigar como sistematizar a confirmação de pagamentos, compreendendo o processo atual antes da definição da solução.</p>'+
+      '<p><strong>Resultado do Discovery Insights</strong></p>'+sections[action]+
+      (extra?'<p><strong>Instruções adicionais:</strong> '+escapeText(extra)+'</p>':'')+
+      '<p><strong>Próximo passo:</strong> revisar evidências e validar as informações com os responsáveis pelo processo.</p></div>'+
+      '<h3>Discussion</h3><div class="ado-richtext ado-discussion">Adicionar um comentário...</div></div>'+
+      '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><strong>Não atribuído</strong></div><div><small>Parent</small><strong><span class="ado-link">Hypothesis 2481</span></strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Tags</small><strong>Discovery · AI</strong></div><h3>Related Work</h3><div><small>Parent Objective</small><strong><span class="ado-link">2400</span> · [OKR-26Q4] Lead-time financeiro</strong></div></aside></div>'+
+      '<footer class="ado-footer"><span>Discovery Task criada na simulação · Nenhum Work Item real foi registrado</span><button type="button" class="ado-done">Fechar</button></footer></section>';
+    document.body.appendChild(modal);
+    const close=()=>modal.remove();
+    modal.querySelector('.ado-x').addEventListener('click',close);
+    modal.querySelector('.ado-done').addEventListener('click',close);
+    modal.querySelector('.ado-x').focus();
   }
   function escapeText(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
   actions.forEach(button=>button.addEventListener('click',()=>openTask(button.dataset.action)));
