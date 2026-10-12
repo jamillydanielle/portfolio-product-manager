@@ -205,13 +205,28 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
 .demo-preview-foot{padding:10px 15px;border-top:1px solid #e4eded;font-size:10px;color:#668184;display:flex;justify-content:space-between}
 @media(max-width:700px){.demo-preview-trigger{width:100%}.demo-preview-trigger>button{width:100%}.demo-hover-preview{left:0;right:auto;width:min(390px,calc(100vw - 55px))}}
 @media(prefers-reduced-motion:reduce){.demo-hover-preview{transition:none;transform:none}}
+
+/* Cabeçalho fixo em toda a largura */
+header.topbar{position:sticky;top:0;z-index:900;background:#fff;width:100%;min-height:0;border-bottom:1px solid var(--line)}
+header.topbar .topbar-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+@media(max-width:600px){header.topbar .topbar-inner{min-height:66px}}
+/* Seletores corrigidos: as seções possuem aria-labelledby, não IDs */
+main.wrap>section[aria-labelledby="autorais"]{margin-top:10px!important}
+main.wrap>section[aria-labelledby="autorais"] .project{margin:0!important;padding:0!important}
+main.wrap>section[aria-labelledby="autorais"] .project h2{margin:0 0 7px!important}
+main.wrap>section[aria-labelledby="autorais"] .project>p{margin:0 0 10px!important}
+main.wrap>section[aria-labelledby="autorais"] .project-links{margin:0 0 14px!important}
+main.wrap>section[aria-labelledby="ferramentas"]{margin-top:26px!important}
+main.wrap>section[aria-labelledby="ferramentas"] h2{margin:0 0 7px!important}
+main.wrap>section[aria-labelledby="ferramentas"] .section-desc{margin:0 0 18px!important}
+@media(max-width:600px){main.wrap>section[aria-labelledby="autorais"]{margin-top:8px!important}main.wrap>section[aria-labelledby="ferramentas"]{margin-top:22px!important}}
 </style>
 </head>
 <body>
-<header class="wrap topbar">
+<header class="topbar"><div class="wrap topbar-inner">
   <a class="brand" href="./index.html" aria-label="Voltar ao portfólio"><span class="mark" aria-hidden="true">✦</span><span class="brand-text"><strong>Jamilly Danielle</strong><small>Product Manager</small></span></a>
   <a class="back" href="./index.html"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"/></svg><span>Voltar ao portfólio</span></a>
-</header>
+</div></header>
 <main class="wrap">
   <h1>Projetos & Ferramentas</h1>
   
