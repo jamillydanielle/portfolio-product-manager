@@ -1245,10 +1245,14 @@ body.demo-modal-open{overflow:hidden!important}
 .demo-permanent-notice>span:first-child{font-size:9px;color:#578489;margin-right:5px}
 .demo-permanent-copy{font-weight:400}
 @media(max-width:600px){.demo-permanent-notice{padding:7px 10px;font-size:10px}.demo-permanent-copy{display:block}}
+
+/* Modal sem reserva de espaço para avisos duplicados */
+.ado-demo-backdrop{padding:18px;align-items:center}
+.ado-demo-backdrop .ado-workitem{height:min(94vh,940px);max-height:94vh}
+@media(max-width:600px){.ado-demo-backdrop{padding:8px}}
 </style></head>
 
   <body>
-    <div class="demo-permanent-notice" role="note"><span aria-hidden="true">●</span> Ambiente de simulação <span class="demo-permanent-copy">· Dados fictícios · Nenhuma ação é registrada em sistemas reais</span></div>
     <main class="container">
       <!-- HEADER -->
       <section class="hero">
@@ -1552,7 +1556,7 @@ body.demo-modal-open{overflow:hidden!important}
     };
 
     const modal=document.createElement('div');
-    modal.className='ado-demo-backdrop ado-with-notice';
+    modal.className='ado-demo-backdrop';
     modal.innerHTML='<section class="ado-workitem ado-fidelity" role="dialog" aria-modal="true" aria-labelledby="adoDemoTitle">'+
       '<header class="ado-toolbar"><div class="ado-breadcrumb">Recoloca / Boards / Work Items / 28156</div><div class="ado-commandbar"><span class="ado-save-status" role="status">✓ Discovery Task criada</span><button type="button" class="ado-command ado-done">Save & Close</button><button type="button" class="ado-x" aria-label="Fechar">×</button></div></header>'+
       '<div class="ado-wi-head"><div class="ado-type"><span class="ado-task-icon">◆</span><strong>Discovery Task</strong><span>28156</span><span class="ado-new-badge">New</span></div><input class="ado-wi-title" id="adoDemoTitle" aria-label="Título da Discovery Task" value="'+escapeText(title)+'"><div class="ado-workitem-meta">Created by Discovery Insights · New</div></div>'+
@@ -1564,14 +1568,9 @@ body.demo-modal-open{overflow:hidden!important}
       '</main>'+
       '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><input class="ado-sidebar-input" placeholder="Unassigned" aria-label="Assigned To"></div><div><small>Area</small><strong>Produto</strong></div><div><small>Iteration</small><strong>Produto Digital</strong></div><h3>Classification</h3><div><small>Tags</small><div class="ado-taglist"><span>Discovery</span><span>AI</span></div></div><h3>Related Work</h3><div><small>Parent</small><strong class="ado-link">Hypothesis 2481</strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Objective</small><strong class="ado-link">2400</strong><span>[OKR-26Q4] Lead-time financeiro</span></div></aside></div>'+
       '<footer class="ado-footer"><span>Ambiente de simulação · Nenhum Work Item foi registrado no Azure DevOps.</span><span>Discovery Insights</span></footer></section>';
-    const notice=document.createElement('aside');
-    notice.className='ado-simulation-notice';
-    notice.setAttribute('role','note');
-    notice.innerHTML='<span class="ado-notice-icon" aria-hidden="true">ⓘ</span><div><strong>Ambiente de simulação</strong><p>Este título e esta descrição são exemplos. No uso real, o conteúdo é gerado pela IA e pode variar conforme o contexto analisado e o retorno do agente.</p></div>';
     document.body.appendChild(modal);
-    document.body.appendChild(notice);
     document.body.classList.add('demo-modal-open');
-    const close=()=>{notice.remove();modal.remove();document.body.classList.remove('demo-modal-open')};
+    const close=()=>{modal.remove();document.body.classList.remove('demo-modal-open')};
     modal.querySelector('.ado-x').addEventListener('click',close);
     modal.querySelector('.ado-done').addEventListener('click',close);
 
