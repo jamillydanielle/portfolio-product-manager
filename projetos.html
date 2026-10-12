@@ -387,6 +387,38 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:96px!important}
 #openDiscovery.explore-pulse:hover:after,#openDiscovery.explore-pulse:focus-visible:after{animation-play-state:running}
 #openDiscovery.explore-pulse:focus-visible{outline:2px solid #255b75!important;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){#openDiscovery.explore-pulse,#openDiscovery.explore-pulse:after{animation:none!important}}
+
+/* CTA: azul mais claro, reflexos difusos circulares e movimento contínuo */
+#openDiscovery.explore-pulse{
+  background:linear-gradient(125deg,#6e9daf 0%,#86b5c4 40%,#6395aa 70%,#7daebd 100%)!important;
+  background-size:100% 100%!important;
+  animation:none!important;
+  border:none!important;
+  box-shadow:none!important;
+  isolation:isolate;
+}
+#openDiscovery.explore-pulse::before{
+  content:""!important;
+  position:absolute;inset:-110%;
+  border-radius:50%;
+  background:conic-gradient(from 0deg,transparent 0deg,rgba(226,250,255,.03) 45deg,rgba(235,252,255,.6) 98deg,transparent 148deg,rgba(40,113,149,.18) 206deg,transparent 280deg,rgba(232,252,255,.35) 330deg,transparent 360deg)!important;
+  filter:blur(15px)!important;
+  transform-origin:center center;
+  animation:explore-orbit 3.8s linear infinite!important;
+  pointer-events:none;z-index:0;opacity:.95;
+}
+#openDiscovery.explore-pulse::after{
+  content:"";position:absolute;inset:-60%;z-index:0;
+  background:radial-gradient(ellipse 24% 18% at 50% 24%,rgba(255,255,255,.63),transparent 88%);
+  filter:blur(9px);
+  transform-origin:50% 50%;
+  animation:explore-orbit 3.8s linear infinite reverse!important;
+  pointer-events:none;
+}
+#openDiscovery .explore-animated-label{position:relative;z-index:1;color:#fff!important;opacity:1!important;animation:none!important;text-shadow:0 1px 2px rgba(31,79,104,.15)}
+@keyframes explore-orbit{to{transform:rotate(360deg)}}
+#openDiscovery.explore-pulse:hover::before,#openDiscovery.explore-pulse:hover::after{animation-play-state:running!important}
+@media(prefers-reduced-motion:reduce){#openDiscovery.explore-pulse::before,#openDiscovery.explore-pulse::after{animation:none!important}}
 </style>
 </head>
 <body>
