@@ -212,7 +212,6 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
         </div>
         <div class="demo-intro" id="demoIntro"><div class="demo-cover-content"><span class="demo-overline">DISCOVERY INSIGHTS</span><h3>Explore o projeto</h3><p>A demonstração reproduz a experiência da extensão de apoio ao discovery de Produto. Você pode interagir com as ferramentas e explorar a estrutura técnica usando dados fictícios. Nenhuma informação será registrada ou enviada para sistemas reais.</p><div class="demo-buttons"><button type="button" class="demo-button primary" id="startIntro">Iniciar simulação</button><button type="button" class="demo-button outline" id="structureIntro">Consultar estrutura</button></div></div></div>
         <div class="structure-panel" id="structurePanel" hidden>
-          <div class="structure-top"><div><span class="demo-overline">VISÃO TÉCNICA</span><h3>Como o Discovery Insights funciona</h3><p>Fluxo da extensão original, com execução simulada neste portfólio.</p></div><button type="button" class="demo-button primary" id="startFromStructure">Simular projeto ↗</button></div>
           <div class="tech-diagram" aria-label="Diagrama de arquitetura do Discovery Insights">
             <div class="tech-diagram-heading"><span class="tech-live-dot"></span><span>VISÃO DE ARQUITETURA</span><span class="tech-diagram-version">fluxo lógico · projeto original</span></div>
             <div class="tech-system">
@@ -324,7 +323,7 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
  document.getElementById('structureIntro').addEventListener('click',()=>view('structure'));
  document.getElementById('startDemo').addEventListener('click',simulate);
  document.getElementById('seeStructure').addEventListener('click',()=>view('structure'));
- document.getElementById('startFromStructure').addEventListener('click',simulate);
+
  nav.forEach(b=>b.addEventListener('click',()=>b.dataset.demoView==='simulation'?simulate():view(b.dataset.demoView)));
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden&&!overlay.classList.contains('demo-child-modal-open'))close()});
 })();
