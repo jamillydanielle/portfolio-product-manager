@@ -1358,20 +1358,11 @@ button {
       <div class="related-item"><div><strong>Discovery Task ${link(2484)}</strong><span>[Análise de risco] Avaliação técnica de disponibilidade e confiabilidade dos dados de pagamento</span></div><span class="related-state">New</span></div>
     </div></details><p class="context-note">O contexto enviado para a IA considera título, status e descrição do Work item atual, do Parent e dos Work items vinculados.</p></div>`;
   // Simula a preparação inicial do contexto, como na extensão real.
-  const contextStages = [
-    'Conectando ao Work Item selecionado...',
-    'Buscando Parent e Work Items vinculados...',
-    'Organizando informações do Discovery...'
-  ];
   async function loadDemoContext(){
     analyzeButton.disabled=true;
     actions.forEach(a=>a.disabled=true);
-    wi.innerHTML='<div class="context-loading" role="status" aria-live="polite"><span class="context-spinner" aria-hidden="true"></span><span id="demoContextStatus">Preparando o contexto...</span></div>';
-    for(const message of contextStages){
-      const status=document.getElementById('demoContextStatus');
-      if(status)status.textContent=message;
-      await new Promise(resolve=>setTimeout(resolve,1500));
-    }
+    wi.innerHTML='<div class="context-loading" role="status" aria-live="polite"><span class="context-spinner" aria-hidden="true"></span><span>Carregando contexto</span></div>';
+    await new Promise(resolve=>setTimeout(resolve,3800));
     wi.innerHTML=loadedContext;
     analyzeButton.disabled=false;
     actions.forEach(a=>{a.disabled=false;a.removeAttribute('title')});
