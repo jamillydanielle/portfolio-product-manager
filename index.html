@@ -1632,7 +1632,7 @@
           <div class="case-body">
             <div class="case-title-row">
               <h3>Autenticação e Gestão de usuários</h3>
-              <span>↗</span>
+              <!--<span>↗</span>-->
             </div>
             <p>Estrutura de login para APP/ Portal do comprador (B2B), múltiplos CNPJs e jornada digital (autosserviço).</p>
             <div class="case-tags-row">
@@ -1864,33 +1864,37 @@
         `
       },
       auth: {
-        eyebrow: "Plataforma · Segurança · Multi-CNPJ",
-        title: "Autenticação & gestão de usuários",
+        eyebrow: "APP · Autosserviço B2B · Multi-CNPJs",
+        title: "Autenticação e Gestão de usuários",
         content: `
           <div class="detail-block">
-            <h4>Context</h4>
-            <p>APP e Portal precisavam suportar múltiplos CNPJs, diferentes vínculos empresariais e jornadas sensíveis que não deveriam depender de links públicos.</p>
+            <h4>Contexto</h4>
+            <p>O APP foi implantado, mas precisava suportar a autenticação via autosserviço (não definido no escopo inicial do projeto) onde foi necessário digitalizar todo o processo de entrada do cliente que anteriormente era feito apenas por um operador interno.</p>
           </div>
           <div class="detail-block">
-            <h4>Problem</h4>
-            <p>Contato, usuário e vínculo empresarial tinham responsabilidades diferentes; o produto precisava refletir isso sem comprometer atualização de dados, acesso e escalabilidade.</p>
+            <h4>Problema</h4>
+            <p>O produto precisava garantir acesso a dados com segurança, considerando que se trata de um mercado B2B, além de sistematizar e digitalizar a entrada de um cliente com integração que consulta dados direto da receita e validação de dados sem expor informações confidenciais.</p>
           </div>
           <div class="detail-block">
-            <h4>My role</h4>
+            <h4>Atuação</h4>
             <ul>
-              <li>Estruturação de regras entre contato, usuário e vínculo.</li>
-              <li>Mapeamento de cenários multi-CNPJ e múltiplos administradores.</li>
-              <li>Conexão entre decisões de autenticação e jornadas de APP/Portal.</li>
+              <li>Estruturação de regras entre contato, usuário e documento (multi-CNPJs)</li>
+              <li>Mapeamento de fluxo de onboarding digitalizado</li>
+              <li>Conexão entre decisões de autenticação e jornadas de APP / Portal do Comprador.</li>
               <li>Acompanhamento da cobertura de autenticação após a entrega.</li>
             </ul>
           </div>
           <div class="detail-block">
-            <h4>Key decision</h4>
-            <p>Separar responsabilidades de contato e usuário, preservando a relação necessária entre as entidades para permitir atualização de dados sem confundir regras de acesso.</p>
+            <h4>Decisão-chave</h4>
+            <p>Separar responsabilidades de CNPJ (Grupo empresarial) e usuário, preservando a relação necessária entre as entidades para permitir atualização de dados sem confundir regras de acesso.</p>
           </div>
           <div class="detail-block">
             <h4>Impact</h4>
-            <div class="modal-metric"><strong>20% → 73%</strong><span>de compradores ativos autenticados. Meta definida: 75%. O trabalho também viabilizou a migração de jornadas sensíveis para experiências autenticadas.</span></div>
+            <div class="modal-metric"><strong>20% → 80%</strong><span>de compradores ativos autenticados. Meta definida: 75%. O trabalho também viabilizou a migração de jornadas sensíveis para experiências autenticadas.</span></div>
+          </div>
+          <div class="detail-block">
+            <h4>Considerações</h4>
+            <p>Esta frente visou aprimorar a experiência do cliente, garantir segurança e acesso à dados, além de viabilizar a escalabilidade do processo sem depender de gestão manual interna.</p>
           </div>
         `
       },
