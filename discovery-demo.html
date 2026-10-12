@@ -1250,6 +1250,8 @@ body.demo-modal-open{overflow:hidden!important}
 .ado-demo-backdrop{padding:18px;align-items:center}
 .ado-demo-backdrop .ado-workitem{height:min(94vh,940px);max-height:94vh}
 @media(max-width:600px){.ado-demo-backdrop{padding:8px}}
+
+.discovery-modal-confirm:disabled{cursor:wait;opacity:.85}.discovery-button-spinner{display:inline-block;width:14px;height:14px;vertical-align:-2px;margin-right:7px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:discovery-button-spin .75s linear infinite}@keyframes discovery-button-spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.discovery-button-spinner{animation:none}}
 </style></head>
 
   <body>
@@ -1521,15 +1523,9 @@ body.demo-modal-open{overflow:hidden!important}
     overlay.querySelector('.discovery-modal-confirm').addEventListener('click',async()=>{
       const extra=overlay.querySelector('textarea').value.trim();
       const btn=overlay.querySelector('.discovery-modal-confirm');
-      btn.disabled=true;btn.textContent='⏳ Gerando...';
-      let status=overlay.querySelector('.discovery-modal-progress');
-      if(!status){status=document.createElement('div');status.className='discovery-modal-progress';overlay.querySelector('.discovery-modal-footer').before(status)}
-      status.hidden=false;status.textContent='Aguarde, seu Work Item está sendo carregado…';
-      await pause(1400);
-      status.textContent='Estruturando conteúdo e critérios da Discovery Task…';
-      await pause(1300);
-      status.textContent='Finalizando a tarefa simulada…';
-      await pause(900);
+      btn.disabled=true;
+      btn.innerHTML='<span class="discovery-button-spinner" aria-hidden="true"></span> Gerando Discovery Task...';
+      await pause(3600);
       close();
       showCreatedTask(action,extra);
     });
