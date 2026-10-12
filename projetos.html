@@ -73,6 +73,24 @@ footer a{color:var(--accent-dark)}
 @media(prefers-reduced-motion:reduce){.transition-spinner{animation:none}.demo-transition{transition:none}}
 body.preview-modal-open{overflow:hidden}
 .back{display:inline-flex;align-items:center;gap:7px}.back svg{flex-shrink:0}
+
+/* Página Projetos: hierarquia mais compacta */
+main.wrap{padding-top:42px}
+main.wrap>h1{font-size:clamp(36px,4.5vw,52px);margin-bottom:0}
+#autorais{margin-top:22px}
+#autorais .project{padding-top:0;padding-bottom:12px}
+#autorais .project h2{margin-bottom:8px}
+#autorais .project>p{margin-bottom:10px}
+#autorais .project-links{margin:8px 0 18px}
+/* Moldura e identificação visível da simulação */
+.demo-shell{border:1px solid #b8d1d2;border-radius:13px;background:#f7fbfb;overflow:hidden}
+.simulation-ribbon{display:flex;align-items:center;flex-wrap:wrap;gap:7px 12px;padding:12px 16px;background:#eaf4f4;border-bottom:1px solid #c9dcdc;color:#315b60;font-size:12px;line-height:1.45}
+.simulation-ribbon strong{font-size:12px;white-space:nowrap}
+.simulation-ribbon>span:last-child{color:#4b6b70}
+.simulation-status-dot{width:8px;height:8px;border-radius:50%;background:#578489;flex-shrink:0}
+.demo-shell .demo-stage{border:0;border-radius:0}
+.demo-shell .structure-panel{border:0;border-radius:0}
+@media(max-width:600px){main.wrap{padding-top:28px}#autorais{margin-top:18px}.simulation-ribbon{padding:11px 13px}}
 </style>
 </head>
 <body>
@@ -90,6 +108,7 @@ body.preview-modal-open{overflow:hidden}
       <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
       <div class="demo-shell" id="discoveryShowcase">
+        <div class="simulation-ribbon" role="note"><span class="simulation-status-dot" aria-hidden="true"></span><strong>Ambiente de simulação</strong><span>Interaja livremente: os dados são fictícios e nenhuma ação é registrada em sistemas reais.</span></div>
         <div class="demo-stage" id="demoStage">
           <iframe class="demo-frame" id="discoveryFrame" data-src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
           <div class="demo-cover" id="demoCover">
