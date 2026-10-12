@@ -362,6 +362,31 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:96px!important}
 #openDiscovery.explore-pulse:hover,#openDiscovery.explore-pulse:focus-visible{animation-play-state:paused!important}
 #openDiscovery.explore-pulse:hover .explore-animated-label,#openDiscovery.explore-pulse:focus-visible .explore-animated-label{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){#openDiscovery.explore-pulse,#openDiscovery .explore-animated-label{animation:none!important}}
+
+/* Refinamento: gradiente azul contínuo, sem contorno, com reflexo fluido */
+#openDiscovery.explore-pulse{
+  border:0!important;outline:0;box-shadow:none!important;
+  background:linear-gradient(115deg,#365f77 0%,#487f96 18%,#83b3c8 35%,#346c88 53%,#639cb4 72%,#2e607b 88%,#365f77 100%)!important;
+  background-size:320% 100%!important;
+  animation:explore-blue-flow 3.2s linear infinite!important;
+  position:relative;overflow:hidden;border-radius:10px;
+  transition:transform .2s ease!important;
+}
+#openDiscovery.explore-pulse:before{content:none!important}
+#openDiscovery.explore-pulse:after{
+  content:"";position:absolute;inset:-55% -30%;z-index:0;
+  background:linear-gradient(104deg,transparent 35%,rgba(255,255,255,.03) 43%,rgba(255,255,255,.31) 50%,rgba(255,255,255,.06) 56%,transparent 65%);
+  transform:translateX(-130%) skewX(-10deg);
+  animation:explore-light-sweep 3.2s ease-in-out infinite;
+  pointer-events:none;
+}
+#openDiscovery .explore-animated-label{animation:none!important;opacity:1!important;transform:none!important;color:#fff;z-index:1}
+@keyframes explore-blue-flow{0%{background-position:0% 50%}100%{background-position:100% 50%}}
+@keyframes explore-light-sweep{0%,8%{transform:translateX(-130%) skewX(-10deg)}76%,100%{transform:translateX(130%) skewX(-10deg)}}
+#openDiscovery.explore-pulse:hover,#openDiscovery.explore-pulse:focus-visible{animation-play-state:running!important;transform:translateY(-1px)}
+#openDiscovery.explore-pulse:hover:after,#openDiscovery.explore-pulse:focus-visible:after{animation-play-state:running}
+#openDiscovery.explore-pulse:focus-visible{outline:2px solid #255b75!important;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){#openDiscovery.explore-pulse,#openDiscovery.explore-pulse:after{animation:none!important}}
 </style>
 </head>
 <body>
