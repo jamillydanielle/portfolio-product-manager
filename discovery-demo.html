@@ -1346,8 +1346,8 @@ button {
   const loadedContext = `<div class="context-box">
     <div class="context-box-header"><strong>✓ Contexto carregado</strong><span>Informações consideradas nesta análise</span></div>
     <div class="context-source-list">
-    <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Feature ${link(2481)}</strong><span class="context-source-title">[Hipótese] Como podemos reduzir o esforço manual na confirmação de pagamentos?</span></div>
-    <div class="context-source"><span class="context-source-label">Parent</span><strong>Epic ${link(2400)}</strong><span class="context-source-title">[Objetivo] Reduzir o tempo operacional no acompanhamento de cobranças</span></div>
+    <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Hypothesis ${link(2481)}</strong><span class="context-source-title">[Hipótese] Como podemos reduzir o esforço manual na confirmação de pagamentos?</span></div>
+    <div class="context-source"><span class="context-source-label">Parent</span><strong>Objective ${link(2400)}</strong><span class="context-source-title">[Objetivo] Reduzir o tempo operacional no acompanhamento de cobranças</span></div>
     <div class="context-source"><span class="context-source-label">Work Items vinculados</span><strong>3 itens</strong><span class="context-source-title">2 filhos • 1 relacionado</span></div></div>
     <details class="related-details"><summary>Ver 3 Work Items considerados</summary><div class="related-items-list">
       <div class="related-item"><div><strong>User Story ${link(2482)}</strong><span>[Discovery] Entrevista com GoFinance — processo atual de confirmação de pagamentos</span></div><span class="related-state">Active</span></div>
@@ -1367,7 +1367,7 @@ button {
     for(const message of contextStages){
       const status=document.getElementById('demoContextStatus');
       if(status)status.textContent=message;
-      await new Promise(resolve=>setTimeout(resolve,950));
+      await new Promise(resolve=>setTimeout(resolve,1500));
     }
     wi.innerHTML=loadedContext;
     analyzeButton.disabled=false;
