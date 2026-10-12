@@ -2030,6 +2030,16 @@ Universidade Federal de Lavras (UFLA).</p>
       });
     }
 
+    // Na seção Sobre, mostrar também o rodapé em telas maiores.
+    document.querySelectorAll('a[href="#about"]').forEach(link => {
+      link.addEventListener("click", event => {
+        if(window.innerWidth <= 680) return;
+        event.preventDefault();
+        history.pushState(null, "", "#about");
+        window.scrollTo({top:document.documentElement.scrollHeight - window.innerHeight, behavior:"smooth"});
+        updateActiveSection();
+      });
+    });
     window.addEventListener("scroll", updateActiveSection, {passive:true});
     window.addEventListener("resize", updateActiveSection);
     window.addEventListener("hashchange", updateActiveSection);
