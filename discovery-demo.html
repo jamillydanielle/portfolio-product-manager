@@ -1343,7 +1343,7 @@ button {
   const result = document.getElementById('analysisResult');
   const actions = [...document.querySelectorAll('.tool-card')];
   const link = id => '<span class="work-item-link" style="color:#0078d4">' + id + '</span>';
-  wi.innerHTML = `<div class="context-box">
+  const loadedContext = `<div class="context-box">
     <div class="context-box-header"><strong>✓ Contexto carregado</strong><span>Informações consideradas nesta análise</span></div>
     <div class="context-source-list">
     <div class="context-source"><span class="context-source-label">Work Item atual</span><strong>Feature ${link(2481)}</strong><span class="context-source-title">[Hipótese] Como podemos reduzir o esforço manual na confirmação de pagamentos?</span></div>
@@ -1354,8 +1354,26 @@ button {
       <div class="related-item"><div><strong>User Story ${link(2483)}</strong><span>[Discovery] Investigar oportunidades para disponibilizar status de pagamento ao cliente</span></div><span class="related-state">New</span></div>
       <div class="related-item"><div><strong>Task ${link(2484)}</strong><span>[Discovery] Avaliação técnica — disponibilidade e confiabilidade dos dados de pagamento</span></div><span class="related-state">New</span></div>
     </div></details><p class="context-note">A IA considera título, status e descrição do Work Item atual, do Parent e dos Work Items vinculados.</p></div>`;
-  analyzeButton.disabled=false;
-  actions.forEach(a=>{a.disabled=false;a.removeAttribute('title')});
+  // Simula a preparação inicial do contexto, como na extensão real.
+  const contextStages = [
+    'Conectando ao Work Item selecionado...',
+    'Buscando Parent e Work Items vinculados...',
+    'Organizando informações do Discovery...'
+  ];
+  async function loadDemoContext(){
+    analyzeButton.disabled=true;
+    actions.forEach(a=>a.disabled=true);
+    wi.innerHTML='<div class="context-loading" role="status" aria-live="polite"><span class="context-spinner" aria-hidden="true"></span><span id="demoContextStatus">Preparando o contexto...</span></div>';
+    for(const message of contextStages){
+      const status=document.getElementById('demoContextStatus');
+      if(status)status.textContent=message;
+      await new Promise(resolve=>setTimeout(resolve,950));
+    }
+    wi.innerHTML=loadedContext;
+    analyzeButton.disabled=false;
+    actions.forEach(a=>{a.disabled=false;a.removeAttribute('title')});
+  }
+  loadDemoContext();
   const labels={benchmark:'Benchmark',interview:'Entrevista',csd:'Matriz CSD',bpmn:'BPMN / AS IS','risk-analysis':'Análise de riscos','product-decision':'Decisão de Produto',prototype:'Protótipo'};
   const sections={
   benchmark:'<h3>Referências a investigar</h3><p>Investigue como outras soluções apoiam a confirmação de pagamentos, sem assumir que a automação é a resposta. Compare alternativas e critérios de avaliação.</p>',
