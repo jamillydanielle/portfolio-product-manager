@@ -283,6 +283,27 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
 .preview-loading-state{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:max-content;max-width:100%;min-height:0;margin:0 auto;padding:6px 10px;border-radius:999px;font-size:10px;line-height:1.3}
 .preview-loading-spinner{width:12px;height:12px;flex-shrink:0}
 @media(max-width:600px){main.wrap>section[aria-labelledby="ferramentas"]{margin-top:44px!important}main.wrap>h1{margin-bottom:24px!important}}
+
+/* Cabeçalho do projeto: CTA e contexto em um único lugar */
+.project-heading-row{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:15px}
+.project-heading-row .project-title-inline{margin:0!important}
+.project-title-button{font:inherit;font-size:inherit;font-weight:inherit;letter-spacing:inherit;line-height:inherit;color:inherit;background:none;border:0;padding:0;text-align:left;cursor:pointer}
+.project-title-button:hover{color:var(--accent-dark)}
+.project-title-button:focus-visible{outline:2px solid var(--accent-dark);outline-offset:4px;border-radius:3px}
+.project-heading-actions{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.project-heading-actions .demo-button{white-space:nowrap}
+.simulation-info-wrap{position:relative}
+.simulation-info-button{height:37px;width:37px;display:grid;place-items:center;border-radius:8px;border:1px solid #cbdfe0;background:#fff;color:#587f81;font-size:19px;cursor:pointer}
+.simulation-info-button:hover,.simulation-info-button:focus-visible{background:#eaf4f4}
+.simulation-info-popover{position:absolute;right:0;top:calc(100% + 9px);z-index:22;background:white;border:1px solid #cbdfe0;box-shadow:0 12px 35px #193e4824;border-radius:10px;width:min(295px,85vw);padding:13px 15px;opacity:0;visibility:hidden;transform:translateY(-5px);transition:opacity .15s ease,transform .15s ease}
+.simulation-info-wrap:hover .simulation-info-popover,.simulation-info-wrap:focus-within .simulation-info-popover,.simulation-info-wrap.is-open .simulation-info-popover{opacity:1;visibility:visible;transform:translateY(0)}
+.simulation-info-popover strong{font-size:12px}.simulation-info-popover p{font-size:12px;line-height:1.5;margin:5px 0 0!important;color:var(--muted)}
+.explore-pulse{animation:explore-soft-pulse 2.8s ease-in-out infinite}
+@keyframes explore-soft-pulse{0%,100%{box-shadow:0 0 0 0 rgba(88,127,129,0)}45%{box-shadow:0 0 0 7px rgba(88,127,129,.17)}75%{box-shadow:0 0 0 11px rgba(88,127,129,0)}}
+.explore-pulse:hover,.explore-pulse:focus-visible{animation-play-state:paused}
+.project-heading-actions .demo-hover-preview{top:calc(100% + 12px);bottom:auto}
+@media(max-width:700px){.project-heading-row{align-items:flex-start;flex-direction:column;gap:15px}.project-heading-actions{width:100%}.project-heading-actions .demo-preview-trigger{flex:1}.project-heading-actions .demo-button{width:100%}}
+@media(prefers-reduced-motion:reduce){.explore-pulse{animation:none}.simulation-info-popover{transition:none}}
 </style>
 </head>
 <body>
@@ -296,10 +317,10 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
   <section aria-labelledby="autorais">
     
     <article class="project">
-      <h2 class="project-title-inline"><span>Discovery Insights</span><small>· Projeto autoral</small></h2>
-      <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
-      <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
-      <div class="demo-launch"><div><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div><div class="demo-preview-trigger"><button type="button" class="demo-button primary" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto</button>
+      <div class="project-heading-row">
+        <h2 class="project-title-inline"><button type="button" class="project-title-button" id="openDiscoveryTitle" aria-label="Explorar Discovery Insights">Discovery Insights</button><small>· Projeto autoral</small></h2>
+        <div class="project-heading-actions">
+          <div class="demo-preview-trigger"><button type="button" class="demo-button primary explore-pulse" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto <span aria-hidden="true">↗</span></button>
         <div class="demo-hover-preview" id="demoPreviewHint" aria-hidden="true">
           <div class="preview-real-banner"><div class="preview-banner-title"><span class="preview-brain">🧠</span><div><strong>Discovery Insights</strong><small>Apoio à análise e evolução de hipóteses</small></div></div><span class="preview-version">v0.1</span></div>
           <div class="preview-real-card">
@@ -310,7 +331,12 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
           </div>
           <div class="preview-real-footer">Prévia ilustrativa · Clique para explorar</div>
         </div>
-      </div></div>
+          </div>
+          <div class="simulation-info-wrap"><button type="button" class="simulation-info-button" id="simulationInfoButton" aria-label="Informações sobre a simulação" aria-controls="simulationInfoText" aria-expanded="false">ⓘ</button><div class="simulation-info-popover" id="simulationInfoText" role="tooltip"><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div></div>
+        </div>
+      </div>
+      <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
+      <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
       <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span class="demo-portfolio-credit">· Portfólio de Jamilly Danielle</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">× Fechar</button></div>
       <div class="demo-shell" id="discoveryShowcase">
@@ -439,6 +465,12 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
    setTimeout(()=>{if(starting&&!transition.classList.contains('is-leaving'))reveal()},4500);
  }
  document.getElementById('openDiscovery').addEventListener('click',()=>open('intro'));
+ document.getElementById('openDiscoveryTitle').addEventListener('click',()=>open('intro'));
+ const infoButton=document.getElementById('simulationInfoButton');
+ const infoWrap=infoButton.parentElement;
+ infoButton.addEventListener('click',()=>{const next=!infoWrap.classList.contains('is-open');infoWrap.classList.toggle('is-open',next);infoButton.setAttribute('aria-expanded',String(next))});
+ document.addEventListener('click',event=>{if(!infoWrap.contains(event.target)){infoWrap.classList.remove('is-open');infoButton.setAttribute('aria-expanded','false')}});
+
  document.getElementById('closeDiscovery').addEventListener('click',close);
  document.getElementById('startIntro').addEventListener('click',simulate);
  document.getElementById('structureIntro').addEventListener('click',()=>view('structure'));
