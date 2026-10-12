@@ -1484,6 +1484,26 @@
     }
     .case-detail-link:hover,.case-detail-link:focus-visible{color:#587f81}
     .case-detail-link:focus-visible{outline:2px solid #587f81;outline-offset:4px;border-radius:2px}
+
+    .featured-badge{
+      position:absolute;
+      top:14px;
+      right:16px;
+      z-index:3;
+      display:inline-flex;
+      align-items:center;
+      gap:6px;
+      padding:6px 11px;
+      border-radius:999px;
+      background:#406b6d;
+      color:#fff;
+      font-size:10px;
+      line-height:1.2;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .featured-badge span{color:#f4d375;font-size:13px}
+    @media(max-width:400px){.featured-badge{font-size:9px;right:10px;padding:5px 8px}.case-kicker{font-size:8px}}
 </style>
 </head>
 <body>
@@ -1594,6 +1614,7 @@
         <article class="case-card" data-case="auth">
           <div class="case-visual">
             <div class="case-kicker">02 · APP / Portal do Comprador</div>
+            <span class="featured-badge"><span aria-hidden="true">★</span> Projeto em destaque</span>
             <div class="auth-chart">
               <div class="auth-numbers">
                 <div><strong>20%</strong><span> início</span></div>
