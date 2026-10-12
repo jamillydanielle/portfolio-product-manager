@@ -1424,6 +1424,44 @@
     .nf-to-cobranca,.nf-to-entrega{width:1px;height:100%;align-self:stretch;justify-self:center}
     .nf-to-cobranca{grid-area:2 / 3}
     .nf-to-entrega{grid-area:4 / 3}
+
+    /* Modal: scroll interno sem cortar as bordas arredondadas */
+    .modal-card{
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      padding:0;
+      border-radius:20px;
+    }
+    .modal-header{
+      padding:26px 26px 16px;
+      margin-bottom:0;
+      flex-shrink:0;
+    }
+    .modal-card .detail{
+      overflow-y:auto;
+      min-height:0;
+      padding:0 26px 26px;
+      scrollbar-width:thin;
+      scrollbar-color:#bdd0d1 transparent;
+    }
+    .case-detail-link{
+      display:inline-flex;
+      align-items:center;
+      gap:7px;
+      margin-top:15px;
+      color:#a2bebf;
+      font-size:12px;
+      font-weight:700;
+      text-decoration:underline;
+      text-underline-offset:4px;
+      cursor:pointer;
+    }
+    .case-card:hover .case-detail-link{color:#587f81}
+    @media(max-width:480px){
+      .modal-header{padding:19px 19px 14px}
+      .modal-card .detail{padding:0 19px 19px}
+    }
 </style>
 </head>
 <body>
@@ -1525,6 +1563,7 @@
               <span class="tag">Backbone</span>
             </div>
             <div class="impact-row"><span>Impacto</span><strong>até 92% de utilização do importador</strong></div>
+            <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
           </div>
         </article>
 
@@ -1548,6 +1587,7 @@
             <p>Estrutura de plataforma para APP, Portal, múltiplos CNPJs e jornadas digitais seguras.</p>
             <div class="tags"><span class="tag">Plataforma</span><span class="tag">Multi-CNPJ</span><span class="tag">Segurança</span></div>
             <div class="impact-row"><span>Resultado</span><strong>20% → 73% autenticados</strong></div>
+            <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
           </div>
         </article>
 
@@ -1568,6 +1608,7 @@
             <p>Internalização de capacidades críticas antes da retirada de uma dependência externa.</p>
             <div class="tags"><span class="tag">Make or buy</span><span class="tag">Automação</span><span class="tag">Integrações</span></div>
             <div class="impact-row"><span>Impacto</span><strong>R$ 160/mês por usuário eliminado</strong></div>
+            <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
           </div>
         </article>
 
@@ -1590,6 +1631,7 @@
             <p>De gestão manual para uma estrutura escalável de matriz, filiais, CNPJs, status e regras.</p>
             <div class="tags"><span class="tag">Dados</span><span class="tag">B2B</span><span class="tag">Automação</span></div>
             <div class="impact-row"><span>Impacto</span><strong>fim da gestão manual de grupos</strong></div>
+            <span class="case-detail-link" aria-hidden="true">Ver detalhes <span>↗</span></span>
           </div>
         </article>
       </div>
@@ -1890,12 +1932,7 @@
     });
 
     closeModal.addEventListener("click", closeCase);
-    modal.addEventListener("click", e => {
-      if(e.target === modal) closeCase();
-    });
-    document.addEventListener("keydown", e => {
-      if(e.key === "Escape" && modal.classList.contains("open")) closeCase();
-    });
+    // A modal fecha exclusivamente pelo botão X.
 
     const navLinks = [...document.querySelectorAll(".side-dashes a")];
     const trackedSections = ["work","manage","experience","about"]
