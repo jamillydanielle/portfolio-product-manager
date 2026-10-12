@@ -1255,6 +1255,24 @@ body.demo-modal-open{overflow:hidden!important}
 
 /* Centralização do X no modal de Work Item simulado */
 .ado-x{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0!important;line-height:1!important;font-family:Arial,sans-serif!important;font-size:24px!important;flex-shrink:0}
+
+/* Modal de criação: cantos preservados e scrollbar afastada do conteúdo */
+.discovery-modal-overlay{padding:24px!important;box-sizing:border-box}
+.discovery-modal-overlay>.discovery-modal{
+ width:min(100%,560px);max-width:100%;max-height:calc(100dvh - 48px);
+ box-sizing:border-box;border-radius:18px!important;
+ overflow-y:auto;overflow-x:hidden;scrollbar-gutter:stable;
+ padding:26px 32px 26px 26px!important;
+ background:#fff;
+ scrollbar-width:thin;scrollbar-color:#bac5ce transparent;
+}
+.discovery-modal-overlay>.discovery-modal::-webkit-scrollbar{width:10px}
+.discovery-modal-overlay>.discovery-modal::-webkit-scrollbar-track{background:transparent;margin:14px 0}
+.discovery-modal-overlay>.discovery-modal::-webkit-scrollbar-thumb{background:#b8c5cc;border:3px solid transparent;background-clip:padding-box;border-radius:99px}
+@media(max-width:600px){
+ .discovery-modal-overlay{padding:12px!important}
+ .discovery-modal-overlay>.discovery-modal{max-height:calc(100dvh - 24px);padding:20px 24px 20px 18px!important;border-radius:16px!important}
+}
 </style></head>
 
   <body>
