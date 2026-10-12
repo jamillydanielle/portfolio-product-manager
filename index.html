@@ -869,7 +869,20 @@
       .manage-note{flex-direction:column}
       footer{margin-top:50px}
     }
-  </style>
+  
+/* Estrelas em contraponto: quando uma cresce, a outra diminui */
+.hero-glow.glow-main{animation:hero-stars-opposite-main 4.8s ease-in-out infinite!important}
+.hero-glow.glow-small{animation:hero-stars-opposite-small 4.8s ease-in-out infinite!important}
+@keyframes hero-stars-opposite-main{
+  0%,100%{scale:1.08;opacity:1}
+  50%{scale:.93;opacity:.78}
+}
+@keyframes hero-stars-opposite-small{
+  0%,100%{scale:.93;opacity:.78}
+  50%{scale:1.12;opacity:1}
+}
+@media(prefers-reduced-motion:reduce){.hero-glow.glow-main,.hero-glow.glow-small{animation:none!important}}
+</style>
 
   <style id="reference-redesign">
     :root{
