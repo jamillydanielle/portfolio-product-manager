@@ -1181,6 +1181,15 @@ button {
 .ado-footer{padding:12px 22px;background:#f4f7fa;border-top:1px solid #e0e6eb;display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:11px;color:#667085}
 .ado-done{border:0;background:#0078d4;color:white;padding:8px 19px;border-radius:3px;cursor:pointer}
 @media(max-width:700px){.ado-demo-backdrop{padding:7px}.ado-workitem{height:96vh}.ado-workitem-body{grid-template-columns:1fr;padding:18px}.ado-aside{border-left:0;border-top:1px solid #e5e9ee;padding:15px 0}.ado-main h2{font-size:18px}}
+
+/* Espaçamento do feedback e bloqueio de rolagem com modal aberta */
+.analysis-section:has(.feedback-actions){padding-bottom:25px}
+.feedback-actions{margin:18px 0 14px;display:flex;flex-wrap:wrap;gap:10px}
+#feedbackThanks:not(:empty){margin-top:14px;color:#23764c;background:#e8f6ee;border-radius:8px;padding:10px 12px;font-size:13px}
+.feedback-button[aria-pressed="true"]{border-color:#6f54df;background:#f3f0ff}
+body.demo-modal-open{overflow:hidden!important}
+.discovery-modal-overlay,.ado-demo-backdrop{overscroll-behavior:contain}
+.discovery-modal,.ado-workitem-body{overscroll-behavior:contain}
 </style></head>
 
   <body>
@@ -1433,20 +1442,19 @@ button {
     showResult(diagnostic());analyzeButton.disabled=false;analyzeButton.removeAttribute('aria-busy');analyzeButton.textContent='✨ Analisar contexto';
     document.getElementById('createDiscoveryTaskButton').addEventListener('click',()=>openTask('interview'));
     document.querySelectorAll('[data-feedback]').forEach(btn=>btn.addEventListener('click',()=>{
-      if(btn.dataset.feedback==='useful'){document.getElementById('feedbackThanks').textContent='Obrigado pelo feedback!';document.getElementById('feedbackReasonPanel').classList.add('hidden')}
-      else document.getElementById('feedbackReasonPanel').classList.remove('hidden');
-    }));
-    document.getElementById('sendFeedback').addEventListener('click',()=>{
-      document.getElementById('feedbackThanks').textContent='Feedback registrado.';
+      document.querySelectorAll('[data-feedback]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
       document.getElementById('feedbackReasonPanel').classList.add('hidden');
-    });
+      document.getElementById('feedbackThanks').textContent='Feedback registrado para aprimorar futuras análises da IA (simulação).';
+    }));
+
   }
   analyzeButton.addEventListener('click',runDiagnostic);
   function openTask(action){
     const overlay=document.createElement('div'); overlay.className='discovery-modal-overlay';
     overlay.innerHTML='<section class="discovery-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle"><div class="discovery-modal-header"><div><h2 id="demoModalTitle">✨ Criar Discovery Task</h2><p class="discovery-modal-subtitle">Ferramenta selecionada: '+labels[action]+'</p></div><button type="button" class="discovery-modal-x" aria-label="Fechar">×</button></div><label class="discovery-modal-label" for="discoveryExtraInstructions">Instruções adicionais <span>(opcional)</span></label><textarea id="discoveryExtraInstructions" class="discovery-modal-textarea" rows="5" maxlength="2500" placeholder="Ex.: Priorize o fluxo de aprovação do cliente, inclua exceções e perguntas para validação."></textarea><p class="discovery-modal-help">Direcione o resultado da IA. Se deixar em branco, será usado o template padrão da ferramenta.</p><div class="discovery-modal-reminder"><strong>Antes de finalizar a Discovery Task:</strong><ul><li>Revise o conteúdo gerado pela IA.</li><li>Inclua as tags relevantes.</li><li>Relacione o Parent do Work Item criado.</li></ul></div><div class="discovery-modal-footer"><button type="button" class="discovery-modal-cancel">Cancelar</button><button type="button" class="discovery-modal-confirm">✨ Confirmar e gerar</button></div></section>';
     document.body.appendChild(overlay);
-    const close=()=>overlay.remove();
+    document.body.classList.add('demo-modal-open');
+    const close=()=>{overlay.remove();document.body.classList.remove('demo-modal-open')};
     overlay.querySelector('.discovery-modal-x').addEventListener('click',close);
     overlay.querySelector('.discovery-modal-cancel').addEventListener('click',close);
     overlay.querySelector('.discovery-modal-confirm').addEventListener('click',async()=>{
@@ -1492,7 +1500,8 @@ button {
       '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><strong>Não atribuído</strong></div><div><small>Parent</small><strong><span class="ado-link">Hypothesis 2481</span></strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Tags</small><strong>Discovery · AI</strong></div><h3>Related Work</h3><div><small>Parent Objective</small><strong><span class="ado-link">2400</span> · [OKR-26Q4] Lead-time financeiro</strong></div></aside></div>'+
       '<footer class="ado-footer"><span>Discovery Task criada na simulação · Nenhum Work Item real foi registrado</span><button type="button" class="ado-done">Fechar</button></footer></section>';
     document.body.appendChild(modal);
-    const close=()=>modal.remove();
+    document.body.classList.add('demo-modal-open');
+    const close=()=>{modal.remove();document.body.classList.remove('demo-modal-open')};
     modal.querySelector('.ado-x').addEventListener('click',close);
     modal.querySelector('.ado-done').addEventListener('click',close);
     modal.querySelector('.ado-x').focus();
