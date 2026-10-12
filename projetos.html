@@ -352,6 +352,16 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:96px!important}
 .illustration-wire-label{fill:#6b9299;font-size:12px}
 .illustration-note text{fill:#748f95;font-size:12px}
 @media(max-width:600px){.demo-fullscreen .structure-panel{padding:12px}.structure-artwork{border-radius:9px}}
+
+/* Botão em gradiente animado, mantendo a paleta do portfólio */
+#openDiscovery.explore-pulse{background:linear-gradient(110deg,#587f81 0%,#84abad 25%,#456d70 50%,#a2bebf 75%,#587f81 100%)!important;background-size:260% 100%!important;color:#fff!important;animation:explore-gradient-flow 4s ease-in-out infinite!important;box-shadow:0 4px 14px rgba(60,103,106,.16);overflow:hidden;isolation:isolate;position:relative}
+#openDiscovery.explore-pulse:before{content:none!important;animation:none!important}
+#openDiscovery .explore-animated-label{display:inline-block;position:relative;z-index:1;animation:explore-text-breathe 4s ease-in-out infinite;letter-spacing:.01em}
+@keyframes explore-gradient-flow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes explore-text-breathe{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.83;transform:scale(1.035)}}
+#openDiscovery.explore-pulse:hover,#openDiscovery.explore-pulse:focus-visible{animation-play-state:paused!important}
+#openDiscovery.explore-pulse:hover .explore-animated-label,#openDiscovery.explore-pulse:focus-visible .explore-animated-label{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){#openDiscovery.explore-pulse,#openDiscovery .explore-animated-label{animation:none!important}}
 </style>
 </head>
 <body>
@@ -368,7 +378,7 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:96px!important}
       <div class="project-heading-row">
         <h2 class="project-title-inline"><button type="button" class="project-title-button" id="openDiscoveryTitle" aria-label="Explorar Discovery Insights">Discovery Insights</button><small>· Projeto autoral</small></h2>
         <div class="project-heading-actions">
-          <div class="demo-preview-trigger"><button type="button" class="demo-button primary explore-pulse" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto</button>
+          <div class="demo-preview-trigger"><button type="button" class="demo-button primary explore-pulse" id="openDiscovery" aria-describedby="demoPreviewHint"><span class="explore-animated-label">Explorar projeto</span></button>
         <div class="demo-hover-preview" id="demoPreviewHint" aria-hidden="true">
           <div class="preview-real-banner"><div class="preview-banner-title"><span class="preview-brain">🧠</span><div><strong>Discovery Insights</strong><small>Apoio à análise e evolução de hipóteses</small></div></div><span class="preview-version">v0.1</span></div>
           <div class="preview-real-card">
