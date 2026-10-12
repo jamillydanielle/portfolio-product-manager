@@ -1436,11 +1436,11 @@ button {
     showResult(diagnostic());analyzeButton.disabled=false;analyzeButton.removeAttribute('aria-busy');analyzeButton.textContent='✨ Analisar contexto';
     document.getElementById('createDiscoveryTaskButton').addEventListener('click',()=>openTask('interview'));
     document.querySelectorAll('[data-feedback]').forEach(btn=>btn.addEventListener('click',()=>{
-      if(btn.dataset.feedback==='useful'){document.getElementById('feedbackThanks').textContent='Obrigado pelo feedback! (simulação)';document.getElementById('feedbackReasonPanel').classList.add('hidden')}
+      if(btn.dataset.feedback==='useful'){document.getElementById('feedbackThanks').textContent='Obrigado pelo feedback!';document.getElementById('feedbackReasonPanel').classList.add('hidden')}
       else document.getElementById('feedbackReasonPanel').classList.remove('hidden');
     }));
     document.getElementById('sendFeedback').addEventListener('click',()=>{
-      document.getElementById('feedbackThanks').textContent='Feedback registrado na demonstração.';
+      document.getElementById('feedbackThanks').textContent='Feedback registrado.';
       document.getElementById('feedbackReasonPanel').classList.add('hidden');
     });
   }
@@ -1458,14 +1458,14 @@ button {
       btn.disabled=true;btn.textContent='⏳ Gerando...';
       let status=overlay.querySelector('.discovery-modal-progress');
       if(!status){status=document.createElement('div');status.className='discovery-modal-progress';overlay.querySelector('.discovery-modal-footer').before(status)}
-      status.hidden=false;status.textContent='Aguarde, seu Work Item está sendo carregado… (simulação)';
+      status.hidden=false;status.textContent='Aguarde, seu Work Item está sendo carregado…';
       await pause(1400);
       status.textContent='Estruturando conteúdo e critérios da Discovery Task…';
       await pause(1300);
       status.textContent='Finalizando a tarefa simulada…';
       await pause(900);
       close();
-      showResult('<div class="analysis" style="display:flex;flex-direction:column;gap:16px"><h2>✨ '+labels[action]+'</h2>'+section('Discovery Task gerada — demonstração',sections[action]+(extra?'<p><b>Instrução adicional:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Prévia fictícia. Nenhum Work Item foi criado.</p>')+'</div>');
+      showResult('<div class="analysis" style="display:flex;flex-direction:column;gap:16px"><h2>✨ '+labels[action]+'</h2>'+section('Discovery Task gerada',sections[action]+(extra?'<p><b>Instrução adicional:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Revise o conteúdo gerado antes de finalizar.</p>')+'</div>');
     });
   }
   function escapeText(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
