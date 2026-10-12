@@ -1592,6 +1592,25 @@
     /* Sobre não possui divisória: preservar respiro abaixo do cabeçalho fixo */
     #about{scroll-margin-top:118px}
     @media(max-width:680px){#about{scroll-margin-top:96px}}
+
+    /* Header estável: mesma posição e altura no topo e durante a rolagem */
+    .container{padding-top:0}
+    .topbar{
+      height:80px;
+      min-height:80px;
+      padding:0;
+      margin-bottom:80px;
+      box-sizing:border-box;
+    }
+    @media(max-width:680px){
+      .container{padding-top:0}
+      .topbar{
+        height:64px;
+        min-height:64px;
+        padding:0;
+        margin-bottom:52px;
+      }
+    }
 </style>
 </head>
 <body>
