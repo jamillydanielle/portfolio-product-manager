@@ -1190,6 +1190,14 @@ button {
 body.demo-modal-open{overflow:hidden!important}
 .discovery-modal-overlay,.ado-demo-backdrop{overscroll-behavior:contain}
 .discovery-modal,.ado-workitem-body{overscroll-behavior:contain}
+
+/* Feedback: conteúdo e confirmação com margens internas reais */
+.analysis-section.feedback-section{padding:24px!important;overflow:visible}
+.analysis-section.feedback-section>h3{margin:0 0 12px}
+.analysis-section.feedback-section>p{margin:0 0 22px}
+.analysis-section.feedback-section .feedback-actions{margin:0 0 0;gap:12px}
+.analysis-section.feedback-section #feedbackThanks:not(:empty){display:block;margin:20px 0 0;padding:13px 16px;border-radius:8px}
+@media(max-width:600px){.analysis-section.feedback-section{padding:18px!important}}
 </style></head>
 
   <body>
@@ -1395,7 +1403,7 @@ body.demo-modal-open{overflow:hidden!important}
   const evidence = ids => '<div class="analysis-evidence"><strong>Evidência:</strong> '+ids.map(id=>'<span class="work-item-link">'+id+'</span>').join(' • ')+'</div>';
   function insight(text,ids){return '<div class="analysis-insight"><p>'+text+'</p>'+evidence(ids)+'</div>'}
   function list(items){return '<div class="analysis-insight-list">'+items.map((x,i)=>insight(x[0],x[1])).join('')+'</div>'}
-  function section(title,body){return '<div class="analysis-section"><h3>'+title+'</h3>'+body+'</div>'}
+  function section(title,body){return '<div class="analysis-section'+(title==='Essa análise foi útil?'?' feedback-section':'')+'"><h3>'+title+'</h3>'+body+'</div>'}
   function showResult(markup){
     result.classList.remove('hidden');result.innerHTML=markup;
     result.scrollIntoView({behavior:'smooth',block:'start'});
