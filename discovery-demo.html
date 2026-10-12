@@ -1494,7 +1494,7 @@ body.demo-modal-open{overflow:hidden!important}
     document.querySelectorAll('[data-feedback]').forEach(btn=>btn.addEventListener('click',()=>{
       document.querySelectorAll('[data-feedback]').forEach(b=>b.setAttribute('aria-pressed',String(b===btn)));
       document.getElementById('feedbackReasonPanel').classList.add('hidden');
-      document.getElementById('feedbackThanks').textContent='Feedback registrado para aprimorar futuras análises da IA (simulação).';
+      document.getElementById('feedbackThanks').textContent='Feedback registrado! Sua avaliação contribui para o aprimoramento das respostas geradas pelo modelo/agente.';
     }));
 
   }
