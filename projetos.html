@@ -117,6 +117,40 @@ body.demo-fullscreen-open{overflow:hidden}
 @media(max-width:700px){.demo-modal-head{padding:8px 11px;flex-wrap:wrap;gap:6px}.demo-modal-brand span{display:none}.demo-modal-nav{order:3;width:100%;justify-content:center}.demo-modal-nav button{padding:8px 11px;font-size:12px}.demo-launch{flex-direction:column;align-items:flex-start}.demo-fullscreen .demo-stage{min-height:0!important}}
 .demo-portfolio-credit{font-size:10px!important;font-weight:650;letter-spacing:.02em;color:#587f81!important;margin-bottom:2px}.demo-portfolio-credit span{padding:0 3px;color:#91a9aa}
 @media(max-width:700px){.demo-modal-brand .demo-portfolio-credit{display:block;font-size:9px!important}.demo-modal-brand>span:last-child{display:none}}
+
+/* Fluxo técnico — arquitetura do Discovery Insights */
+.tech-diagram{max-width:970px;margin:0 auto;border:1px solid #c9d9e1;border-radius:13px;background:#f4f8fa;padding:22px;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif}
+.tech-diagram-heading{display:flex;gap:9px;align-items:center;border-bottom:1px solid #d7e3e9;padding-bottom:15px;margin-bottom:16px;font-size:11px;font-weight:750;letter-spacing:.11em;color:#345e70}
+.tech-diagram-version{margin-left:auto;font-size:10px;letter-spacing:0;font-weight:500;color:#71858f}
+.tech-live-dot{width:8px;height:8px;border-radius:100%;background:#6b9d9d}
+.tech-system{padding:17px;border:1px solid #d8e4e8;border-radius:10px;background:#fff}
+.tech-group-title{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:800;letter-spacing:.09em;color:#315765;margin-bottom:14px}
+.tech-group-title>span{padding:2px 6px;border-radius:4px;background:#dfecee;color:#355f67}
+.tech-group-title small{font-size:11px;letter-spacing:0;color:#8395a0;font-weight:500;margin-left:auto}
+.tech-nodes{display:grid;gap:12px}.tech-source{grid-template-columns:repeat(3,minmax(0,1fr))}.tech-two{grid-template-columns:repeat(2,minmax(0,1fr))}
+.tech-node{position:relative;min-width:0;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-height:104px;border:1px solid #dce5ea;border-left:3px solid #759aab;background:#fbfdfe;border-radius:7px;padding:14px 14px 12px}
+.tech-node strong{font-size:13px;line-height:1.35;color:#1f3d4c}
+.tech-node small{font-size:11px;line-height:1.4;color:#677e8b}
+.tech-node em{font-size:10px;color:#4c7785;font-style:normal;margin-top:auto}
+.tech-icon{font-family:Georgia,serif;color:#587f91;font-size:23px;line-height:1;margin-bottom:4px}
+.tech-database{border-left-color:#7e8fa8}
+.tech-db-icon{display:block;width:28px;height:25px;margin-bottom:4px;background:linear-gradient(to bottom,transparent 30%,#718ba2 30%,#718ba2 36%,transparent 36%,transparent 64%,#718ba2 64%,#718ba2 70%,transparent 70%);border:2px solid #718ba2;border-radius:50%/18%}
+.tech-connector{display:flex;flex-direction:column;align-items:center;height:66px;color:#5e8192}
+.tech-connector:before{content:"";height:20px;width:1px;background:#95aeb9}
+.tech-connector span{font:500 10px/1.6 ui-monospace,SFMono-Regular,Consolas,monospace;color:#64808e;padding:2px 12px;border:1px solid #d4e4eb;border-radius:20px;background:#fff}
+.tech-connector i{height:12px;width:1px;background:#95aeb9;position:relative}
+.tech-connector i:after{content:"";position:absolute;bottom:-1px;left:-3px;width:6px;height:6px;border-right:1px solid #7595a7;border-bottom:1px solid #7595a7;transform:rotate(45deg)}
+.tech-ai-layer{border-color:#aac7cf;background:#eff7f8}
+.tech-api{border-left-color:#4b8c9b}.tech-model{border-left-color:#658bb9}
+.tech-boundary{display:flex;align-items:flex-start;gap:12px;border:1px dashed #9fbcc4;border-radius:9px;background:#eaf4f4;margin-top:20px;padding:13px 16px}
+.tech-boundary-mark{font-size:22px;color:#56818a}.tech-boundary strong{display:block;font-size:12px;color:#2c5963}.tech-boundary p{margin:4px 0 0;font-size:11px;color:#4b6d74;line-height:1.5}
+.demo-fullscreen .structure-panel{background:#fff}
+#ferramentas{margin-top:34px}
+#autorais .project{padding-bottom:0}
+#autorais{margin-top:16px}
+#autorais .project-links{margin-bottom:14px}
+.demo-launch{padding:18px 22px}
+@media(max-width:600px){.tech-diagram{padding:12px}.tech-system{padding:12px}.tech-source,.tech-two{grid-template-columns:1fr}.tech-node{min-height:85px}.tech-group-title{flex-wrap:wrap}.tech-group-title small{margin-left:0}.tech-diagram-version{display:none}#ferramentas{margin-top:25px}}
 </style>
 </head>
 <body>
@@ -156,16 +190,41 @@ body.demo-fullscreen-open{overflow:hidden}
         <div class="demo-intro" id="demoIntro"><div class="demo-cover-content"><span class="demo-overline">DISCOVERY INSIGHTS</span><h3>Explore o projeto</h3><p>A demonstração reproduz a experiência da extensão de apoio ao discovery de Produto. Você pode interagir com as ferramentas e explorar a estrutura técnica usando dados fictícios. Nenhuma informação será registrada ou enviada para sistemas reais.</p><div class="demo-buttons"><button type="button" class="demo-button primary" id="startIntro">Iniciar simulação</button><button type="button" class="demo-button outline" id="structureIntro">Consultar estrutura</button></div></div></div>
         <div class="structure-panel" id="structurePanel" hidden>
           <div class="structure-top"><div><span class="demo-overline">VISÃO TÉCNICA</span><h3>Como o Discovery Insights funciona</h3><p>Fluxo da extensão original, com execução simulada neste portfólio.</p></div><button type="button" class="demo-button primary" id="startFromStructure">Simular projeto ↗</button></div>
-          <div class="architecture-flow" aria-label="Fluxo técnico do Discovery Insights">
-            <div class="flow-step"><span class="step-number">01 · ENTRADA</span><strong>Azure DevOps</strong><p>Work Item atual, Parent e itens vinculados</p></div>
-            <div class="flow-arrow" aria-hidden="true">↓</div>
-            <div class="flow-step"><span class="step-number">02 · CONTEXTO</span><strong>Extensão Discovery Insights</strong><p>Consulta e organiza título, descrição, status e relações</p></div>
-            <div class="flow-arrow" aria-hidden="true">↓</div>
-            <div class="flow-step"><span class="step-number">03 · ANÁLISE</span><strong>Backend + IA</strong><p>Identifica fatos, lacunas, premissas e recomenda próximos passos</p></div>
-            <div class="flow-arrow" aria-hidden="true">↓</div>
-            <div class="flow-step"><span class="step-number">04 · FERRAMENTAS</span><strong>Discovery direcionado</strong><p>Benchmark · Entrevista · Matriz CSD · BPMN · Riscos · Decisão · Protótipo</p></div>
-            <div class="flow-arrow" aria-hidden="true">↓</div>
-            <div class="flow-step"><span class="step-number">05 · SAÍDA</span><strong>Discovery Task</strong><p>Confirmação, geração de conteúdo e registro do trabalho no Azure DevOps</p></div>
+          <div class="tech-diagram" aria-label="Diagrama de arquitetura do Discovery Insights">
+            <div class="tech-diagram-heading"><span class="tech-live-dot"></span><span>VISÃO DE ARQUITETURA</span><span class="tech-diagram-version">fluxo lógico · projeto original</span></div>
+            <div class="tech-system">
+              <div class="tech-group-title"><span>01</span> CAMADA DE ORIGEM <small>Azure DevOps</small></div>
+              <div class="tech-nodes tech-source">
+                <div class="tech-node"><span class="tech-icon">▤</span><strong>Work Item</strong><small>Hypothesis · Discovery Task</small></div>
+                <div class="tech-node"><span class="tech-icon">⬡</span><strong>Relações</strong><small>Parent · Objective · relacionados</small></div>
+                <div class="tech-node tech-database"><span class="tech-db-icon" aria-hidden="true"></span><strong>Contexto do Azure DevOps</strong><small>Campos · status · descrição</small></div>
+              </div>
+            </div>
+            <div class="tech-connector"><span>contexto do item / metadados</span><i aria-hidden="true"></i></div>
+            <div class="tech-system">
+              <div class="tech-group-title"><span>02</span> CAMADA DE APLICAÇÃO <small>Extensão Discovery Insights</small></div>
+              <div class="tech-nodes tech-two">
+                <div class="tech-node"><span class="tech-icon">▣</span><strong>Interface da extensão</strong><small>HTML · CSS · JavaScript</small><em>Leitura e organização de contexto</em></div>
+                <div class="tech-node"><span class="tech-icon">⌘</span><strong>Serviço de aplicação</strong><small>Node.js · API HTTPS</small><em>/api/ai/analyze · geração de task</em></div>
+              </div>
+            </div>
+            <div class="tech-connector"><span>solicitação de análise / payload</span><i aria-hidden="true"></i></div>
+            <div class="tech-system tech-ai-layer">
+              <div class="tech-group-title"><span>03</span> CAMADA DE INTELIGÊNCIA <small>Integração externa</small></div>
+              <div class="tech-nodes tech-two">
+                <div class="tech-node tech-api"><span class="tech-icon">⟡</span><strong>Conector Azure OpenAI</strong><small>Configuração de endpoint · deployment · autenticação</small><em>Requisição à API do modelo</em></div>
+                <div class="tech-node tech-model"><span class="tech-icon">✧</span><strong>Modelo de linguagem</strong><small>Contexto + instruções estruturadas</small><em>Análises · lacunas · recomendações</em></div>
+              </div>
+            </div>
+            <div class="tech-connector"><span>retorno do modelo / resultado estruturado</span><i aria-hidden="true"></i></div>
+            <div class="tech-system">
+              <div class="tech-group-title"><span>04</span> RESULTADO <small>Fluxo do produto</small></div>
+              <div class="tech-nodes tech-two">
+                <div class="tech-node"><span class="tech-icon">≡</span><strong>Análise no painel</strong><small>Fatos · dúvidas · próximos passos</small><em>Ferramentas de discovery</em></div>
+                <div class="tech-node"><span class="tech-icon">▧</span><strong>Discovery Task</strong><small>Título · descrição · vínculo com hipótese</small><em>Criação mediante confirmação</em></div>
+              </div>
+            </div>
+            <div class="tech-boundary"><span class="tech-boundary-mark">◎</span><div><strong>Nesta demonstração</strong><p>O portfólio utiliza dados e respostas predefinidos. Não consulta o Azure DevOps, não chama o Azure OpenAI e não cria Work Items reais.</p></div></div>
           </div>
           <p class="flow-footnote">Na demonstração, os dados e as respostas são simulados; nenhuma integração real é acionada.</p>
         </div>
