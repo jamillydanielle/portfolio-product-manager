@@ -873,6 +873,514 @@
       footer{margin-top:50px}
     }
   </style>
+
+  <style id="reference-redesign">
+    :root{
+      --bg:#ffffff;
+      --surface:#f5f9f9;
+      --surface-2:#edf4f4;
+      --surface-3:#e4eeee;
+      --text:#102b2d;
+      --muted:#64787a;
+      --soft:#8da1a3;
+      --line:#dbe7e7;
+      --accent:#a2bebf;
+      --accent-strong:#587f81;
+      --accent-soft:#e7f0f0;
+      --dark:#102b2d;
+      --max:1120px;
+      --radius:18px;
+    }
+
+    body{
+      background:#fff;
+      color:var(--text);
+    }
+
+    .container{
+      width:min(var(--max), calc(100% - 48px));
+      padding:26px 0 56px;
+    }
+
+    .topbar{
+      min-height:72px;
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:28px;
+      margin-bottom:54px;
+    }
+
+    .brand{
+      display:inline-flex;
+      align-items:center;
+      gap:11px;
+      width:max-content;
+    }
+
+    .brand-mark{
+      width:38px;
+      height:38px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--accent);
+      color:var(--dark);
+      font-size:15px;
+      font-weight:800;
+    }
+
+    .brand-copy{
+      display:grid;
+      line-height:1.12;
+    }
+
+    .brand-copy strong{
+      font-size:14px;
+      letter-spacing:-.01em;
+    }
+
+    .brand-copy small{
+      margin-top:3px;
+      color:var(--muted);
+      font-size:10px;
+    }
+
+    .main-nav{
+      display:flex;
+      align-items:center;
+      gap:30px;
+      font-size:12px;
+      color:#304c4e;
+    }
+
+    .main-nav a{
+      transition:color .16s ease;
+    }
+
+    .main-nav a:hover{
+      color:var(--accent-strong);
+    }
+
+    .contact-btn{
+      justify-self:end;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:38px;
+      padding:0 15px;
+      border:1px solid #8ca7a8;
+      border-radius:9px;
+      color:#29494b;
+      font-size:12px;
+      font-weight:700;
+      transition:background .16s ease, transform .16s ease;
+    }
+
+    .contact-btn:hover{
+      background:var(--surface);
+      transform:translateY(-1px);
+    }
+
+    .top-title{display:none}
+
+    .hero{
+      min-height:460px;
+      display:grid;
+      grid-template-columns:minmax(0,1.05fr) minmax(280px,.9fr) 170px;
+      gap:52px;
+      align-items:center;
+      padding:34px 0 48px;
+    }
+
+    .hero-copy{
+      align-self:center;
+    }
+
+    .hero-eyebrow{
+      margin-bottom:15px;
+      font-size:13px;
+      font-weight:700;
+      color:#365759;
+    }
+
+    .hero h1{
+      margin:0 0 22px;
+      font-size:clamp(42px,5vw,66px);
+      line-height:.98;
+      letter-spacing:-.05em;
+      color:var(--dark);
+    }
+
+    .hero h1 span{
+      display:inline-block;
+      margin-top:8px;
+      color:var(--dark);
+    }
+
+    .hero-copy p{
+      max-width:480px;
+      margin:0 0 24px;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.7;
+      font-style:normal;
+    }
+
+    .actions{
+      gap:16px;
+      align-items:center;
+    }
+
+    .btn{
+      min-height:42px;
+      padding:9px 15px;
+      border-radius:9px;
+      font-size:12px;
+    }
+
+    .btn.primary{
+      background:var(--accent-strong);
+      border-color:var(--accent-strong);
+      color:#fff;
+      box-shadow:0 8px 20px rgba(88,127,129,.18);
+    }
+
+    .btn.primary:hover{
+      background:#466d6f;
+    }
+
+    .btn.text-link{
+      min-height:auto;
+      padding:8px 2px;
+      border:0;
+      border-radius:0;
+      background:transparent;
+      color:#365759;
+      text-decoration:underline;
+      text-underline-offset:3px;
+    }
+
+    .btn.text-link:hover{
+      background:transparent;
+      transform:none;
+      color:var(--accent-strong);
+    }
+
+    .hero-note{
+      margin-top:44px;
+      color:#5f7779;
+      font-size:11px;
+      font-weight:700;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .portrait-column{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+
+    .portrait-circle{
+      width:min(30vw,330px);
+      aspect-ratio:1;
+      border-radius:50%;
+      background:var(--accent);
+    }
+
+    .hero-stats{
+      display:grid;
+      gap:32px;
+      align-content:center;
+    }
+
+    .hero-stat{
+      display:grid;
+      gap:6px;
+    }
+
+    .hero-stat strong{
+      color:var(--dark);
+      font-size:28px;
+      line-height:1;
+      letter-spacing:-.04em;
+    }
+
+    .hero-stat span{
+      max-width:120px;
+      color:var(--muted);
+      font-size:11px;
+      line-height:1.45;
+    }
+
+    .quick{
+      gap:16px;
+      margin:24px 0 74px;
+    }
+
+    .quick-card{
+      min-height:150px;
+      padding:25px 23px;
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:var(--surface);
+      transition:transform .16s ease, background .16s ease;
+    }
+
+    .quick-card:hover{
+      transform:translateY(-2px);
+      background:var(--accent-soft);
+    }
+
+    .quick-card strong{
+      color:var(--accent-strong);
+      font-size:22px;
+      margin-bottom:28px;
+    }
+
+    .quick-card span{
+      max-width:230px;
+      color:#536b6d;
+      font-size:12px;
+      font-style:normal;
+    }
+
+    .section{
+      margin-top:76px;
+    }
+
+    .section-head{
+      margin-bottom:24px;
+    }
+
+    .section-head h2{
+      font-size:clamp(30px,3.2vw,40px);
+      letter-spacing:-.04em;
+      color:var(--dark);
+    }
+
+    .section-head p{
+      margin-top:9px;
+      color:var(--muted);
+      font-style:normal;
+      font-size:13px;
+    }
+
+    .section-label{
+      margin-top:16px;
+      background:var(--accent-soft);
+      color:#4f7274;
+    }
+
+    .work-grid{
+      gap:20px;
+    }
+
+    .case-card{
+      border-color:var(--line);
+      border-radius:18px;
+      box-shadow:none;
+    }
+
+    .case-card:hover{
+      border-color:#bfd1d2;
+      box-shadow:0 18px 38px rgba(28,67,70,.08);
+    }
+
+    .case-visual{
+      height:220px;
+      background:var(--surface);
+    }
+
+    .case-kicker,
+    .modal-eyebrow,
+    .micro .micro-label{
+      color:#6c8c8e;
+    }
+
+    .tag{
+      background:var(--surface);
+      border-color:var(--line);
+      color:#567173;
+    }
+
+    .progress{
+      background:#dce9e9;
+    }
+
+    .progress-fill{
+      background:var(--accent-strong);
+    }
+
+    .goal{
+      background:#294d4f;
+    }
+
+    .edge,
+    .tree-line,
+    .line{
+      background:#c8d8d9;
+    }
+
+    .manage-panel{
+      background:var(--surface);
+      border-color:var(--line);
+      border-radius:18px;
+      padding:28px;
+    }
+
+    .manage-step,
+    .micro{
+      border-color:var(--line);
+      border-radius:14px;
+    }
+
+    .flowarrow{
+      color:var(--accent-strong);
+    }
+
+    .entity.nf,
+    .root{
+      background:var(--accent-soft);
+    }
+
+    .big-result strong{
+      color:var(--accent-strong);
+    }
+
+    .side-dashes a{
+      background:#d5e2e3;
+    }
+
+    .side-dashes a:hover,
+    .side-dashes a.active{
+      background:var(--accent-strong);
+    }
+
+    .modal{
+      background:rgba(16,43,45,.25);
+    }
+
+    .modal-card{
+      border-color:var(--line);
+      border-radius:20px;
+    }
+
+    .modal-metric{
+      background:var(--surface);
+    }
+
+    .case-card:focus-visible,
+    .btn:focus-visible,
+    .close:focus-visible,
+    a:focus-visible{
+      outline-color:var(--accent-strong);
+    }
+
+    footer{
+      border-color:var(--line);
+    }
+
+    @media (max-width:900px){
+      .topbar{
+        grid-template-columns:1fr auto;
+      }
+      .main-nav{display:none}
+      .hero{
+        grid-template-columns:1.15fr .85fr;
+        gap:34px;
+      }
+      .hero-stats{
+        grid-column:1 / -1;
+        grid-template-columns:repeat(3,1fr);
+        padding-top:8px;
+        border-top:1px solid var(--line);
+      }
+      .hero-stat span{max-width:none}
+      .portrait-circle{width:min(38vw,300px)}
+    }
+
+    @media (max-width:680px){
+      .container{
+        width:min(var(--max), calc(100% - 28px));
+        padding-top:18px;
+      }
+      .topbar{
+        min-height:58px;
+        margin-bottom:34px;
+      }
+      .brand-copy small{display:none}
+      .contact-btn{
+        min-height:34px;
+        padding:0 11px;
+        font-size:11px;
+      }
+      .hero{
+        min-height:auto;
+        grid-template-columns:1fr;
+        gap:30px;
+        padding:18px 0 28px;
+      }
+      .hero h1{
+        font-size:clamp(40px,13vw,58px);
+      }
+      .hero-copy p{
+        font-size:15px;
+      }
+      .portrait-column{
+        justify-content:flex-start;
+      }
+      .portrait-circle{
+        width:min(72vw,300px);
+      }
+      .hero-stats{
+        grid-column:auto;
+        grid-template-columns:repeat(3,1fr);
+        gap:14px;
+      }
+      .hero-stat strong{font-size:22px}
+      .hero-stat span{font-size:10px}
+      .quick{
+        grid-template-columns:1fr;
+        margin-top:34px;
+      }
+      .quick-card{min-height:120px}
+    }
+
+    @media (max-width:480px){
+      .brand-mark{width:34px;height:34px}
+      .brand-copy strong{font-size:12px}
+      .contact-btn{font-size:10px}
+      .hero-stats{
+        grid-template-columns:1fr;
+        gap:18px;
+      }
+      .hero-stat{
+        grid-template-columns:80px 1fr;
+        align-items:baseline;
+      }
+      .portrait-circle{width:min(78vw,280px)}
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        --bg:#ffffff;
+        --surface:#f5f9f9;
+        --surface-2:#edf4f4;
+        --surface-3:#e4eeee;
+        --text:#102b2d;
+        --muted:#64787a;
+        --soft:#8da1a3;
+        --line:#dbe7e7;
+        --accent:#a2bebf;
+        --accent-strong:#587f81;
+        --accent-soft:#e7f0f0;
+        --dark:#102b2d;
+      }
+      html,body{background:#fff;color:var(--text)}
+    }
+  </style>
 </head>
 <body>
   <nav class="side-dashes" aria-label="Navegação rápida">
@@ -884,33 +1392,43 @@
   </nav>
 
   <main class="container" id="top">
-    <h1 class="top-title">Product Portfolio</h1>
+    
+    <header class="topbar" aria-label="Cabeçalho principal">
+      <a class="brand" href="#top" aria-label="Ir para o início">
+        <span class="brand-mark">J</span>
+        <span class="brand-copy"><strong>Jamilly Danielle</strong><small>Product Manager</small></span>
+      </a>
+      <nav class="main-nav" aria-label="Navegação principal">
+        <a href="#work">Cases</a>
+        <a href="#manage">Gestão</a>
+        <a href="#experience">Experiência</a>
+        <a href="#about">Sobre</a>
+      </nav>
+      <a class="contact-btn" href="mailto:jamillydanieli@gmail.com">Vamos conversar ↗</a>
+    </header>
 
+    
     <section class="hero" aria-labelledby="hero-name">
       <div class="hero-copy">
-        <div class="role">Product Manager · Produtos Digitais B2B</div>
-        <h1 id="hero-name">Jamilly Danielle</h1>
+        <div class="hero-eyebrow">Olá, eu sou</div>
+        <h1 id="hero-name">Jamilly Danielle<br><span>Product Manager</span></h1>
         <p>Transformo operações complexas em produtos digitais B2B mais simples, escaláveis e integrados.</p>
         <div class="actions">
-          <a class="btn primary" href="#work">→ Ver cases</a>
-          <a class="btn" href="https://linkedin.com/in/jamillydanielle" target="_blank" rel="noreferrer">LinkedIn</a>
-          <a class="btn" href="https://drive.google.com/file/d/1UjMTFn2EsPcrxRx2tp8CK9OxYqkxGqfL/view?usp=sharing" title="Currículo">Currículo</a>
+          <a class="btn primary" href="#work">Ver meus cases ↗</a>
+          <a class="btn text-link" href="https://linkedin.com/in/jamillydanielle" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="btn text-link" href="https://drive.google.com/file/d/1UjMTFn2EsPcrxRx2tp8CK9OxYqkxGqfL/view?usp=sharing" title="Currículo">Currículo</a>
         </div>
+        <div class="hero-note">Produto × Negócio × Tecnologia</div>
       </div>
 
-      <div class="hero-art" aria-label="Mapa visual entre produto, negócio e tecnologia">
-        <div class="product-map">
-          <div class="line l1"></div><div class="line l2"></div><div class="line l3"></div><div class="line l4"></div>
-          <div class="node n1"><b>SAP / ERP</b><span>dados e processos</span></div>
-          <div class="node n2"><b>APIs</b><span>integrações</span></div>
-          <div class="node n3"><b>Produto B2B</b><span>decisão + escala</span></div>
-          <div class="node n4"><b>Financeiro</b><span>cobrança e operação</span></div>
-          <div class="node n5"><b>Logística</b><span>fluxos e eficiência</span></div>
-        </div>
-        <div class="hero-caption">
-          <span>Produto × Negócio × Tecnologia</span>
-          <span>Discovery → MVP → Impacto</span>
-        </div>
+      <div class="portrait-column" aria-label="Espaço reservado para foto de perfil">
+        <div class="portrait-circle" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero-stats" aria-label="Resultados em destaque">
+        <div class="hero-stat"><strong>73%</strong><span>usuários autenticados</span></div>
+        <div class="hero-stat"><strong>até 92%</strong><span>uso do importador de NF</span></div>
+        <div class="hero-stat"><strong>4</strong><span>cases em destaque</span></div>
       </div>
     </section>
 
