@@ -501,47 +501,39 @@
     .flowbox small{color:var(--muted);font-size:9px;margin-top:3px}
     .flowarrow{text-align:center;color:var(--accent);font-size:20px}
 
-    /* group */
+    /* Árvore hierárquica do grupo empresarial */
     .group-map{
       position:absolute;
-      inset:54px 24px 18px;
+      inset:42px 18px 14px;
+      display:flex;
+      align-items:center;
+      flex-direction:column;
+      --tree-stroke:#c8d8d9;
+      --tree-gap:22px;
     }
-    .root{
-      position:absolute;
-      left:50%;top:0;
-      transform:translateX(-50%);
-      background:var(--accent-soft);
-      border:1px solid var(--line);
-      border-radius:8px;
-      padding:9px 11px;
-      font-size:10px;
-      font-weight:700;
-      z-index:2;
+    .org-root,.org-matrix,.org-leaf{
+      position:relative;z-index:2;display:flex;align-items:center;justify-content:center;
+      background:#fff;border:1px solid var(--line);border-radius:8px;
+      color:var(--dark);font-size:10px;font-weight:700;text-align:center;
+      min-height:29px;padding:5px 7px;white-space:nowrap;
     }
-    .child{
-      position:absolute;
-      bottom:4px;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:8px;
-      padding:8px 10px;
-      font-size:9px;
-      font-weight:600;
-      z-index:2;
+    .org-root{background:var(--accent-soft);min-width:125px}
+    .org-root-line{width:1px;height:13px;background:var(--tree-stroke);flex-shrink:0}
+    .org-branches{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:22px;position:relative}
+    .org-branches::before{
+      content:"";position:absolute;top:0;left:25%;right:25%;
+      border-top:1px solid var(--tree-stroke)
     }
-    .c-a{left:0}
-    .c-b{left:50%;transform:translateX(-50%)}
-    .c-c{right:0}
-    .tree-line{
-      position:absolute;
-      height:1px;
-      background:#d8d1ca;
-      transform-origin:left center;
-    }
-    .tl1{left:50%;top:33px;width:33%;transform:rotate(135deg)}
-    .tl2{left:50%;top:33px;width:44%;transform:rotate(90deg)}
-    .tl3{left:50%;top:33px;width:33%;transform:rotate(45deg)}
-
+    .org-branch{display:flex;align-items:center;flex-direction:column;padding-top:12px;position:relative;min-width:0}
+    .org-branch::before{content:"";position:absolute;top:0;left:50%;height:12px;border-left:1px solid var(--tree-stroke)}
+    .org-matrix{min-width:72px;background:var(--accent-soft)}
+    .org-children{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;position:relative;padding-top:25px;margin-top:0}
+    .org-children::before{content:"";position:absolute;top:0;left:50%;height:13px;border-left:1px solid var(--tree-stroke)}
+    .org-children::after{content:"";position:absolute;top:13px;left:25%;right:25%;border-top:1px solid var(--tree-stroke)}
+    .org-leaf{min-width:0;font-size:9px}
+    .org-leaf::before{content:"";position:absolute;bottom:100%;left:50%;height:12px;border-left:1px solid var(--tree-stroke)}
+    @media(max-width:400px){.group-map{inset:42px 10px 12px}.org-branches{gap:12px}.org-children{gap:4px}.org-leaf{font-size:8px;padding:4px 2px}}
+    
     .manage-panel{
       background:var(--surface);
       border-radius:12px;
@@ -1669,12 +1661,19 @@
         <article class="case-card" data-case="group">
           <div class="case-visual">
             <div class="case-kicker">04 · Estrutura de Multi-CNPJs</div>
-            <div class="group-map">
-              <div class="tree-line tl1"></div><div class="tree-line tl2"></div><div class="tree-line tl3"></div>
-              <div class="root">Grupo empresarial</div>
-              <div class="child c-a">Filial</div>
-              <div class="child c-b">Matriz</div>
-              <div class="child c-c">Filial</div>
+            <div class="group-map" aria-label="Árvore de grupo empresarial com duas matrizes e quatro filiais">
+              <div class="org-root">Grupo empresarial</div>
+              <div class="org-root-line"></div>
+              <div class="org-branches">
+                <div class="org-branch">
+                  <div class="org-matrix">Matriz A</div>
+                  <div class="org-children"><div class="org-leaf">Filial 1</div><div class="org-leaf">Filial 2</div></div>
+                </div>
+                <div class="org-branch">
+                  <div class="org-matrix">Matriz B</div>
+                  <div class="org-children"><div class="org-leaf">Filial 1</div><div class="org-leaf">Filial 2</div></div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="case-body">
