@@ -1562,6 +1562,15 @@
       .modal-card{border-radius:18px}
       .modal-card .detail{margin-bottom:14px}
     }
+
+    /* Assinatura visual: duas estrelas com brilho azul suave */
+    .hero-glow-wrap{position:relative;width:min(30vw,330px);aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+    .hero-glow{position:absolute;color:var(--accent);line-height:1;user-select:none;filter:drop-shadow(0 0 18px color-mix(in srgb,var(--accent) 65%,white))}
+    .glow-main{font-size:clamp(110px,16vw,190px);opacity:.95;transform:translate(-18px,8px);text-shadow:0 0 18px color-mix(in srgb,var(--accent) 70%,white),0 0 38px color-mix(in srgb,var(--accent) 45%,white),0 0 70px color-mix(in srgb,var(--accent) 30%,white)}
+    .glow-small{font-size:clamp(58px,8vw,96px);opacity:.9;transform:translate(70px,-58px);text-shadow:0 0 12px color-mix(in srgb,var(--accent) 70%,white),0 0 28px color-mix(in srgb,var(--accent) 45%,white),0 0 52px color-mix(in srgb,var(--accent) 28%,white)}
+    @media(max-width:900px){.hero-glow-wrap{width:min(38vw,300px)}}
+    @media(max-width:680px){.hero-glow-wrap{width:min(72vw,300px)}.glow-main{transform:translate(-10px,6px)}.glow-small{transform:translate(52px,-42px)}}
+    @media(max-width:480px){.hero-glow-wrap{width:min(78vw,280px)}}
 </style>
 </head>
 <body>
@@ -1601,8 +1610,11 @@
         </div>
       </div>
 
-      <div class="portrait-column" aria-label="Espaço reservado para foto de perfil">
-        <div class="portrait-circle" aria-hidden="true"></div>
+      <div class="portrait-column" aria-label="Elemento gráfico decorativo">
+        <div class="hero-glow-wrap" aria-hidden="true">
+          <span class="hero-glow glow-main">✦</span>
+          <span class="hero-glow glow-small">✦</span>
+        </div>
       </div>
 
       <div class="hero-stats" aria-label="Resultados em destaque">
