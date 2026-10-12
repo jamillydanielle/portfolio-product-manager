@@ -220,6 +220,30 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:26px!important}
 main.wrap>section[aria-labelledby="ferramentas"] h2{margin:0 0 7px!important}
 main.wrap>section[aria-labelledby="ferramentas"] .section-desc{margin:0 0 18px!important}
 @media(max-width:600px){main.wrap>section[aria-labelledby="autorais"]{margin-top:8px!important}main.wrap>section[aria-labelledby="ferramentas"]{margin-top:22px!important}}
+
+/* Prévia fiel à identidade da interface Discovery Insights */
+.demo-hover-preview{width:min(520px,90vw);border:1px solid #e4e1f2;background:#f9f9fc;box-shadow:0 22px 65px rgba(41,29,88,.22);border-radius:15px}
+.demo-hover-preview:after{display:none}
+.preview-real-banner{height:112px;background:linear-gradient(110deg,#5c3bd1,#9a77ea);color:white;display:flex;justify-content:space-between;align-items:flex-start;padding:20px 24px}
+.preview-banner-title{display:flex;align-items:center;gap:12px}.preview-banner-title>div{display:flex;flex-direction:column;gap:2px}
+.preview-banner-title strong{font-size:21px;line-height:1.3;color:#fff}
+.preview-banner-title small{font-size:11px;color:#fff;opacity:.94}.preview-brain{font-size:25px}.preview-version{font-size:10px;opacity:.9}
+.preview-real-card{position:relative;margin:-42px auto 0;width:85%;padding:22px 17px 16px;border-radius:13px 13px 0 0;background:white;text-align:center;box-shadow:0 5px 25px rgba(43,34,83,.07)}
+.preview-real-brain{font-size:27px;margin-bottom:7px}.preview-real-heading{display:block;color:#17172b;font-size:17px;line-height:1.25}
+.preview-real-card>p{color:#657695;font-size:11px!important;line-height:1.55;margin:9px auto 13px!important;max-width:360px}
+.preview-real-chips{display:flex;align-items:center;justify-content:center;gap:5px;flex-wrap:wrap;margin-bottom:13px}
+.preview-real-chips span,.preview-real-chips b{font-size:9px;color:#6749e6;background:#f3f0ff;border-radius:12px;padding:5px 7px;font-weight:500}
+.preview-real-chips b{font-weight:700}
+.preview-real-context{text-align:left;background:#f7f6ff;border:1px solid #ddd8ff;padding:12px;border-radius:9px}
+.preview-real-status{display:inline-block;font-size:10px;font-weight:700;border:1px solid #c9ead6;color:#18834a;background:#e9f9ef;border-radius:15px;padding:3px 9px}
+.preview-real-context>small{display:block;color:#69799a;font-size:10px;margin:8px 0}
+.preview-real-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.preview-real-grid>div{border:1px solid #e4e2f6;border-radius:7px;background:white;padding:9px 6px;min-width:0}
+.preview-real-grid em{display:block;font-size:9px;font-style:normal;color:#6d4de6;margin-bottom:5px}
+.preview-real-grid strong{display:block;font-size:10px;color:#1b2231}.preview-real-grid u{color:#315dce}
+.preview-real-grid small{display:block;font-size:8px;color:#6c7592;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:4px}
+.preview-real-footer{padding:10px 15px;border-top:1px solid #ece9f5;color:#6c6b85;font-size:10px;text-align:center;background:white}
+@media(max-width:700px){.demo-hover-preview{width:min(480px,calc(100vw - 48px))}.preview-real-grid{gap:4px}.preview-real-card{width:91%}}
 </style>
 </head>
 <body>
@@ -238,13 +262,15 @@ main.wrap>section[aria-labelledby="ferramentas"] .section-desc{margin:0 0 18px!i
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
       <div class="demo-launch"><div><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div><div class="demo-preview-trigger"><button type="button" class="demo-button primary" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto</button>
         <div class="demo-hover-preview" id="demoPreviewHint" aria-hidden="true">
-          <div class="demo-preview-browser"><span></span><span></span><span></span><small>Discovery Insights · Demonstração</small></div>
-          <div class="demo-preview-workspace">
-            <div class="demo-preview-heading"><span class="demo-preview-tag">HYPOTHESIS · 2481</span><strong>Discovery Insights</strong><small>Análise de contexto do Work Item</small></div>
-            <div class="demo-preview-analysis"><div><small>CONTEXTO CARREGADO</small><strong>Confirmação de pagamentos</strong><span class="demo-preview-pill">3 itens relacionados</span></div><div class="demo-preview-bars"><i></i><i></i><i></i></div></div>
-            <div class="demo-preview-tools"><span>Benchmark</span><span>Entrevista</span><span>Matriz CSD</span><span>Análise de riscos</span></div>
+          <div class="preview-real-banner"><div class="preview-banner-title"><span class="preview-brain">🧠</span><div><strong>Discovery Insights</strong><small>Apoio à análise e evolução de hipóteses</small></div></div><span class="preview-version">v0.1</span></div>
+          <div class="preview-real-card">
+            <div class="preview-real-brain">🧠</div>
+            <strong class="preview-real-heading">Analisar contexto do Discovery</strong>
+            <p>Analise o contexto disponível para identificar lacunas, premissas, riscos e possíveis próximos passos.</p>
+            <div class="preview-real-chips"><span>Work Item atual</span><b>+</b><span>Parent</span><b>+</b><span>Work Items vinculados</span></div>
+            <div class="preview-real-context"><span class="preview-real-status">✓ Contexto carregado</span><small>Informações consideradas nesta análise</small><div class="preview-real-grid"><div><em>Work Item atual</em><strong>Hypothesis <u>2481</u></strong><small>[Automatizar pagamento] Como po...</small></div><div><em>Parent</em><strong>Objective <u>2400</u></strong><small>[OKR-26Q4] Lead-time financeiro</small></div><div><em>Work Items vinculados</em><strong>3 itens</strong><small>2 filhos · 1 relacionado</small></div></div></div>
           </div>
-          <div class="demo-preview-foot">Prévia ilustrativa · Clique para explorar <span aria-hidden="true">↗</span></div>
+          <div class="preview-real-footer">Prévia ilustrativa · Clique para explorar ↗</div>
         </div>
       </div></div>
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
