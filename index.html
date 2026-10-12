@@ -1571,6 +1571,23 @@
     @media(max-width:900px){.hero-glow-wrap{width:min(38vw,300px)}}
     @media(max-width:680px){.hero-glow-wrap{width:min(72vw,300px)}.glow-main{transform:translate(-10px,6px)}.glow-small{transform:translate(52px,-42px)}}
     @media(max-width:480px){.hero-glow-wrap{width:min(78vw,280px)}}
+
+    /* Cabeçalho fixo na rolagem */
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.96);
+      backdrop-filter:blur(12px);
+      -webkit-backdrop-filter:blur(12px);
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+    }
+    #work,#experience,#about{scroll-margin-top:110px}
+    @media(max-width:680px){
+      .topbar{padding:8px 0}
+      #work,#experience,#about{scroll-margin-top:90px}
+    }
 </style>
 </head>
 <body>
