@@ -1240,9 +1240,15 @@ body.demo-modal-open{overflow:hidden!important}
  .ado-demo-backdrop.ado-with-notice{padding:146px 8px 8px}
  .ado-simulation-notice{top:8px;right:8px;width:calc(100% - 16px)}
 }
+
+.demo-permanent-notice{position:sticky;top:0;z-index:100;background:#eaf4f4;color:#315b60;padding:8px 16px;text-align:center;font:600 11px/1.5 "Segoe UI",Arial,sans-serif;border-bottom:1px solid #c9dcdc}
+.demo-permanent-notice>span:first-child{font-size:9px;color:#578489;margin-right:5px}
+.demo-permanent-copy{font-weight:400}
+@media(max-width:600px){.demo-permanent-notice{padding:7px 10px;font-size:10px}.demo-permanent-copy{display:block}}
 </style></head>
 
   <body>
+    <div class="demo-permanent-notice" role="note"><span aria-hidden="true">●</span> Ambiente de simulação <span class="demo-permanent-copy">· Dados fictícios · Nenhuma ação é registrada em sistemas reais</span></div>
     <main class="container">
       <!-- HEADER -->
       <section class="hero">
