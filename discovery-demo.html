@@ -1366,12 +1366,67 @@ button {
   'product-decision':'<h3>Decisão de Produto</h3><p>Validar regras financeiras e priorizar uma visão centralizada das cobranças antes de automatizar a conciliação.</p>',
   prototype:'<h3>Protótipo inicial</h3><p>Conceito de tela com lista de cobranças, situação de pagamento, detalhes e histórico de atualizações.</p>'
   };
+
+  const pause = ms => new Promise(resolve=>setTimeout(resolve,ms));
+  const evidence = ids => '<div class="analysis-evidence"><strong>Evidência:</strong> '+ids.map(id=>'<span class="work-item-link">'+id+'</span>').join(' • ')+'</div>';
+  function insight(text,ids){return '<div class="analysis-insight"><p>'+text+'</p>'+evidence(ids)+'</div>'}
+  function list(items){return '<div class="analysis-insight-list">'+items.map((x,i)=>insight(x[0],x[1])).join('')+'</div>'}
+  function section(title,body){return '<div class="analysis-section"><h3>'+title+'</h3>'+body+'</div>'}
   function showResult(markup){
-    result.classList.remove('hidden');
-    result.innerHTML='<div class="analysis-section"><span class="label">Demonstração · Resultado fictício</span>'+markup+'</div>';
-    result.scrollIntoView({behavior:'smooth',block:'nearest'});
+    result.classList.remove('hidden');result.innerHTML=markup;
+    result.scrollIntoView({behavior:'smooth',block:'start'});
   }
-  analyzeButton.addEventListener('click',()=>showResult('<h2>Diagnóstico do Discovery</h2><div class="analysis"><section class="analysis-section"><h3>O que sabemos</h3><p>Existe acompanhamento manual de cobranças.</p><h3>Lacunas</h3><p>Confirmar regras de conciliação e exceções.</p></section><section class="analysis-section"><h3>Próximo passo recomendado</h3><p>Realizar entrevista com Financeiro e levantar regras de negócio.</p><h3>Ponto de atenção</h3><p>Validar a consistência dos estados de pagamento.</p></section></div>'));
+  const diagnostic = () => '<div class="analysis" style="display:flex;flex-direction:column;gap:16px">'+
+    '<h2>🧠 Análise do Discovery</h2>'+
+    section('Fatos conhecidos',list([
+      ['O acompanhamento de cobranças depende de ações manuais do Financeiro.',[2481,2482]],
+      ['Existem funcionalidades planejadas para exibir o andamento do pagamento.',[2483]]
+    ]))+
+    section('Lacunas',list([
+      ['Não está definida a regra para conciliar pagamentos com divergência de valores.',[2482,2484]],
+      ['Ainda falta validar os responsáveis pelas exceções do fluxo financeiro.',[2481]]
+    ]))+
+    section('Premissas / suposições',list([
+      ['A centralização das informações poderá diminuir o esforço operacional.',[2481]],
+      ['Uma integração poderá fornecer eventos de pagamento confiáveis.',[2483]]
+    ]))+
+    section('Principal lacuna','<p>Definir as regras de confirmação e exceções para os pagamentos.</p>'+evidence([2482,2484]))+
+    '<div class="recommendation" style="width:100%"><span class="label">Próxima ação sugerida</span><h3>🎤 Entrevista</h3><p>Validar com Financeiro a conciliação atual, exceções e permissões de confirmação.</p>'+evidence([2481,2482])+
+    '<p class="reason"><strong>Por quê:</strong> A definição das regras de negócio é necessária antes de construir a automação.</p>'+
+    '<div class="recommendation-actions"><button id="createDiscoveryTaskButton" class="primary-button recommendation-create-button" type="button">✨ Criar Discovery Task</button></div></div>'+
+    section('Essa análise foi útil?','<p>Seu feedback ajuda a identificar quando a recomendação está relevante ou quando a IA perdeu contexto.</p>'+
+      '<div class="feedback-actions"><button class="secondary-button feedback-button" data-feedback="useful">👍 Útil</button><button class="secondary-button feedback-button" data-feedback="partial">🟡 Parcial</button><button class="secondary-button feedback-button" data-feedback="not-useful">👎 Não útil</button></div>'+
+      '<div id="feedbackReasonPanel" class="feedback-reason-panel hidden"><div class="feedback-reason-header"><div><h4>O que faltou na análise?</h4><p>Escolha o principal motivo.</p></div><span>Obrigatório</span></div><div class="feedback-reason-options">'+
+      ['A ação sugerida já foi realizada','Ignorou parte importante do contexto','Inventou uma informação','Exagerou o escopo da recomendação','A recomendação está correta, mas não é útil','Outro motivo'].map((x,i)=>'<label class="feedback-reason-option"><input type="radio" name="feedbackReason" value="'+i+'"><span>'+x+'</span></label>').join('')+
+      '</div><textarea id="feedbackDetails" class="discovery-modal-textarea" placeholder="Comentário opcional"></textarea><button id="sendFeedback" class="secondary-button">Enviar feedback</button></div><div id="feedbackThanks" role="status"></div>')+
+    '</div>';
+  const stages=[
+    ['Organizando contexto','Organizando as informações do contexto selecionado.'],
+    ['Identificando lacunas','Comparando fatos, premissas e pontos ainda sem resposta.'],
+    ['Preparando recomendação','Consolidando a próxima ação sugerida para o Discovery.']
+  ];
+  async function runDiagnostic(){
+    analyzeButton.disabled=true;analyzeButton.setAttribute('aria-busy','true');analyzeButton.textContent='⏳ Analisando...';
+    result.classList.remove('hidden');
+    result.innerHTML='<div class="analysis-loading" role="status" aria-live="polite"><div class="analysis-loading-icon" aria-hidden="true"><span>🧠</span></div><div class="analysis-loading-copy"><h3>Analisando o Discovery...</h3><p id="analysisLoadingMessage"></p><div class="analysis-loading-progress" aria-hidden="true"></div><div class="analysis-loading-stage"><span class="analysis-loading-dot" aria-hidden="true"></span><span id="analysisLoadingStage"></span></div></div></div>';
+    result.scrollIntoView({behavior:'smooth',block:'start'});
+    for(const [label,message] of stages){
+      document.getElementById('analysisLoadingStage').textContent=label;
+      document.getElementById('analysisLoadingMessage').textContent=message;
+      await pause(1150);
+    }
+    showResult(diagnostic());analyzeButton.disabled=false;analyzeButton.removeAttribute('aria-busy');analyzeButton.textContent='✨ Analisar contexto';
+    document.getElementById('createDiscoveryTaskButton').addEventListener('click',()=>openTask('interview'));
+    document.querySelectorAll('[data-feedback]').forEach(btn=>btn.addEventListener('click',()=>{
+      if(btn.dataset.feedback==='useful'){document.getElementById('feedbackThanks').textContent='Obrigado pelo feedback! (simulação)';document.getElementById('feedbackReasonPanel').classList.add('hidden')}
+      else document.getElementById('feedbackReasonPanel').classList.remove('hidden');
+    }));
+    document.getElementById('sendFeedback').addEventListener('click',()=>{
+      document.getElementById('feedbackThanks').textContent='Feedback registrado na demonstração.';
+      document.getElementById('feedbackReasonPanel').classList.add('hidden');
+    });
+  }
+  analyzeButton.addEventListener('click',runDiagnostic);
   function openTask(action){
     const overlay=document.createElement('div'); overlay.className='discovery-modal-overlay';
     overlay.innerHTML='<section class="discovery-modal" role="dialog" aria-modal="true" aria-labelledby="demoModalTitle"><div class="discovery-modal-header"><div><h2 id="demoModalTitle">✨ Criar Discovery Task</h2><p class="discovery-modal-subtitle">Ferramenta selecionada: '+labels[action]+'</p></div><button type="button" class="discovery-modal-x" aria-label="Fechar">×</button></div><label class="discovery-modal-label" for="discoveryExtraInstructions">Instruções adicionais <span>(opcional)</span></label><textarea id="discoveryExtraInstructions" class="discovery-modal-textarea" rows="5" maxlength="2500" placeholder="Ex.: Priorize o fluxo de aprovação do cliente, inclua exceções e perguntas para validação."></textarea><p class="discovery-modal-help">Direcione o resultado da IA. Se deixar em branco, será usado o template padrão da ferramenta.</p><div class="discovery-modal-reminder"><strong>Antes de finalizar a Discovery Task:</strong><ul><li>Revise o conteúdo gerado pela IA.</li><li>Inclua as tags relevantes.</li><li>Relacione o Parent do Work Item criado.</li></ul></div><div class="discovery-modal-footer"><button type="button" class="discovery-modal-cancel">Cancelar</button><button type="button" class="discovery-modal-confirm">✨ Confirmar e gerar</button></div></section>';
@@ -1379,10 +1434,20 @@ button {
     const close=()=>overlay.remove();
     overlay.querySelector('.discovery-modal-x').addEventListener('click',close);
     overlay.querySelector('.discovery-modal-cancel').addEventListener('click',close);
-    overlay.querySelector('.discovery-modal-confirm').addEventListener('click',()=>{
+    overlay.querySelector('.discovery-modal-confirm').addEventListener('click',async()=>{
       const extra=overlay.querySelector('textarea').value.trim();
+      const btn=overlay.querySelector('.discovery-modal-confirm');
+      btn.disabled=true;btn.textContent='⏳ Gerando...';
+      let status=overlay.querySelector('.discovery-modal-progress');
+      if(!status){status=document.createElement('div');status.className='discovery-modal-progress';overlay.querySelector('.discovery-modal-footer').before(status)}
+      status.hidden=false;status.textContent='Aguarde, seu Work Item está sendo carregado… (simulação)';
+      await pause(1400);
+      status.textContent='Estruturando conteúdo e critérios da Discovery Task…';
+      await pause(1300);
+      status.textContent='Finalizando a tarefa simulada…';
+      await pause(900);
       close();
-      showResult('<h2>'+labels[action]+'</h2>'+sections[action]+(extra?'<p><b>Instrução simulada:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Este conteúdo é fictício e nenhuma Discovery Task foi criada no Azure DevOps.</p>');
+      showResult('<div class="analysis" style="display:flex;flex-direction:column;gap:16px"><h2>✨ '+labels[action]+'</h2>'+section('Discovery Task gerada — demonstração',sections[action]+(extra?'<p><b>Instrução adicional:</b> '+escapeText(extra)+'</p>':'')+'<p class="context-note">Prévia fictícia. Nenhum Work Item foi criado.</p>')+'</div>');
     });
   }
   function escapeText(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
