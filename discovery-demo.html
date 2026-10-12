@@ -1,61 +1,1436 @@
-<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Discovery Insights — Demonstração</title>
-<style>
-:root{--purple:#6f54df;--deep:#583cc7;--light:#eeeaff;--ink:#242424;--muted:#667085;--line:#e4e7ec;--bg:#f7f7fa}*{box-sizing:border-box}
-body{margin:0;font:14px/1.5 "Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--ink)}
-.shell{max-width:970px;margin:0 auto;padding:18px 20px 30px}
-.hero{background:linear-gradient(125deg,var(--deep),#987ef0);color:#fff;border-radius:14px;padding:23px 26px 57px;display:flex;justify-content:space-between;gap:10px}
-.hero h1{margin:0;font-size:23px}.hero p{margin:4px 0 0;opacity:.9}.version{font-size:12px;opacity:.85}
-.analyze{position:relative;max-width:780px;margin:-35px auto 25px;background:#fff;border-radius:14px;padding:24px;text-align:center;box-shadow:0 10px 30px #1513281c}
-.brain{font-size:30px}.analyze h2{font-size:19px;margin:4px 0 8px}.analyze p{color:var(--muted);margin:0 auto;max-width:580px}
-.context{display:flex;gap:7px;justify-content:center;align-items:center;flex-wrap:wrap;margin:17px 0}
-.context span{font-size:11px;color:var(--deep);background:var(--light);padding:5px 9px;border-radius:20px;font-weight:600}.context em{font-style:normal;color:#aaa}
-.workitem{background:#f7f8fc;border:1px solid var(--line);border-radius:9px;text-align:left;padding:13px;margin:0 auto 17px;max-width:650px}
-.workitem b{font-size:12px}.workitem p{font-size:12px;margin:5px 0}.state{display:inline-block;border-radius:20px;background:#e8f4ee;color:#26714f;font-size:11px;padding:2px 8px;margin-top:6px}
-button{font:inherit;cursor:pointer}.primary{border:0;border-radius:7px;background:#0078d4;color:#fff;padding:10px 18px;font-weight:650}.primary:hover{filter:brightness(.94)}
-.heading{display:flex;justify-content:space-between;gap:12px;align-items:center;margin:0 0 12px}.heading h2{margin:0;font-size:19px}.heading p{margin:3px 0 0;color:var(--muted);font-size:12px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.tool{display:flex;text-align:left;gap:12px;padding:16px;background:#fff;border:1px solid var(--line);border-radius:11px;align-items:flex-start;min-height:82px;transition:border-color .15s,background .15s}
-.tool:hover,.tool:focus-visible{border-color:#ad9bec;background:#fbfaff}.ico{font-size:22px}.tool strong{display:block;margin-bottom:3px;font-size:13px}.tool small{color:var(--muted);font-size:11px}
-.demo-note{font-size:11px;color:var(--muted);margin:18px 0 0;text-align:center}
-.overlay{display:none;position:fixed;inset:0;background:#1b1b2780;align-items:center;justify-content:center;padding:18px;z-index:5}.overlay.open{display:flex}
-.dialog{background:white;border-radius:14px;width:min(620px,100%);max-height:86vh;overflow:auto;padding:25px;border:1px solid var(--line);box-shadow:0 20px 60px #0002}
-.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:12px}.dialog h2{font-size:20px;margin:0}.close{border:1px solid var(--line);background:#fff;border-radius:8px;height:34px;width:34px}
-.dialog p,.dialog li{color:#515c70}.dialog ul{padding-left:20px}.dialog .mock{padding:13px;background:#f8f6ff;border-left:3px solid var(--purple);border-radius:4px;margin:18px 0}
-.secondary{border:1px solid var(--line);background:white;padding:9px 14px;border-radius:7px}
-@media(max-width:560px){.shell{padding:12px}.grid{grid-template-columns:1fr}.analyze{padding:18px}.hero{padding:20px 20px 55px}.hero h1{font-size:20px}}
-</style></head><body>
-<main class="shell">
-<section class="hero"><div><h1>🧠 Discovery Insights</h1><p>Apoio à análise e evolução de hipóteses</p></div><span class="version">v0.1 · Demo</span></section>
-<section class="analyze"><div class="brain">🧠</div><h2>Analisar contexto do Discovery</h2><p>Analise o contexto disponível para identificar lacunas, premissas, riscos e possíveis próximos passos.</p>
-<div class="context"><span>Work Item atual</span><em>+</em><span>Parent</span><em>+</em><span>Work Items vinculados</span></div>
-<div class="workitem"><b>#2481 · Automatizar análise de cobrança</b><p>Como analista de Produto, desejo reduzir atividades manuais para acompanhar cobranças de maneira consistente.</p><span class="state">Contexto de exemplo carregado</span></div>
-<button class="primary" data-demo="context">✨ Analisar contexto</button></section>
-<div class="heading"><div><h2>Ferramentas de Discovery</h2><p>Experimente uma análise usando informações fictícias.</p></div></div>
-<div class="grid">
-<button class="tool" data-demo="benchmark"><span class="ico">🔎</span><span><strong>Benchmark</strong><small>Buscar referências externas</small></span></button>
-<button class="tool" data-demo="interview"><span class="ico">🎤</span><span><strong>Entrevista</strong><small>Entender processos, regras e stakeholders</small></span></button>
-<button class="tool" data-demo="csd"><span class="ico">🧩</span><span><strong>Matriz CSD</strong><small>Organizar certezas, suposições e dúvidas</small></span></button>
-<button class="tool" data-demo="bpmn"><span class="ico">🔄</span><span><strong>BPMN / AS IS</strong><small>Mapear fluxo, decisões e handoffs</small></span></button>
-<button class="tool" data-demo="risk"><span class="ico">⚠️</span><span><strong>Análise de riscos</strong><small>Identificar impactos e dependências</small></span></button>
-<button class="tool" data-demo="decision"><span class="ico">✅</span><span><strong>Decisão de Produto</strong><small>Consolidar uma decisão baseada em evidências</small></span></button>
-<button class="tool" data-demo="prototype"><span class="ico">✒️</span><span><strong>Protótipo</strong><small>Estruturar proposta inicial de prototipação</small></span></button>
-</div><p class="demo-note">Demonstração fictícia baseada na estrutura do projeto. Nenhuma análise real é executada.</p>
-</main>
-<div class="overlay" id="overlay" aria-hidden="true"><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle"><div class="dialog-head"><h2 id="dialogTitle"></h2><button class="close" id="close" aria-label="Fechar">×</button></div><div id="dialogBody"></div><button class="secondary" id="back">Voltar às ferramentas</button></div></div>
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Discovery Insights</title>
+
+    <style>* {
+  box-sizing: border-box;
+}
+
+:root {
+  --purple: #6f54df;
+  --purple-dark: #583cc7;
+  --purple-light: #987ef0;
+
+  --blue: #0078d4;
+
+  --text: #242424;
+  --secondary: #667085;
+
+  --border: #e4e7ec;
+  --background: #f7f7fa;
+
+  --card: #ffffff;
+}
+
+body {
+  margin: 0;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    sans-serif;
+
+  background: var(--background);
+  color: var(--text);
+}
+
+.container {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 22px 28px 60px;
+}
+
+.hero {
+  height: 175px;
+  padding: 26px 30px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--purple-dark), var(--purple-light));
+  color: white;
+}
+
+.hero-content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.hero-title {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.hero-icon {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 25px;
+  font-weight: 700;
+}
+
+.hero p {
+  margin: 5px 0 0;
+  opacity: 0.9;
+  font-size: 14px;
+}
+
+.version {
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.analyze-card {
+  position: relative;
+  width: calc(100% - 90px);
+  max-width: 820px;
+  margin: -65px auto 34px;
+  padding: 30px 32px;
+  text-align: center;
+  background: white;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  box-shadow: 0 14px 35px rgba(16, 24, 40, 0.13);
+}
+
+.brain {
+  margin-bottom: 8px;
+  font-size: 37px;
+}
+
+.analyze-card h2 {
+  margin: 0 0 9px;
+  font-size: 21px;
+}
+
+.analyze-description {
+  max-width: 600px;
+  margin: 0 auto;
+  color: var(--secondary);
+  line-height: 1.5;
+}
+
+.context-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 9px;
+  margin-top: 18px;
+  flex-wrap: wrap;
+}
+
+.context-info span {
+  padding: 5px 9px;
+  border-radius: 20px;
+  background: #f2f1ff;
+  color: #5f4acb;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+button {
+  font-family: inherit;
+}
+
+.primary-button {
+  margin-top: 22px;
+  padding: 11px 21px;
+  border: none;
+  border-radius: 7px;
+  background: var(--blue);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  filter: brightness(0.95);
+}
+
+.hidden {
+  display: none;
+}
+
+.analysis-result {
+  max-width: 900px;
+  margin: 0 auto 35px;
+  scroll-margin-top: 24px;
+}
+
+.analysis {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+  gap: 18px;
+}
+
+.analysis>h2 {
+  grid-column: 1 / -1;
+}
+
+.analysis-section {
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  background: white;
+}
+
+.analysis-section h3 {
+  margin-top: 0;
+}
+
+.analysis-section p,
+.analysis-section li {
+  color: #475467;
+  line-height: 1.5;
+}
+
+.analysis-insight-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.analysis-insight {
+  padding-bottom: 14px;
+  border-bottom: 1px solid #f0f1f3;
+}
+
+.analysis-insight:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.analysis-insight p {
+  margin: 0 0 7px;
+}
+
+.analysis-evidence {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: #f4f3ff;
+  color: #5f4acb;
+  font-size: 11px;
+  line-height: 1.3;
+}
+
+.analysis-evidence-empty {
+  background: #f7f7f8;
+  color: #98a2b3;
+}
+
+.analysis-more {
+  margin-top: 2px;
+}
+
+.analysis-more summary {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 0;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.analysis-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.analysis-more summary:hover {
+  text-decoration: underline;
+}
+
+.analysis-more-close {
+  display: none;
+}
+
+.analysis-more[open] .analysis-more-open {
+  display: none;
+}
+
+.analysis-more[open] .analysis-more-close {
+  display: inline;
+}
+
+.analysis-insight-list-more {
+  margin-top: 14px;
+}
+
+.recommendation {
+  padding: 22px;
+  border: 1px solid #d7ceff;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(111, 84, 223, 0.11), rgba(236, 72, 153, 0.06));
+  box-shadow: 0 6px 20px rgba(94, 70, 190, 0.08);
+}
+
+.recommendation h3 {
+  margin: 9px 0;
+  color: var(--purple-dark);
+  font-size: 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 6px;
+  color: #667085;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.reason {
+  margin-top: 16px;
+  color: #475467;
+  line-height: 1.5;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 20px;
+  background: #fff5cc;
+  color: #745b00;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.analysis-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 9px;
+}
+
+.secondary-button {
+  padding: 10px 16px;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  background: white;
+  color: #344054;
+  cursor: pointer;
+}
+
+.secondary-button:hover {
+  background: #f8f9fb;
+}
+
+.secondary-button: {
+  cursor: default;
+  opacity: 0.65;
+}
+
+.feedback-section {
+  border-style: dashed;
+  background: #fcfcfd;
+}
+
+.feedback-section>p {
+  margin-top: -4px;
+  max-width: 680px;
+}
+
+.feedback-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.feedback-button {
+  min-width: 100px;
+}
+
+.selected-feedback {
+  border-color: #7f6be8;
+  background: #f4f3ff;
+  color: #5f4acb;
+  font-weight: 600;
+  opacity: 1 !important;
+}
+
+.feedback-reason-panel {
+  margin-top: 18px;
+  padding: 18px;
+  border: 1px solid #e2dcfa;
+  border-radius: 11px;
+  background: #ffffff;
+}
+
+.feedback-reason-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.feedback-reason-header h4 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.feedback-reason-header p {
+  margin: 4px 0 0;
+  color: #667085;
+  font-size: 12px;
+}
+
+.feedback-reason-header>span {
+  flex-shrink: 0;
+  padding: 4px 7px;
+  border-radius: 999px;
+  background: #f4f3ff;
+  color: #5f4acb;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.feedback-reason-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.feedback-reason-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 11px;
+  border: 1px solid #e4e7ec;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #344054;
+  font-size: 12px;
+  line-height: 1.35;
+  cursor: pointer;
+  transition: 0.15s ease;
+}
+
+.feedback-reason-option:hover {
+  border-color: #cfc5f7;
+  background: #fbfaff;
+}
+
+.feedback-reason-option.selected-reason {
+  border-color: #8e79e5;
+  background: #f6f4ff;
+  color: #4f3db5;
+  box-shadow: 0 0 0 2px rgba(111, 84, 223, 0.08);
+}
+
+.feedback-reason-option input {
+  flex-shrink: 0;
+  margin: 2px 0 0;
+  accent-color: var(--purple);
+}
+
+.feedback-reason-other {
+  margin-top: 12px;
+}
+
+.feedback-reason-other label {
+  display: block;
+  margin-bottom: 6px;
+  color: #344054;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.feedback-reason-other textarea {
+  width: 100%;
+  min-height: 78px;
+  padding: 10px 11px;
+  resize: vertical;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
+  outline: none;
+  background: #ffffff;
+  color: #344054;
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+.feedback-reason-other textarea:focus {
+  border-color: #8e79e5;
+  box-shadow: 0 0 0 3px rgba(111, 84, 223, 0.1);
+}
+
+.feedback-reason-other>span {
+  display: block;
+  margin-top: 4px;
+  color: #98a2b3;
+  font-size: 10px;
+  text-align: right;
+}
+
+.feedback-reason-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 15px;
+}
+
+.feedback-reason-submit {
+  padding: 9px 14px;
+  border: 1px solid var(--blue);
+  border-radius: 7px;
+  background: var(--blue);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.feedback-reason-submit: {
+  border-color: #d1d5db;
+  background: #e5e7eb;
+  color: #6b7280;
+  cursor: not-allowed;
+}
+
+.feedback-status {
+  min-height: 18px;
+  margin-top: 12px;
+  color: #667085;
+  font-size: 12px;
+}
+
+.feedback-status-loading {
+  color: #667085;
+}
+
+.feedback-status-error {
+  color: #b42318;
+}
+
+.feedback-confirmation {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border: 1px solid #abefc6;
+  border-radius: 9px;
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.feedback-confirmation-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.feedback-confirmation strong,
+.feedback-confirmation span {
+  display: block;
+}
+
+.feedback-confirmation strong {
+  font-size: 12px;
+}
+
+.feedback-confirmation div>span {
+  margin-top: 1px;
+  color: #478766;
+  font-size: 11px;
+}
+
+.work-item-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+}
+
+.work-item-link:hover {
+  color: var(--purple-dark);
+}
+
+.selected-action {
+  grid-column: 1 / -1;
+  margin-top: 5px;
+  padding: 16px;
+  border: 1px solid #abefc6;
+  border-radius: 10px;
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.tools-section {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-header {
+  margin-bottom: 17px;
+}
+
+.section-header h2 {
+  margin: 0;
+  font-size: 19px;
+}
+
+.section-header p {
+  margin: 5px 0 0;
+  color: var(--secondary);
+  font-size: 13px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.tool-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-height: 105px;
+  padding: 17px;
+  text-align: left;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+  transition: 0.18s;
+}
+
+.tool-card:hover {
+  transform: translateY(-2px);
+  border-color: #baaef6;
+  box-shadow: 0 7px 18px rgba(16, 24, 40, 0.07);
+}
+
+.tool-icon {
+  font-size: 23px;
+}
+
+.tool-card strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.tool-card span {
+  display: block;
+  color: var(--secondary);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.work-item-context {
+  margin: 16px auto 0;
+  max-width: 680px;
+}
+
+.context-title {
+  max-width: 330px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #667085;
+}
+
+.context-box {
+  margin-top: 16px;
+  padding: 16px 18px;
+  background: #f8f7ff;
+  border: 1px solid #dcd6ff;
+  border-radius: 12px;
+  text-align: left;
+}
+
+.context-box-header {
+  margin-bottom: 14px;
+}
+
+.context-box-header strong {
+  display: block;
+  color: #067647;
+  font-size: 13px;
+}
+
+.context-box-header span {
+  display: block;
+  margin-top: 3px;
+  color: #667085;
+  font-size: 12px;
+}
+
+.context-source-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.context-source {
+  min-width: 0;
+  padding: 11px 12px;
+  background: white;
+  border: 1px solid #ebe8f8;
+  border-radius: 9px;
+}
+
+.context-source-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #6f54df;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.context-source strong {
+  display: block;
+  font-size: 12px;
+}
+
+.context-source-title {
+  display: block;
+  margin-top: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #667085;
+  font-size: 11px;
+}
+
+.related-details {
+  margin-top: 12px;
+  background: white;
+  border: 1px solid #ebe8f8;
+  border-radius: 9px;
+}
+
+.related-details summary {
+  padding: 11px 13px;
+  color: #5f4acb;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.related-items-list {
+  max-height: 230px;
+  overflow-y: auto;
+  padding: 0 12px 12px;
+}
+
+.related-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 9px 4px;
+  border-top: 1px solid #f0f0f3;
+}
+
+.related-item div {
+  min-width: 0;
+}
+
+.related-item strong {
+  display: block;
+  font-size: 11px;
+}
+
+.related-item div>span {
+  display: block;
+  margin-top: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #667085;
+  font-size: 11px;
+}
+
+.related-state {
+  flex-shrink: 0;
+  padding: 3px 7px;
+  background: #f7f7f8;
+  border: 1px solid #e4e7ec;
+  border-radius: 20px;
+  color: #475467;
+  font-size: 10px;
+}
+
+.context-note {
+  margin: 11px 2px 0;
+  color: #98a2b3;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+@media (max-width: 800px) {
+  .tools-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .analysis {
+    grid-template-columns: 1fr;
+  }
+
+  .analyze-card {
+    width: calc(100% - 30px);
+  }
+
+  .context-source-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .container {
+    padding: 15px;
+  }
+
+  .feedback-actions {
+    flex-direction: column;
+  }
+
+  .feedback-reason-options {
+    grid-template-columns: 1fr;
+  }
+
+  .feedback-reason-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .feedback-reason-actions {
+    flex-direction: column-reverse;
+  }
+
+  .feedback-reason-actions button {
+    width: 100%;
+  }
+}
+
+/* DIAGNÓSTICO: somente Fatos, Lacunas, Premissas e Principal lacuna */
+.analysis>.analysis-section:not(.feedback-section) {
+  padding: 0;
+  overflow: hidden;
+  border-color: #e7e2fb;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(62, 45, 120, 0.035);
+}
+
+.analysis>.analysis-section:not(.feedback-section)>h3 {
+  margin: 0;
+  padding: 14px 18px;
+  border-bottom: 1px solid #eeeaf8;
+  background: #fbfaff;
+  color: #2f2f37;
+  font-size: 16px;
+  font-weight: 650;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list {
+  gap: 0;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f0f0f3;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight:last-child {
+  padding-bottom: 14px;
+  border-bottom: 0;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight p {
+  margin: 0 0 8px;
+}
+
+.analysis>.analysis-section:not(.feedback-section)>p {
+  margin: 0;
+  padding: 15px 18px 8px;
+}
+
+.analysis>.analysis-section:not(.feedback-section)>.analysis-evidence {
+  margin: 0 18px 16px;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-more {
+  margin: 0;
+  border-top: 1px solid #eeeaf8;
+  background: #ffffff;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-more summary {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 18px;
+  color: #5f4acb;
+  font-size: 12px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-more summary::before {
+  content: "▸";
+  color: #6f54df;
+  font-size: 11px;
+  line-height: 1;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-more[open] summary::before {
+  content: "▾";
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-more summary:hover {
+  background: #faf9ff;
+  text-decoration: none;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list-more {
+  margin-top: 0;
+  border-top: 1px solid #f0f0f3;
+}
+
+.analysis>.analysis-section:not(.feedback-section) .analysis-insight-list-more .analysis-insight {
+  padding-left: 18px;
+  padding-right: 18px;
+}
+
+.context-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  gap: 9px;
+  margin: 14px auto 4px;
+  padding: 8px 14px;
+
+  color: #6041c7;
+  background: #f5f2ff;
+  border: 1px solid #e7e0ff;
+  border-radius: 999px;
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.context-spinner {
+  flex-shrink: 0;
+  width: 12px;
+  height: 12px;
+  border: 2px solid #cfc3f8;
+  border-top-color: #6845d6;
+  border-radius: 50%;
+  animation: context-spin 0.8s linear infinite;
+}
+
+@keyframes context-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.primary-button: {
+  background: #d1d5db;
+  color: #6b7280;
+  cursor: not-allowed;
+  opacity: 1;
+}
+
+.feedback-button: {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #6b7280;
+  opacity: 1;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.feedback-button.selected-feedback: {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+  color: #374151;
+  font-weight: 600;
+}
+
+.analysis-loading {
+  display: grid;
+  grid-template-columns: 52px minmax(0, 1fr);
+  gap: 18px;
+  width: 100%;
+  padding: 24px;
+  border: 1px solid #e1e5ec;
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 12px 30px rgb(31 42 68 / 7%);
+}
+
+.analysis-loading-icon {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #f5f2ff;
+  font-size: 24px;
+  isolation: isolate;
+}
+
+.analysis-loading-icon::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  z-index: -1;
+  border: 2px solid transparent;
+  border-top-color: #6845d6;
+  border-right-color: #a88ceb;
+  border-radius: 50%;
+  animation: analysis-spin 1.2s linear infinite;
+}
+
+.analysis-loading-icon span {
+  animation: analysis-breathe 1.5s ease-in-out infinite;
+}
+
+.analysis-loading-copy h3 {
+  margin: 1px 0 5px;
+  font-size: 18px;
+  line-height: 1.35;
+}
+
+.analysis-loading-copy>p {
+  min-height: 21px;
+  margin: 0;
+  color: #667085;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.analysis-loading-progress {
+  position: relative;
+  height: 5px;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #eeeafd;
+}
+
+.analysis-loading-progress::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: -38%;
+  width: 38%;
+  border-radius: inherit;
+  background: linear-gradient(90deg,
+      #a58be9,
+      #6845d6,
+      #a58be9);
+  animation: analysis-progress 1.4s ease-in-out infinite;
+}
+
+.analysis-loading-stage {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 13px;
+  padding: 6px 10px;
+  border: 1px solid #e4dcff;
+  border-radius: 999px;
+  background: #f5f2ff;
+  color: #5434bf;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.analysis-loading-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #6845d6;
+  box-shadow: 0 0 0 4px rgb(104 69 214 / 12%);
+  animation: analysis-pulse 1s ease-in-out infinite;
+}
+
+@keyframes analysis-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes analysis-progress {
+  to {
+    left: 105%;
+  }
+}
+
+@keyframes analysis-breathe {
+  50% {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes analysis-pulse {
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 560px) {
+  .analysis-loading {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+.tool-card: {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f8f9fb;
+}
+
+.tool-card:disabled:hover {
+  transform: none;
+  border-color: var(--border);
+  box-shadow: none;
+}
+
+.primary-button: {
+  opacity: 0.7;
+  cursor: wait;
+  transform: none;
+}
+
+.recommendation-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(111, 84, 223, 0.16);
+}
+
+.recommendation-create-button {
+  margin-top: 0;
+  flex-shrink: 0;
+}
+
+.discovery-task-status {
+  color: #667085;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.discovery-task-status-loading {
+  color: #5f4acb;
+}
+
+.discovery-task-status-success {
+  color: #067647;
+}
+
+.discovery-task-status-error {
+  color: #b42318;
+}
+
+.tool-card-status {
+  min-height: 16px;
+  margin-top: 8px;
+  font-weight: 600;
+}
+
+.tool-card-loading {
+  opacity: 1 !important;
+  border-color: #baaef6 !important;
+  background: #fbfaff !important;
+}
+
+.tool-card-loading .tool-icon {
+  animation: tool-loading-pulse 1s ease-in-out infinite;
+}
+
+@keyframes tool-loading-pulse {
+  50% {
+    transform: scale(1.12);
+    opacity: 0.65;
+  }
+}
+
+/* Modal de confirmação das ferramentas de Discovery */
+.discovery-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(18, 19, 35, 0.60);
+}
+.discovery-modal {
+  width: min(100%, 560px);
+  max-height: 92vh;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 20px 70px rgba(0,0,0,.3);
+  color: #242424;
+}
+.discovery-modal-header { display:flex; justify-content:space-between; align-items:flex-start; gap:14px; }
+.discovery-modal-header h2 { margin:0 0 6px; font-size:21px; }
+.discovery-modal-subtitle { margin:0 0 20px; font-size:13px; color:#667085; }
+.discovery-modal-x { border:0; background:transparent; font-size:25px; cursor:pointer; color:#667085; padding:0 4px; }
+.discovery-modal-x: { opacity:.4; cursor:default; }
+.discovery-modal-label { display:block; margin-bottom:8px; font-weight:600; font-size:14px; }
+.discovery-modal-label span { font-weight:400; color:#667085; }
+.discovery-modal-textarea { resize:vertical; width:100%; min-height:106px; padding:12px; border:1px solid #d0d5dd; border-radius:9px; font:inherit; font-size:14px; }
+.discovery-modal-textarea:focus { outline:2px solid #987ef0; outline-offset:1px; }
+.discovery-modal-help { margin:7px 0 16px; font-size:12px; color:#667085; }
+.discovery-modal-reminder { padding:14px 16px; border-radius:10px; background:#f5f3ff; border:1px solid #e9e3ff; font-size:13px; }
+.discovery-modal-reminder ul { margin:8px 0 0; padding-left:20px; }
+.discovery-modal-reminder li { margin:4px 0; }
+.discovery-modal-progress { display:flex; gap:10px; align-items:center; margin-top:16px; color:#583cc7; font-size:13px; font-weight:600; }
+.discovery-modal-progress[hidden] { display:none; }
+.discovery-modal-spinner { flex:none; width:18px; height:18px; border:2px solid #ddd4ff; border-top-color:#6f54df; border-radius:50%; animation:discovery-modal-spin .8s linear infinite; }
+@keyframes discovery-modal-spin { to { transform:rotate(360deg); } }
+.discovery-modal-footer { display:flex; justify-content:flex-end; gap:10px; margin-top:22px; flex-wrap:wrap; }
+.discovery-modal-footer button { border-radius:9px; padding:11px 16px; font-weight:600; cursor:pointer; }
+.discovery-modal-cancel { background:white; color:#344054; border:1px solid #d0d5dd; }
+.discovery-modal-confirm { background:#6f54df; color:white; border:1px solid #6f54df; }
+.discovery-modal-footer button: { opacity:.65; cursor:wait; }
+@media (max-width:540px) { .discovery-modal { padding:18px; } .discovery-modal-footer button { flex:1; } }
+</style>
+  <style>
+.demo-devops{font:13px "Segoe UI",Arial,sans-serif;color:#242424;background:#fff}
+.devops-bar{background:#0078d4;color:#fff;display:flex;align-items:center;gap:16px;padding:11px 20px;font-weight:600}
+.devops-toolbar{border-bottom:1px solid #e1e4e8;padding:12px 20px;color:#57606a;background:#fff}
+.devops-columns{display:grid;grid-template-columns:190px minmax(0,1fr)}
+.devops-side{background:#f6f8fa;border-right:1px solid #e1e4e8;padding:18px 12px;display:grid;align-content:start;gap:15px;min-height:900px}
+.devops-side b{color:#0078d4}.devops-content{min-width:0;background:#f7f7fa}
+.devops-workitem{background:#fff;padding:22px 28px;border-bottom:1px solid #e1e4e8}
+.devops-workitem h2{font-size:21px;margin:5px 0}.demo-workitem{background:#f8f7ff;text-align:left;padding:13px;border-radius:8px;border:1px solid #e6e1fb;margin:16px auto 0;max-width:610px}
+.demo-workitem p{margin:4px 0 7px;text-align:left;font-size:12px}.demo-workitem span{font-size:11px;color:#667085}
+.demo-sim-note{background:#f2f7ff;border-bottom:1px solid #d7e5fa;padding:9px 20px;font-size:12px;color:#425d82}
+.context-loading{display:none}
+.demo-mask{display:none;position:fixed;inset:0;background:#1c223381;align-items:center;justify-content:center;padding:20px;z-index:80}
+.demo-mask.open{display:flex}.demo-dialog{background:white;width:min(750px,100%);max-height:85vh;overflow:auto;padding:26px 30px;border-radius:12px;box-shadow:0 25px 60px #0003}
+.demo-dialog-top{display:flex;justify-content:space-between;align-items:center;gap:18px}.demo-dialog-top h2{margin:0}.demo-close{border:1px solid #e1e4e8;background:#fff;border-radius:6px;padding:8px 12px}
+.demo-response{margin-top:17px;line-height:1.7;color:#475467}.demo-response h3{font-size:15px}.demo-response li{margin-bottom:8px}
+@media(max-width:750px){.devops-columns{grid-template-columns:1fr}.devops-side{display:none}.devops-bar{padding:10px}.devops-workitem{padding:14px}.demo-dialog{padding:19px}}
+</style></head>
+
+  <body><div class="demo-devops"><div class="devops-bar"><span>▦ Azure DevOps</span><span>Recoloca / Boards</span></div><div class="devops-toolbar">Boards › Work Items › #2481 · Discovery</div><div class="devops-columns"><aside class="devops-side"><strong>Overview</strong><span>Boards</span><b>Work Items</b><span>Backlogs</span><span>Sprints</span><span>Queries</span><span>Delivery Plans</span></aside><div class="devops-content"><div class="devops-workitem"><small>FEATURE 2481 · Active · Demo</small><h2>Automatizar conciliação de cobrança</h2><span>Assigned To: Product Team • Iteration: 2026 Q4</span></div><div class="demo-sim-note">Ambiente de demonstração • Dados fictícios • Nenhuma alteração no Azure DevOps</div>
+    <main class="container">
+      <!-- HEADER -->
+      <section class="hero">
+        <div class="hero-content">
+          <div class="hero-title">
+            <img
+              src="https://raw.githubusercontent.com/jamillydanielle/discovery-insights/main/dist/images/icon.png"
+              class="hero-icon"
+              alt="Discovery Insights"
+            />
+
+            <div>
+              <h1>Discovery Insights</h1>
+
+              <p>Apoio à análise e evolução de hipóteses</p>
+            </div>
+          </div>
+
+          <span class="version"> v0.1 </span>
+        </div>
+      </section>
+
+      <!-- CARD PRINCIPAL -->
+      <section class="analyze-card">
+        <div class="brain">🧠</div>
+
+        <h2>Analisar contexto do Discovery</h2>
+
+        <p class="analyze-description">
+          Analise o contexto disponível para identificar lacunas, premissas,
+          riscos e possíveis próximos passos.
+        </p>
+
+        <div class="context-info">
+          <span>Work Item atual</span>
+          <span>+</span>
+          <span>Parent</span>
+          <span>+</span>
+          <span>Work Items vinculados</span>
+        </div>
+
+        <div id="workItemContext" class="work-item-context"><div class="demo-workitem"><strong>#2481 · Automatizar conciliação de cobrança</strong><p>Como analista de Produto, desejo automatizar o acompanhamento de cobranças.</p><span>Work Item fictício • Active</span></div></div><button id="analyzeButton" class="primary-button" >
+          ✨ Analisar contexto
+        </button>
+      </section>
+
+      <!-- RESULTADO -->
+      <div id="analysisResult" class="analysis-result hidden"></div>
+
+      <!-- FERRAMENTAS -->
+      <section class="tools-section">
+        <div class="section-header">
+          <div>
+            <h2>Ferramentas de Discovery</h2>
+
+            <p>Você também pode executar uma análise diretamente.</p>
+          </div>
+        </div>
+
+        <div class="tools-grid">
+  <button
+    class="tool-card"
+    data-action="benchmark"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">🔎</div>
+
+    <div>
+      <strong>Benchmark</strong>
+      <span>Buscar referências externas</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+
+  <button
+    class="tool-card"
+    data-action="interview"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">🎤</div>
+
+    <div>
+      <strong>Entrevista</strong>
+      <span>Entender processo, regra ou stakeholder</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+
+  <button
+    class="tool-card"
+    data-action="csd"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">🧩</div>
+
+    <div>
+      <strong>Matriz CSD</strong>
+      <span>Organizar certezas, suposições e dúvidas</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+
+  <button
+    class="tool-card"
+    data-action="bpmn"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">🔄</div>
+
+    <div>
+      <strong>BPMN / AS IS</strong>
+      <span>Mapear fluxo, decisões e handoffs</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+
+  <button
+    class="tool-card"
+    data-action="risk-analysis"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">⚠️</div>
+
+    <div>
+      <strong>Análise de riscos</strong>
+      <span>Identificar impactos e dependências</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+
+  <button
+    class="tool-card"
+    data-action="product-decision"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">✅</div>
+
+    <div>
+      <strong>Decisão de Produto</strong>
+      <span>Consolidar decisão com base nas evidências</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+  <button
+    class="tool-card"
+    data-action="prototype"
+    
+    title="Disponível quando o contexto do Work Item terminar de carregar."
+  >
+    <div class="tool-icon">✒️</div>
+    <div>
+      <strong>Protótipo</strong>
+      <span>Estruturar proposta inicial de prototipação</span>
+      <span class="tool-card-status discovery-task-status" aria-live="polite"></span>
+    </div>
+  </button>
+</div>
+      </section>
+    </main>
+
+    
+  </div></div></div><div class="demo-mask" id="demoMask"><div class="demo-dialog" role="dialog" aria-modal="true" aria-labelledby="demoTitle"><div class="demo-dialog-top"><h2 id="demoTitle">Resultado simulado</h2><button class="demo-close" id="demoClose">Fechar ×</button></div><div class="demo-response" id="demoResponse"></div></div></div>
 <script>
-const examples={
-context:["Análise de contexto","<p>A avaliação do Work Item de exemplo identificou pontos a investigar antes de priorizar a solução.</p><ul><li><b>Lacuna:</b> confirmar quem realiza a conciliação hoje.</li><li><b>Premissa:</b> os dados da cobrança estarão disponíveis no sistema.</li><li><b>Próximo passo:</b> entrevistar Financeiro e validar regras de exceção.</li></ul>"],
-benchmark:["Benchmark","<p>Plano ilustrativo para buscar soluções comparáveis:</p><ul><li>Identificar produtos com conciliação de cobranças.</li><li>Comparar estados, notificações e tratamento de erros.</li><li>Registrar diferenças relevantes para o contexto B2B.</li></ul>"],
-interview:["Entrevista","<p>Roteiro de exemplo para conversar com o time Financeiro:</p><ul><li>Como a cobrança é conciliada atualmente?</li><li>Quando ocorrem ajustes manuais?</li><li>Que informações são necessárias para confirmar o pagamento?</li></ul>"],
-csd:["Matriz CSD","<p><b>Certeza:</b> há acompanhamento manual de cobranças.</p><p><b>Suposição:</b> a integração reduziria retrabalho.</p><p><b>Dúvida:</b> como são tratados pagamentos divergentes?</p>"],
-bpmn:["BPMN / AS IS","<div class='mock'>Cobrança gerada → Conferência manual → Pagamento identificado → Atualização do status</div><p>Fluxo simplificado apenas para ilustrar o tipo de saída da ferramenta.</p>"],
-risk:["Análise de riscos","<ul><li><b>Dados inconsistentes:</b> risco de status incorreto.</li><li><b>Integração indisponível:</b> necessidade de procedimento alternativo.</li><li><b>Permissões:</b> restringir confirmação de pagamentos por perfil.</li></ul>"],
-decision:["Decisão de Produto","<p><b>Hipótese:</b> centralizar o acompanhamento em uma interface única.</p><p><b>Condição para seguir:</b> validar a origem dos dados e os casos excepcionais.</p><p><b>Métrica sugerida:</b> tempo de conciliação por cobrança.</p>"],
-prototype:["Protótipo","<p><b>Proposta ilustrativa:</b> tela de cobranças com filtros por status, detalhe da cobrança e histórico.</p><div class='mock'>Cobranças &nbsp;│&nbsp; Pendentes &nbsp;│&nbsp; Confirmadas &nbsp;│&nbsp; Divergentes</div><p>Validar o fluxo com as pessoas responsáveis antes do desenvolvimento.</p>"]
+const results={
+"contexto":["Análise do contexto","<h3>Diagnóstico de Discovery</h3><p>Dados ilustrativos: uma necessidade de automatização da conciliação de cobranças.</p><ul><li><b>Problema:</b> atualizações manuais geram retrabalho.</li><li><b>Lacuna:</b> validar responsáveis e exceções da conciliação.</li><li><b>Premissa:</b> os eventos bancários podem ser relacionados à cobrança.</li><li><b>Próximo passo:</b> entrevista com Financeiro e avaliação técnica.</li></ul>"],
+"benchmark":["Benchmark","<p>Referências a investigar: fluxos de conciliação bancária, notificações e gestão de pagamentos.</p><ul><li>Comparar visões de status.</li><li>Investigar tratamento de divergências.</li><li>Mapear boas práticas de rastreabilidade.</li></ul>"],
+"interview":["Entrevista","<h3>Roteiro com o time Financeiro</h3><ol><li>Como acontece a conciliação atualmente?</li><li>Que dados são conferidos manualmente?</li><li>Em que situações há exceções?</li><li>Como o resultado é comunicado?</li></ol>"],
+"csd":["Matriz CSD","<p><b>Certeza:</b> existe etapa de conferência manual.</p><p><b>Suposição:</b> integrações podem reduzir o esforço.</p><p><b>Dúvida:</b> como identificar pagamentos duplicados ou divergentes?</p>"],
+"bpmn":["BPMN / AS IS","<h3>Fluxo atual ilustrativo</h3><p>Receber cobrança → Consultar pagamento → Conferir dados → Atualizar status → Comunicar resultado.</p><p>Validar atividades e responsáveis em entrevista.</p>"],
+"risk-analysis":["Análise de riscos","<ul><li><b>Integração:</b> indisponibilidade temporária da API.</li><li><b>Dados:</b> cobrança conciliada incorretamente.</li><li><b>Operação:</b> ausência de tratamento manual de contingência.</li></ul>"],
+"product-decision":["Decisão de Produto","<p><b>Decisão ilustrativa:</b> validar primeiro o processo de confirmação e suas exceções antes de automatizar.</p><p><b>Métrica:</b> tempo médio de conciliação por cobrança.</p>"],
+"prototype":["Protótipo","<h3>Proposta de interface</h3><div style='padding:16px;background:#f6f5ff;border:1px solid #e5e0fc;border-radius:9px'><b>Cobranças</b><hr>Filtro: Pendentes | Confirmadas | Divergentes<br><br>#2481 — Pagamento pendente — R$ 1.250,00</div><p>Ilustração textual da interface para discussão.</p>"]
 };
-const overlay=document.getElementById('overlay'),close=document.getElementById('close');
-document.querySelectorAll('[data-demo]').forEach(b=>b.addEventListener('click',()=>{const x=examples[b.dataset.demo];document.getElementById('dialogTitle').textContent=x[0];document.getElementById('dialogBody').innerHTML='<div class="mock">Resultado ilustrativo · Dados simulados</div>'+x[1];overlay.classList.add('open');overlay.setAttribute('aria-hidden','false');close.focus()}));
-function dismiss(){overlay.classList.remove('open');overlay.setAttribute('aria-hidden','true')}
-close.addEventListener('click',dismiss);document.getElementById('back').addEventListener('click',dismiss);document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))dismiss()});
-</script></body></html>
+function showDemo(type){const [title,body]=results[type]||results.contexto;document.getElementById("demoTitle").textContent=title;document.getElementById("demoResponse").innerHTML="<small>Resultado gerado para demonstração · Dados fictícios</small>"+body;document.getElementById("demoMask").classList.add("open")}
+document.getElementById("analyzeButton").addEventListener("click",()=>showDemo("contexto"));
+document.querySelectorAll("[data-action]").forEach(button=>button.addEventListener("click",()=>showDemo(button.dataset.action)));
+document.getElementById("demoClose").addEventListener("click",()=>document.getElementById("demoMask").classList.remove("open"));
+</script></body>
+</html>
