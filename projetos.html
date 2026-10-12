@@ -177,6 +177,34 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
 .project-title-inline{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.project-title-inline small{line-height:1.2;vertical-align:middle}
 .simulation-ribbon[hidden]{display:none!important}
 .simulation-ribbon{gap:7px}.simulation-ribbon .simulation-divider{font-weight:400;color:#8ca9ab;margin:0 4px}.simulation-ribbon strong{white-space:nowrap}
+
+/* Prévia estática ao passar sobre o botão Explorar projeto */
+.demo-preview-trigger{position:relative;flex:0 0 auto}
+.demo-hover-preview{position:absolute;right:0;bottom:calc(100% + 14px);width:min(390px,85vw);background:#fff;border:1px solid #cddfe1;border-radius:12px;box-shadow:0 18px 55px rgba(17,45,52,.18);overflow:hidden;z-index:20;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .18s ease,transform .18s ease,visibility .18s;pointer-events:none;color:#243c42}
+.demo-preview-trigger:hover .demo-hover-preview,.demo-preview-trigger:focus-within .demo-hover-preview{opacity:1;visibility:visible;transform:translateY(0)}
+.demo-hover-preview:after{content:"";position:absolute;bottom:0;left:0;right:0;height:3px;background:#8eb4b7}
+.demo-preview-browser{display:flex;align-items:center;gap:5px;padding:10px 13px;background:#eaf1f2;border-bottom:1px solid #d5e1e3}
+.demo-preview-browser>span{width:6px;height:6px;border-radius:50%;background:#aac0c2}
+.demo-preview-browser small{margin-left:8px;color:#607f82;font:500 10px/1.2 "Segoe UI",sans-serif}
+.demo-preview-workspace{padding:17px;background:#fafdfd}
+.demo-preview-heading{display:flex;flex-direction:column;gap:3px;margin-bottom:12px}
+.demo-preview-heading strong{font-size:16px;line-height:1.25}
+.demo-preview-heading small{font-size:11px;color:#72898b}
+.demo-preview-tag{font-size:9px;font-weight:750;letter-spacing:.07em;color:#588184}
+.demo-preview-analysis{display:grid;grid-template-columns:1fr 75px;gap:12px;border:1px solid #deeaeb;border-radius:7px;background:white;padding:12px}
+.demo-preview-analysis>div:first-child{display:flex;flex-direction:column;align-items:flex-start;gap:6px}
+.demo-preview-analysis small{color:#598b88;font-weight:750;font-size:9px}
+.demo-preview-analysis strong{font-size:12px;line-height:1.4}
+.demo-preview-pill{background:#eaf4f1;color:#47776d;border-radius:4px;padding:3px 6px;font-size:9px}
+.demo-preview-bars{display:flex;flex-direction:column;justify-content:center;gap:8px}
+.demo-preview-bars i{height:7px;border-radius:7px;background:#bfd6d7}
+.demo-preview-bars i:nth-child(2){width:75%;background:#d8e6e6}
+.demo-preview-bars i:nth-child(3){width:91%;background:#aac9c9}
+.demo-preview-tools{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-top:10px}
+.demo-preview-tools span{border:1px solid #e1e9e9;border-radius:5px;background:white;padding:9px;font-size:10px;color:#4d6a6b}
+.demo-preview-foot{padding:10px 15px;border-top:1px solid #e4eded;font-size:10px;color:#668184;display:flex;justify-content:space-between}
+@media(max-width:700px){.demo-preview-trigger{width:100%}.demo-preview-trigger>button{width:100%}.demo-hover-preview{left:0;right:auto;width:min(390px,calc(100vw - 55px))}}
+@media(prefers-reduced-motion:reduce){.demo-hover-preview{transition:none;transform:none}}
 </style>
 </head>
 <body>
@@ -193,7 +221,17 @@ main.wrap>#ferramentas .section-desc{margin:0 0 14px}
       <h2 class="project-title-inline"><span>Discovery Insights</span><small>· Projeto autoral</small></h2>
       <p>Ferramenta voltada ao apoio no discovery de Produto, com recursos de análise, estruturação de informações e geração de materiais para apoiar o trabalho com demandas e oportunidades.</p>
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
-      <div class="demo-launch"><div><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div><button type="button" class="demo-button primary" id="openDiscovery">Explorar projeto</button></div>
+      <div class="demo-launch"><div><strong>Ambiente de simulação</strong><p>Conheça a interface, experimente ferramentas e consulte o fluxo técnico em um ambiente de simulação.</p></div><div class="demo-preview-trigger"><button type="button" class="demo-button primary" id="openDiscovery" aria-describedby="demoPreviewHint">Explorar projeto</button>
+        <div class="demo-hover-preview" id="demoPreviewHint" aria-hidden="true">
+          <div class="demo-preview-browser"><span></span><span></span><span></span><small>Discovery Insights · Demonstração</small></div>
+          <div class="demo-preview-workspace">
+            <div class="demo-preview-heading"><span class="demo-preview-tag">HYPOTHESIS · 2481</span><strong>Discovery Insights</strong><small>Análise de contexto do Work Item</small></div>
+            <div class="demo-preview-analysis"><div><small>CONTEXTO CARREGADO</small><strong>Confirmação de pagamentos</strong><span class="demo-preview-pill">3 itens relacionados</span></div><div class="demo-preview-bars"><i></i><i></i><i></i></div></div>
+            <div class="demo-preview-tools"><span>Benchmark</span><span>Entrevista</span><span>Matriz CSD</span><span>Análise de riscos</span></div>
+          </div>
+          <div class="demo-preview-foot">Prévia ilustrativa · Clique para explorar <span aria-hidden="true">↗</span></div>
+        </div>
+      </div></div>
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
       <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span class="demo-portfolio-credit">· Portfólio de Jamilly Danielle</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">× Fechar</button></div>
       <div class="demo-shell" id="discoveryShowcase">
