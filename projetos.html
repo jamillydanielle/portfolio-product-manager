@@ -257,6 +257,22 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:43px!important}
 main.wrap>section[aria-labelledby="ferramentas"] h2{margin-bottom:11px!important}
 main.wrap>section[aria-labelledby="ferramentas"] .section-desc{margin-bottom:23px!important}
 @media(max-width:600px){main.wrap{padding-top:27px!important}main.wrap>h1{margin-bottom:17px!important}main.wrap>section[aria-labelledby="ferramentas"]{margin-top:32px!important}}
+
+.demo-hover-preview{width:min(420px,calc(100vw - 32px))}
+.preview-real-banner{height:100px;padding:16px 20px}
+.preview-real-card{width:90%;margin-top:-25px;padding:15px 14px 17px}
+.preview-real-brain{font-size:23px;margin-bottom:3px}
+.preview-real-heading{font-size:15px}
+.preview-real-card>p{margin:6px auto 12px!important}
+.preview-loading-state{display:flex;align-items:center;justify-content:center;gap:9px;padding:12px;background:#f8f7ff;border:1px solid #e4dffc;border-radius:8px;color:#6749d9;font-size:11px;font-weight:600}
+.preview-loading-spinner{width:15px;height:15px;border:2px solid #d9d1fc;border-top-color:#7351e9;border-radius:50%;animation:demo-spin 1s linear infinite}
+.demo-preview-trigger:hover .demo-hover-preview,.demo-preview-trigger:focus-within .demo-hover-preview{top:calc(100% + 12px);bottom:auto;transform:none}
+@media(max-width:700px){.demo-hover-preview{top:calc(100% + 10px);bottom:auto}}
+main.wrap>h1{margin-bottom:29px!important}
+main.wrap>section[aria-labelledby="autorais"] .project h2{margin-bottom:15px!important}
+main.wrap>section[aria-labelledby="autorais"] .project>p{margin-bottom:20px!important}
+main.wrap>section[aria-labelledby="autorais"] .project-links{margin-bottom:27px!important}
+main.wrap>section[aria-labelledby="ferramentas"]{margin-top:54px!important}
 </style>
 </head>
 <body>
@@ -279,9 +295,8 @@ main.wrap>section[aria-labelledby="ferramentas"] .section-desc{margin-bottom:23p
           <div class="preview-real-card">
             <div class="preview-real-brain">🧠</div>
             <strong class="preview-real-heading">Analisar contexto do Discovery</strong>
-            <p>Analise o contexto disponível para identificar lacunas, premissas, riscos e possíveis próximos passos.</p>
-            <div class="preview-real-chips"><span>Work Item atual</span><b>+</b><span>Parent</span><b>+</b><span>Work Items vinculados</span></div>
-            <div class="preview-real-context"><span class="preview-real-status">✓ Contexto carregado</span><small>Informações consideradas nesta análise</small><div class="preview-real-grid"><div><em>Work Item atual</em><strong>Hypothesis <u>2481</u></strong><small>[Automatizar pagamento] Como po...</small></div><div><em>Parent</em><strong>Objective <u>2400</u></strong><small>[OKR-26Q4] Lead-time financeiro</small></div><div><em>Work Items vinculados</em><strong>3 itens</strong><small>2 filhos · 1 relacionado</small></div></div></div>
+            <p>Preparando as informações para análise...</p>
+            <div class="preview-loading-state"><span class="preview-loading-spinner" aria-hidden="true"></span>Carregando contexto do Work Item</div>
           </div>
           <div class="preview-real-footer">Prévia ilustrativa · Clique para explorar ↗</div>
         </div>
