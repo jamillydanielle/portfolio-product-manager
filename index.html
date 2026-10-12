@@ -1614,6 +1614,26 @@
 
 /* Centralização precisa do ícone de fechar */
 .close{display:inline-flex!important;align-items:center!important;justify-content:center!important;padding:0!important;line-height:1!important;font-family:Arial,sans-serif!important;font-size:23px!important;flex-shrink:0}
+
+/* Estrelas do hero: brilho pulsante orgânico e fora de sincronia, sem alterar posição */
+.hero-glow{transform-origin:center;will-change:scale,opacity}
+.hero-glow.glow-main{animation:hero-star-large 5.3s ease-in-out infinite}
+.hero-glow.glow-small{animation:hero-star-small 4.1s ease-in-out -1.3s infinite}
+@keyframes hero-star-large{
+  0%,100%{scale:1;opacity:.88}
+  23%{scale:1.035;opacity:.94}
+  43%{scale:1.105;opacity:1}
+  67%{scale:1.025;opacity:.9}
+  85%{scale:1.07;opacity:.98}
+}
+@keyframes hero-star-small{
+  0%,100%{scale:1;opacity:.82}
+  19%{scale:1.085;opacity:.98}
+  47%{scale:1.025;opacity:.88}
+  74%{scale:1.12;opacity:1}
+  90%{scale:1.035;opacity:.9}
+}
+@media(prefers-reduced-motion:reduce){.hero-glow.glow-main,.hero-glow.glow-small{animation:none}}
 </style>
 </head>
 <body>
