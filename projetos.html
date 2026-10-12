@@ -319,6 +319,27 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
 .simulation-info-popover{right:-16px;top:calc(100% + 17px);width:min(310px,85vw);border:1px solid #dce3e5;border-radius:12px;background:#fff;box-shadow:0 12px 30px rgba(30,49,55,.1);transform:translateY(-4px)}
 .simulation-info-popover:before{content:"";position:absolute;top:-10px;right:20px;width:18px;height:18px;transform:rotate(45deg);border-top:1px solid #dce3e5;border-left:1px solid #dce3e5;background:#fff;border-top-left-radius:4px}
 .simulation-info-wrap:hover .simulation-info-popover,.simulation-info-wrap:focus-within .simulation-info-popover,.simulation-info-wrap.is-open .simulation-info-popover{transform:translateY(0)}
+
+/* Diagrama técnico vetorial, sem aparência de cards de produto */
+.uml-diagram-wrap{max-width:1190px;margin:0 auto;overflow-x:auto;background:#fafcfd;border:1px solid #dce7ea;border-radius:6px;padding:18px}
+.uml-architecture{display:block;width:100%;min-width:790px;height:auto;font:12px ui-monospace,SFMono-Regular,Consolas,monospace}
+.uml-architecture .uml-layer{font-size:12px;font-weight:700;letter-spacing:1.4px;fill:#587d87}
+.uml-entity rect{fill:#fff;stroke:#95b4bc;stroke-width:1.5}
+.uml-entity path{stroke:#d4e1e5;stroke-width:1;fill:none}
+.uml-entity text{fill:#55747c;font-size:12px}
+.uml-entity .uml-entity-name{font-weight:700;fill:#213f48;font-size:14px}
+.uml-edge path{stroke:#88a5ae;stroke-width:1.6;fill:none}
+.uml-edge text{fill:#66858d;font-size:10px}
+.uml-note rect{fill:#eef5f6;stroke:#a4bec4;stroke-width:1;stroke-dasharray:5 4}
+.uml-note text{fill:#587980;font-size:11px}
+.uml-note text:first-of-type{font-weight:700}
+.demo-fullscreen .structure-panel{padding:22px 24px}
+main.wrap>section[aria-labelledby="ferramentas"]{margin-top:96px!important}
+@media(max-width:600px){.uml-diagram-wrap{padding:9px}.demo-fullscreen .structure-panel{padding:14px 10px}main.wrap>section[aria-labelledby="ferramentas"]{margin-top:65px!important}}
+/* Halo difuso com pulsação mais visível e respiração bilateral */
+.explore-pulse:before{inset:-7px;background:rgba(88,127,129,.38);filter:blur(9px);animation:explore-breathing-strong 2.5s ease-in-out infinite}
+@keyframes explore-breathing-strong{0%,100%{transform:scale(.91);opacity:.25}50%{transform:scale(1.2);opacity:.95}}
+@media(prefers-reduced-motion:reduce){.explore-pulse:before{animation:none;opacity:.3}}
 </style>
 </head>
 <body>
@@ -373,42 +394,7 @@ main.wrap>section[aria-labelledby="ferramentas"]{margin-top:68px!important}
         </div>
         <div class="demo-intro" id="demoIntro"><div class="demo-cover-content"><span class="demo-overline">DISCOVERY INSIGHTS</span><h3>Explore o projeto</h3><p>A demonstração reproduz a experiência da extensão de apoio ao discovery de Produto. Você pode interagir com as ferramentas e explorar a estrutura técnica usando dados fictícios. Nenhuma informação será registrada ou enviada para sistemas reais.</p><div class="demo-buttons"><button type="button" class="demo-button primary" id="startIntro">Iniciar simulação</button><button type="button" class="demo-button outline" id="structureIntro">Consultar estrutura</button></div></div></div>
         <div class="structure-panel" id="structurePanel" hidden>
-          <div class="tech-diagram" aria-label="Diagrama de arquitetura do Discovery Insights">
-            <div class="tech-diagram-heading"><span class="tech-live-dot"></span><span>VISÃO DE ARQUITETURA</span><span class="tech-diagram-version">fluxo lógico · projeto original</span></div>
-            <div class="tech-system">
-              <div class="tech-group-title"><span>01</span> CAMADA DE ORIGEM <small>Azure DevOps</small></div>
-              <div class="tech-nodes tech-source">
-                <div class="tech-node"><span class="tech-icon">▤</span><strong>Work Item</strong><small>Hypothesis · Discovery Task</small></div>
-                <div class="tech-node"><span class="tech-icon">⬡</span><strong>Relações</strong><small>Parent · Objective · relacionados</small></div>
-                <div class="tech-node tech-database"><span class="tech-db-icon" aria-hidden="true"></span><strong>Contexto do Azure DevOps</strong><small>Campos · status · descrição</small></div>
-              </div>
-            </div>
-            <div class="tech-connector"><span>contexto do item / metadados</span><i aria-hidden="true"></i></div>
-            <div class="tech-system">
-              <div class="tech-group-title"><span>02</span> CAMADA DE APLICAÇÃO <small>Extensão Discovery Insights</small></div>
-              <div class="tech-nodes tech-two">
-                <div class="tech-node"><span class="tech-icon">▣</span><strong>Interface da extensão</strong><small>HTML · CSS · JavaScript</small><em>Leitura e organização de contexto</em></div>
-                <div class="tech-node"><span class="tech-icon">⌘</span><strong>Serviço de aplicação</strong><small>Node.js · API HTTPS</small><em>/api/ai/analyze · geração de task</em></div>
-              </div>
-            </div>
-            <div class="tech-connector"><span>solicitação de análise / payload</span><i aria-hidden="true"></i></div>
-            <div class="tech-system tech-ai-layer">
-              <div class="tech-group-title"><span>03</span> CAMADA DE INTELIGÊNCIA <small>Integração externa</small></div>
-              <div class="tech-nodes tech-two">
-                <div class="tech-node tech-api"><span class="tech-icon">⟡</span><strong>Conector Azure OpenAI</strong><small>Configuração de endpoint · deployment · autenticação</small><em>Requisição à API do modelo</em></div>
-                <div class="tech-node tech-model"><span class="tech-icon">✧</span><strong>Modelo de linguagem</strong><small>Contexto + instruções estruturadas</small><em>Análises · lacunas · recomendações</em></div>
-              </div>
-            </div>
-            <div class="tech-connector"><span>retorno do modelo / resultado estruturado</span><i aria-hidden="true"></i></div>
-            <div class="tech-system">
-              <div class="tech-group-title"><span>04</span> RESULTADO <small>Fluxo do produto</small></div>
-              <div class="tech-nodes tech-two">
-                <div class="tech-node"><span class="tech-icon">≡</span><strong>Análise no painel</strong><small>Fatos · dúvidas · próximos passos</small><em>Ferramentas de discovery</em></div>
-                <div class="tech-node"><span class="tech-icon">▧</span><strong>Discovery Task</strong><small>Título · descrição · vínculo com hipótese</small><em>Criação mediante confirmação</em></div>
-              </div>
-            </div>
-            <div class="tech-boundary"><span class="tech-boundary-mark">◎</span><div><strong>Nesta demonstração</strong><p>O portfólio utiliza dados e respostas predefinidos. Não consulta o Azure DevOps, não chama o Azure OpenAI e não cria Work Items reais.</p></div></div>
-          </div>
+          <div class="uml-diagram-wrap"><svg class="uml-architecture" viewBox="0 0 1190 730" role="img" aria-labelledby="umlTitle umlDesc" xmlns="http://www.w3.org/2000/svg"><title id="umlTitle">Arquitetura do Discovery Insights</title><desc id="umlDesc">Diagrama técnico com Work Item, Objective, relacionamentos, extensão, API Node.js, integração Azure OpenAI e Discovery Task.</desc><defs><marker id="umlArrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 Z" fill="#648b96"/></marker></defs><text x="40" y="44" class="uml-layer">01 / CONTEXTO AZURE DEVOPS</text><text x="40" y="278" class="uml-layer">02 / APLICAÇÃO E INTEGRAÇÃO</text><text x="40" y="505" class="uml-layer">03 / RESULTADO</text><g class="uml-edge"><path d="M167 207 V263 H167 V310" marker-end="url(#umlArrow)"/><text x="176" y="255">loads</text></g><g class="uml-edge"><path d="M452 207 V272 H167" marker-end="url(#umlArrow)"/><text x="340" y="264">parent</text></g><g class="uml-edge"><path d="M737 207 V283 H167" marker-end="url(#umlArrow)"/><text x="614" y="276">related</text></g><g class="uml-edge"><path d="M295 370 H325" marker-end="url(#umlArrow)"/><text x="298" y="358">context</text></g><g class="uml-edge"><path d="M580 370 H610" marker-end="url(#umlArrow)"/><text x="584" y="358">request</text></g><g class="uml-edge"><path d="M865 370 H895" marker-end="url(#umlArrow)"/><text x="872" y="358">API</text></g><g class="uml-edge"><path d="M1022 430 V485 H167 V535" marker-end="url(#umlArrow)"/><text x="812" y="476">response</text></g><g class="uml-edge"><path d="M167 647 V680 H452 V647" marker-end="url(#umlArrow)"/><text x="284" y="674">recommends</text></g><g class="uml-edge"><path d="M452 647 V695 H737 V647" marker-end="url(#umlArrow)"/><text x="566" y="690">generates</text></g><g class="uml-entity"><rect x="40" y="95" width="255" height="112" rx="4"/><path d="M40 132H295 M40 172H295"/><text x="55" y="119" class="uml-entity-name">WorkItem</text><text x="55" y="156">Hypothesis / Discovery Task</text><text x="55" y="192">title · description · state</text></g><g class="uml-entity"><rect x="325" y="95" width="255" height="112" rx="4"/><path d="M325 132H580 M325 172H580"/><text x="340" y="119" class="uml-entity-name">ParentObjective</text><text x="340" y="156">Objective / OKR</text><text x="340" y="192">contexto estratégico</text></g><g class="uml-entity"><rect x="610" y="95" width="255" height="112" rx="4"/><path d="M610 132H865 M610 172H865"/><text x="625" y="119" class="uml-entity-name">LinkedWorkItems</text><text x="625" y="156">Relacionamentos</text><text x="625" y="192">child · related</text></g><g class="uml-entity"><rect x="40" y="310" width="255" height="120" rx="4"/><path d="M40 347H295 M40 387H295"/><text x="55" y="334" class="uml-entity-name">ContextLoader</text><text x="55" y="371">Extensão / frontend</text><text x="55" y="407">HTML · CSS · JavaScript</text></g><g class="uml-entity"><rect x="325" y="310" width="255" height="120" rx="4"/><path d="M325 347H580 M325 387H580"/><text x="340" y="334" class="uml-entity-name">Discovery API</text><text x="340" y="371">Backend Node.js</text><text x="340" y="407">/api/ai/analyze</text></g><g class="uml-entity"><rect x="610" y="310" width="255" height="120" rx="4"/><path d="M610 347H865 M610 387H865"/><text x="625" y="334" class="uml-entity-name">AzureOpenAIConnector</text><text x="625" y="371">Endpoint · deployment</text><text x="625" y="407">Autenticação e requisição</text></g><g class="uml-entity"><rect x="895" y="310" width="255" height="120" rx="4"/><path d="M895 347H1150 M895 387H1150"/><text x="910" y="334" class="uml-entity-name">LanguageModel</text><text x="910" y="371">Azure OpenAI</text><text x="910" y="407">Análise e resposta</text></g><g class="uml-entity"><rect x="40" y="535" width="255" height="112" rx="4"/><path d="M40 572H295 M40 612H295"/><text x="55" y="559" class="uml-entity-name">DiscoveryAnalysis</text><text x="55" y="596">Diagnóstico e lacunas</text><text x="55" y="632">fatos · riscos · próximos passos</text></g><g class="uml-entity"><rect x="325" y="535" width="255" height="112" rx="4"/><path d="M325 572H580 M325 612H580"/><text x="340" y="559" class="uml-entity-name">DiscoveryTools</text><text x="340" y="596">Benchmark · entrevista</text><text x="340" y="632">CSD · BPMN · riscos</text></g><g class="uml-entity"><rect x="610" y="535" width="255" height="112" rx="4"/><path d="M610 572H865 M610 612H865"/><text x="625" y="559" class="uml-entity-name">DiscoveryTask</text><text x="625" y="596">Título · descrição</text><text x="625" y="632">criação após confirmação</text></g><g class="uml-note"><rect x="895" y="535" width="255" height="112" rx="4"/><text x="910" y="560">PORTFÓLIO / SIMULAÇÃO</text><text x="910" y="587">Dados e respostas fictícios.</text><text x="910" y="608">Sem chamadas à API real</text><text x="910" y="629">ou criação de Work Items.</text></g></svg></div>
           <p class="flow-footnote">Na demonstração, os dados e as respostas são simulados; nenhuma integração real é acionada.</p>
         </div>
       </div>
