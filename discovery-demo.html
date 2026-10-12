@@ -1225,6 +1225,12 @@ body.demo-modal-open{overflow:hidden!important}
 .ado-sidebar-input{max-width:100%;padding:7px;border:1px solid #dce1e6;font-size:12px}
 .ado-taglist{display:flex;gap:6px}.ado-taglist span{background:#edf2f7;border-radius:3px;padding:4px 8px;color:#536b86}
 @media(max-width:700px){.ado-fidelity .ado-toolbar{flex-wrap:wrap}.ado-fidelity .ado-workitem-body{grid-template-columns:1fr}.ado-wi-head{padding:12px 17px}.ado-wi-title{font-size:18px}.ado-save-status{display:none}}
+
+.ado-simulation-notice{position:fixed;z-index:1100;bottom:22px;left:50%;transform:translateX(-50%);width:min(580px,calc(100% - 36px));display:flex;align-items:flex-start;gap:12px;background:#fff;color:#243b40;border:1px solid #c9dcdd;border-left:3px solid #588184;border-radius:11px;box-shadow:0 12px 36px #162c3840;padding:14px 18px;pointer-events:none;font-family:"Segoe UI",Arial,sans-serif}
+.ado-simulation-notice strong{display:block;font-size:13px;margin-bottom:3px}
+.ado-simulation-notice p{font-size:12px;line-height:1.5;color:#53676b;margin:0}
+.ado-notice-icon{font-size:20px;color:#588184;line-height:1}
+@media(max-width:600px){.ado-simulation-notice{bottom:10px;padding:11px 13px}}
 </style></head>
 
   <body>
@@ -1543,9 +1549,14 @@ body.demo-modal-open{overflow:hidden!important}
       '</main>'+
       '<aside class="ado-aside"><h3>Planning</h3><div><small>Assigned To</small><input class="ado-sidebar-input" placeholder="Unassigned" aria-label="Assigned To"></div><div><small>Area</small><strong>Recoloca</strong></div><div><small>Iteration</small><strong>Produto Digital / Sprint 04</strong></div><h3>Classification</h3><div><small>Tags</small><div class="ado-taglist"><span>Discovery</span><span>AI</span></div></div><h3>Related Work</h3><div><small>Parent</small><strong class="ado-link">Hypothesis 2481</strong><span>[Automatizar pagamento] Como podemos sistematizar a confirmação de pagamentos?</span></div><div><small>Objective</small><strong class="ado-link">2400</strong><span>[OKR-26Q4] Lead-time financeiro</span></div></aside></div>'+
       '<footer class="ado-footer"><span>Ambiente de simulação · Nenhum Work Item foi registrado no Azure DevOps.</span><span>Discovery Insights</span></footer></section>';
+    const notice=document.createElement('aside');
+    notice.className='ado-simulation-notice';
+    notice.setAttribute('role','note');
+    notice.innerHTML='<span class="ado-notice-icon" aria-hidden="true">ⓘ</span><div><strong>Ambiente de simulação</strong><p>Este título e esta descrição são exemplos. No uso real, o conteúdo é gerado pela IA e pode variar conforme o contexto analisado e o retorno do agente.</p></div>';
     document.body.appendChild(modal);
+    document.body.appendChild(notice);
     document.body.classList.add('demo-modal-open');
-    const close=()=>{modal.remove();document.body.classList.remove('demo-modal-open')};
+    const close=()=>{notice.remove();modal.remove();document.body.classList.remove('demo-modal-open')};
     modal.querySelector('.ado-x').addEventListener('click',close);
     modal.querySelector('.ado-done').addEventListener('click',close);
 
