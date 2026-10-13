@@ -882,6 +882,9 @@
   50%{scale:1.12;opacity:1}
 }
 @media(prefers-reduced-motion:reduce){.hero-glow.glow-main,.hero-glow.glow-small{animation:none!important}}
+
+/* Resultados no mobile: coluna de números alinhada e descrição legível */
+@media(max-width:600px){.hero-stats{grid-template-columns:minmax(0,1fr)!important}.hero-stat{display:grid;grid-template-columns:70px minmax(0,1fr)!important;gap:14px;align-items:start}.hero-stat strong{font-size:22px;line-height:1.2}.hero-stat span{min-width:0;max-width:none;overflow-wrap:normal;word-break:normal;font-size:11px;line-height:1.5}}
 </style>
 
   <style id="reference-redesign">
@@ -1696,7 +1699,7 @@
       <div class="hero-stats" aria-label="Resultados em destaque">
         <div class="hero-stat"><strong>4,5</strong><span>de experiência em tecnologia e produto</span></div>
         <div class="hero-stat"><strong>+8</strong><span>iniciativas de produto acompanhadas nos últimos meses</span></div>
-        <div class="hero-stat"><span>média de</span><strong>81%</strong><span>de aderência média dos resultados alcançados</span></div>
+        <div class="hero-stat"><strong>81%</strong><span>de aderência média dos resultados alcançados</span></div>
       </div>
     </section>
 
