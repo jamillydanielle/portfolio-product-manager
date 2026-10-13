@@ -507,6 +507,16 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 #discoveryOverlay .imported-flow .mobile-phase p{background:transparent!important;border-radius:0!important;padding:0!important}
 
 #discoveryOverlay .flow-footnote{color:#747474!important}
+
+/* Aviso de experiência recomendado somente na visualização mobile */
+.mobile-desktop-hint[hidden]{display:none!important}
+.mobile-desktop-hint{display:none}
+@media(max-width:700px){
+ #discoveryOverlay .mobile-desktop-hint:not([hidden]){display:flex;position:absolute;z-index:25;left:50%;bottom:22px;transform:translateX(-50%);width:min(350px,calc(100% - 28px));align-items:center;gap:10px;padding:13px 13px 13px 15px;border:1px solid #ded5f3;border-radius:15px;background:#fff;color:#594288;box-shadow:0 9px 30px rgba(41,27,70,.17);font-size:12px;line-height:1.45}
+ #discoveryOverlay .mobile-desktop-hint svg{flex:0 0 27px}
+ #discoveryOverlay .mobile-desktop-hint span{flex:1}
+ #discoveryOverlay .mobile-desktop-hint button{border:0;background:transparent;color:#7b718d;font-size:21px;line-height:1;cursor:pointer;padding:3px 5px}
+}
 </style>
 </head>
 <body>
@@ -542,7 +552,12 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
       <div class="project-links"><a href="mailto:jamillydanieli@gmail.com?subject=Acesso%20ao%20Discovery%20Insights">Solicitar acesso ao repositório do Github</a></div>
       <div class="demo-fullscreen" id="discoveryOverlay" role="dialog" aria-modal="true" aria-label="Explorar Discovery Insights" hidden>
       <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span class="demo-portfolio-credit">· Portfólio de Jamilly Danielle</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Fechar a demonstração">× Fechar</button></div>
-      <div class="demo-shell" id="discoveryShowcase">
+      <aside class="mobile-desktop-hint" id="mobileDesktopHint" role="note" hidden>
+  <svg viewBox="0 0 32 32" width="27" height="27" fill="none" aria-hidden="true"><rect x="4.5" y="5.5" width="23" height="16" rx="2.8" stroke="currentColor" stroke-width="1.7"/><path d="M16 22v4m-6 1h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 10h14v7H9z" fill="currentColor" opacity=".13"/></svg>
+  <span>Para visualizar melhor, abra pelo computador.</span>
+  <button type="button" id="dismissDesktopHint" aria-label="Dispensar aviso">×</button>
+</aside>
+<div class="demo-shell" id="discoveryShowcase">
         <div class="simulation-ribbon" id="simulationRibbon" role="note" hidden><span class="simulation-status-dot" aria-hidden="true"></span><strong>Ambiente de simulação</strong><span class="simulation-divider" aria-hidden="true">|</span><span>Interaja livremente: os dados são fictícios e nenhuma ação é registrada em sistemas reais.</span></div>
         <div class="demo-stage" id="demoStage" hidden>
           <iframe class="demo-frame" id="discoveryFrame" data-src="./discovery-demo.html" title="Interface do Discovery Insights" loading="eager"></iframe>
@@ -675,6 +690,9 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  const frame=document.getElementById('discoveryFrame');
  const transition=document.getElementById('demoTransition');
  const nav=[...document.querySelectorAll('[data-demo-view]')];
+ const desktopHint=document.getElementById('mobileDesktopHint');
+ let desktopHintDismissed=false;
+ document.getElementById('dismissDesktopHint').addEventListener('click',()=>{desktopHintDismissed=true;desktopHint.hidden=true});
  let starting=false,loading=false,lastFocus=null;
  const routes={intro:'#discovery/apresentacao',simulation:'#discovery/simulacao',structure:'#discovery/estrutura'};
  const initialHash=location.hash&&!Object.values(routes).includes(location.hash)?location.hash:'';
@@ -695,6 +713,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  function open(name='intro',focusClose=true){
    lastFocus=document.activeElement;
    overlay.hidden=false;document.body.classList.add('demo-fullscreen-open');
+   desktopHint.hidden=desktopHintDismissed;
    if(name==='simulation')simulate();else view(name);
    if(focusClose)document.getElementById('closeDiscovery').focus();
  }
