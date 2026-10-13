@@ -523,6 +523,8 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 #discoveryOverlay .demo-exit svg{flex-shrink:0}
 #discoveryOverlay .demo-exit:hover{text-decoration:underline;text-underline-offset:3px}
 @media(max-width:700px){#discoveryOverlay .demo-exit{font-size:11px;max-width:185px;line-height:1.3}}
+
+#discoveryOverlay .mobile-desktop-hint .hint-countdown{display:block;margin-top:4px;font-size:10px;opacity:.8;font-weight:400}
 </style>
 </head>
 <body>
@@ -560,7 +562,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
       <div class="demo-modal-head"><div class="demo-modal-brand"><strong>Discovery Insights</strong><span class="demo-portfolio-credit">· Portfólio de Jamilly Danielle</span></div><nav class="demo-modal-nav" aria-label="Navegação da demonstração"><button type="button" data-demo-view="intro">Apresentação</button><button type="button" data-demo-view="simulation">Simulação</button><button type="button" data-demo-view="structure">Ver estrutura</button></nav><button type="button" class="demo-exit" id="closeDiscovery" aria-label="Voltar a projetos e ferramentas"><svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg><span>Voltar a projetos e ferramentas</span></button></div>
       <aside class="mobile-desktop-hint" id="mobileDesktopHint" role="note" hidden>
   <svg viewBox="0 0 32 32" width="27" height="27" fill="none" aria-hidden="true"><rect x="4.5" y="5.5" width="23" height="16" rx="2.8" stroke="currentColor" stroke-width="1.7"/><path d="M16 22v4m-6 1h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 10h14v7H9z" fill="currentColor" opacity=".13"/></svg>
-  <span>Para visualizar melhor, abra pelo computador.</span>
+  <span>Para visualizar melhor, abra pelo computador.<small class="hint-countdown">Se não fechar, desaparecerá em <b id="discoveryHintCountdown">0:20</b> min.</small></span>
   <button type="button" id="dismissDesktopHint" aria-label="Dispensar aviso">×</button>
 </aside>
 <div class="demo-shell" id="discoveryShowcase">
@@ -698,7 +700,18 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  const nav=[...document.querySelectorAll('[data-demo-view]')];
  const desktopHint=document.getElementById('mobileDesktopHint');
  let desktopHintDismissed=false;
- document.getElementById('dismissDesktopHint').addEventListener('click',()=>{desktopHintDismissed=true;desktopHint.hidden=true});
+ let hintTimer=null;
+ function startHintCountdown(){
+  if(desktopHintDismissed||hintTimer||window.innerWidth>700)return;
+  let remaining=20;
+  hintTimer=window.setInterval(()=>{
+   if(desktopHint.hidden||overlay.hidden){window.clearInterval(hintTimer);hintTimer=null;return}
+   remaining--;
+   document.getElementById('discoveryHintCountdown').textContent='0:'+String(Math.max(0,remaining)).padStart(2,'0');
+   if(remaining<=0){desktopHintDismissed=true;desktopHint.hidden=true;window.clearInterval(hintTimer);hintTimer=null}
+  },1000);
+ }
+ document.getElementById('dismissDesktopHint').addEventListener('click',()=>{desktopHintDismissed=true;desktopHint.hidden=true;if(hintTimer){window.clearInterval(hintTimer);hintTimer=null}});
  let starting=false,loading=false,lastFocus=null;
  const routes={intro:'#discovery/apresentacao',simulation:'#discovery/simulacao',structure:'#discovery/estrutura'};
  const initialHash=location.hash&&!Object.values(routes).includes(location.hash)?location.hash:'';
@@ -720,6 +733,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
    lastFocus=document.activeElement;
    overlay.hidden=false;document.body.classList.add('demo-fullscreen-open');
    desktopHint.hidden=desktopHintDismissed;
+   startHintCountdown();
    if(name==='simulation')simulate();else view(name);
    if(focusClose)document.getElementById('closeDiscovery').focus();
  }
