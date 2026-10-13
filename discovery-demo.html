@@ -1212,6 +1212,18 @@ body{background:#f8f7fd}
 
 /* Fundo neutro da simulação, consistente com apresentação e estrutura */
 body{background:#f7f8fa!important}
+
+/* Header Discovery Insights: respiro e alinhamento no celular */
+@media(max-width:520px){
+ .hero{height:auto;min-height:165px;padding:23px 18px 45px}
+ .hero-content{position:relative;align-items:flex-start;padding-right:0}
+ .hero-title{width:100%;min-width:0;gap:13px;align-items:flex-start;padding-right:38px}
+ .hero-icon{flex:0 0 42px;width:42px!important;height:44px!important;font-size:30px!important;justify-content:center}
+ .hero-title>div{min-width:0}
+ .hero h1{font-size:clamp(19px,5.6vw,24px);line-height:1.2;letter-spacing:-.4px}
+ .hero p{font-size:12px;line-height:1.5;margin-top:8px;max-width:225px}
+ .hero .version{position:absolute;top:2px;right:0;font-size:10px;white-space:nowrap}
+}
 </style>
   <style>body{min-width:0}.tool-card:not(:disabled){cursor:pointer} .context-source-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} @media(max-width:640px){.context-source-list{grid-template-columns:1fr}}
 .context-box-header strong{display:inline-flex;align-items:center;width:fit-content;padding:5px 10px;border-radius:999px;background:#e8f6ee;border:1px solid #cfeada;color:#23764c;font-size:12px;font-weight:650;line-height:1.35}
