@@ -1696,7 +1696,7 @@
 <body>
 <aside class="portfolio-desktop-hint" id="portfolioDesktopHint" role="note">
 <svg viewBox="0 0 32 32" width="27" height="27" fill="none" aria-hidden="true"><rect x="4.5" y="5.5" width="23" height="16" rx="2.8" stroke="currentColor" stroke-width="1.7"/><path d="M16 22v4m-6 1h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 10h14v7H9z" fill="currentColor" opacity=".13"/></svg>
-<span>Para visualizar melhor, abra pelo computador.<small class="hint-countdown">Se não fechar, desaparecerá em <b id="portfolioHintCountdown">0:20</b> min.</small></span>
+<span>Para visualizar melhor, abra pelo computador.<small class="hint-countdown">Se não fechar, desaparecerá em <b id="portfolioHintCountdown">20</b> segundos.</small></span>
 <button type="button" id="dismissPortfolioHint" aria-label="Dispensar aviso">×</button>
 </aside>
   <nav class="side-dashes" aria-label="Navegação rápida">
@@ -2148,7 +2148,7 @@ let portfolioSeconds=20;
 const portfolioTimer=window.setInterval(()=>{
  if(portfolioHint.hidden||window.innerWidth>700){window.clearInterval(portfolioTimer);return;}
  portfolioSeconds--;
- portfolioCountdown.textContent='0:'+String(Math.max(0,portfolioSeconds)).padStart(2,'0');
+ portfolioCountdown.textContent=String(Math.max(0,portfolioSeconds));
  if(portfolioSeconds<=0){portfolioHint.hidden=true;window.clearInterval(portfolioTimer);}
 },1000);
 document.getElementById('dismissPortfolioHint')?.addEventListener('click',()=>{portfolioHint.hidden=true;window.clearInterval(portfolioTimer)});
