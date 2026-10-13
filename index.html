@@ -915,6 +915,15 @@
  .case-visual:has(.auth-chart) .case-kicker{right:14px;line-height:1.4}
  .case-visual:has(.auth-chart) .auth-chart{top:105px}
 }
+
+.portfolio-desktop-hint{display:none}
+@media(max-width:700px){
+.portfolio-desktop-hint{position:fixed;z-index:9999;left:50%;bottom:22px;transform:translateX(-50%);width:min(350px,calc(100% - 28px));display:flex;align-items:center;gap:10px;padding:13px 13px 13px 15px;border:1px solid #c8dada;border-radius:15px;background:#fff;color:#456e70;box-shadow:0 9px 30px rgba(26,45,46,.15);font-size:12px;line-height:1.45}
+.portfolio-desktop-hint svg{flex:0 0 27px}
+.portfolio-desktop-hint span{flex:1}
+.portfolio-desktop-hint button{border:0;background:transparent;color:#7b8585;font-size:21px;line-height:1;cursor:pointer;padding:3px 5px}
+.portfolio-desktop-hint[hidden]{display:none}
+}
 </style>
 
   <style id="reference-redesign">
@@ -1683,6 +1692,11 @@
 </style>
 </head>
 <body>
+<aside class="portfolio-desktop-hint" id="portfolioDesktopHint" role="note">
+<svg viewBox="0 0 32 32" width="27" height="27" fill="none" aria-hidden="true"><rect x="4.5" y="5.5" width="23" height="16" rx="2.8" stroke="currentColor" stroke-width="1.7"/><path d="M16 22v4m-6 1h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><path d="M9 10h14v7H9z" fill="currentColor" opacity=".13"/></svg>
+<span>Para visualizar melhor, abra pelo computador.</span>
+<button type="button" id="dismissPortfolioHint" aria-label="Dispensar aviso">×</button>
+</aside>
   <nav class="side-dashes" aria-label="Navegação rápida">
     <a href="#top" aria-label="Início"></a>
     <a href="#work" aria-label="Cases"></a>
@@ -2125,6 +2139,8 @@ Universidade Federal de Lavras (UFLA).</p>
   toggle.textContent=expanded?'Ver mais...':'Ver menos';
  });
 }
+
+document.getElementById('dismissPortfolioHint')?.addEventListener('click',()=>{document.getElementById('portfolioDesktopHint').hidden=true});
 </script>
 </body>
 </html>
