@@ -484,6 +484,20 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 
 /* Fundo cinza-claro neutro para as três visualizações */
 #discoveryOverlay .demo-intro,#discoveryOverlay .demo-stage,#discoveryOverlay .structure-panel,#discoveryOverlay .demo-shell,#discoveryOverlay .demo-stage .demo-frame{background:#f7f8fa!important}
+
+/* Fluxo animado: deslocamento perceptível das partículas pelas conexões */
+@keyframes discovery-flow-travel{from{stroke-dashoffset:0}to{stroke-dashoffset:-69}}
+#discoveryOverlay .imported-flow .desktop-flow .signal{
+ stroke-dasharray:2 67!important;
+ animation:discovery-flow-travel 3.8s linear infinite!important;
+ opacity:.84!important;
+}
+#discoveryOverlay .imported-flow .desktop-flow .signal:nth-of-type(even){animation-duration:4.6s!important}
+/* Check finalizado limpo, sem fundo roxo no ícone mobile */
+#discoveryOverlay .imported-flow .completed-mobile .mobile-icon{background:#f2edfd!important}
+@media(prefers-reduced-motion:reduce){
+ #discoveryOverlay .imported-flow .desktop-flow .signal{animation:none!important;opacity:0!important}
+}
 </style>
 </head>
 <body>
@@ -591,7 +605,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 </symbol>
 <pattern id="grid" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".65" fill="#ddd2f3"/></pattern>
 <filter id="card-shadow" x="-20%" y="-20%" width="140%" height="150%" color-interpolation-filters="sRGB"><feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/><feOffset in="blur" dx="0" dy="4" result="offset"/><feColorMatrix in="offset" type="matrix" values="0 0 0 0 0.18 0 0 0 0 0.14 0 0 0 0 0.28 0 0 0 .04 0" result="shadow"/><feMerge><feMergeNode in="shadow"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-<marker id="flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="m2 2 6 3-6 3" fill="none" stroke="#b19bd7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></marker><symbol id="i-confirmed" viewBox="0 0 64 64"><circle cx="32" cy="32" r="23" fill="#fff" stroke="#6751a6" stroke-width="2"/><circle cx="32" cy="32" r="17" fill="#eee6ff"/><path d="m21 32 8 8 15-17" fill="none" stroke="#765bda" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs>
+<marker id="flow-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="m2 2 6 3-6 3" fill="none" stroke="#b19bd7" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></marker><symbol id="i-confirmed" viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="#fff"/><path d="m21 32 8 8 15-17" fill="none" stroke="#765bda" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></symbol></defs>
 <rect class="panel" x="24" y="80" width="1192" height="694" rx="28"/><rect class="grid" x="24" y="80" width="1192" height="694" rx="28"/>
 <rect class="panel" x="24" y="882" width="1192" height="700" rx="28"/><rect class="grid" x="24" y="882" width="1192" height="700" rx="28"/>
 <text class="phase-num" x="56" y="43">01</text><text class="phase" x="89" y="44">Análise do contexto</text><rect x="984" y="18" width="198" height="36" rx="18" fill="#f3effd"/><text class="call" x="1083" y="41">1ª chamada · análise</text>
