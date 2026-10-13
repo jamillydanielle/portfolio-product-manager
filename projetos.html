@@ -680,7 +680,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  const initialHash=location.hash&&!Object.values(routes).includes(location.hash)?location.hash:'';
  function routeForHash(){return Object.keys(routes).find(k=>routes[k]===location.hash)||null}
  function saveRoute(name){const target=routes[name];if(target&&location.hash!==target)history.pushState(null,'',target)}
- function syncFromRoute(){const name=routeForHash();if(name){if(overlay.hidden)open(name);else if(name==='simulation')simulate();else view(name)}else if(!overlay.hidden){overlay.hidden=true;document.body.classList.remove('demo-fullscreen-open')}}
+ function syncFromRoute(){const name=routeForHash();if(name){if(overlay.hidden)open(name,false);else if(name==='simulation')simulate();else view(name)}else if(!overlay.hidden){overlay.hidden=true;document.body.classList.remove('demo-fullscreen-open')}}
  window.addEventListener('popstate',syncFromRoute);
  window.addEventListener('hashchange',syncFromRoute);
  function view(name){
@@ -692,11 +692,11 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
    document.getElementById('discoveryShowcase').scrollTop=0;
    if(!overlay.hidden)saveRoute(name);
  }
- function open(name='intro'){
+ function open(name='intro',focusClose=true){
    lastFocus=document.activeElement;
    overlay.hidden=false;document.body.classList.add('demo-fullscreen-open');
    if(name==='simulation')simulate();else view(name);
-   document.getElementById('closeDiscovery').focus();
+   if(focusClose)document.getElementById('closeDiscovery').focus();
  }
  function close(){
    overlay.hidden=true;document.body.classList.remove('demo-fullscreen-open');
