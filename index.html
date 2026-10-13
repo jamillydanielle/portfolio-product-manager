@@ -885,6 +885,17 @@
 
 /* Resultados no mobile: coluna de números alinhada e descrição legível */
 @media(max-width:600px){.hero-stats{grid-template-columns:minmax(0,1fr)!important}.hero-stat{display:grid;grid-template-columns:70px minmax(0,1fr)!important;gap:14px;align-items:start}.hero-stat strong{font-size:22px;line-height:1.2}.hero-stat span{min-width:0;max-width:none;overflow-wrap:normal;word-break:normal;font-size:11px;line-height:1.5}}
+
+/* Iniciativas: mesmas caixas de Outros trabalhos, com expansão */
+.initiatives-section{margin-top:58px}
+.initiative-meta{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.initiative-featured{display:inline-flex;align-items:center;padding:5px 9px;border:1px solid #b9d4d5;border-radius:20px;background:#edf5f5;color:#456e70;font-size:10px;font-weight:700;white-space:nowrap}
+.initiative-card{min-height:155px}
+.initiatives-more[hidden]{display:none!important}
+.initiatives-more{margin-top:14px}
+.initiatives-toggle{display:block;margin:20px auto 0;padding:9px 18px;border:1px solid var(--line);border-radius:9px;background:#fff;color:var(--dark);font:inherit;font-size:12px;font-weight:650;cursor:pointer}
+.initiatives-toggle:hover{background:#f5fafa}
+.initiatives-toggle span{margin-left:5px}
 </style>
 
   <style id="reference-redesign">
@@ -1774,6 +1785,29 @@
       </div>
     </section>
 
+    <section class="section initiatives-section" id="initiatives" aria-labelledby="initiativesTitle">
+      <div class="section-head"><h2 id="initiativesTitle">Iniciativas</h2></div>
+      <div class="micro-grid">
+        <article class="micro initiative-card">
+          <div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured">Em destaque</span></div>
+          <h3>Estruturação dos fluxos de Discovery e Delivery</h3>
+          <p>Apoio à definição e padronização dos fluxos da área de Produto, organizando etapas e movimentações no board.</p>
+        </article>
+        <article class="micro initiative-card">
+          <div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured">Em destaque</span></div>
+          <h3>Padronização da documentação</h3>
+          <p>Estruturação de padrões para documentar demandas e decisões, facilitando o entendimento e a continuidade do trabalho.</p>
+        </article>
+      </div>
+      <div class="initiatives-more" id="initiativesMore" hidden>
+        <div class="micro-grid">
+          <article class="micro initiative-card"><div class="micro-label">Organização</div><h3>Fluxo de trabalho</h3><p>Organização das etapas e práticas de acompanhamento das iniciativas de Produto.</p></article>
+          <article class="micro initiative-card"><div class="micro-label">Azure DevOps</div><h3>Acompanhamento centralizado do board</h3><p>Visão de acompanhamento das iniciativas no Azure DevOps, reunindo informações do andamento em um único lugar.</p></article>
+        </div>
+      </div>
+      <button class="initiatives-toggle" type="button" id="initiativesToggle" aria-expanded="false" aria-controls="initiativesMore">Ver mais <span aria-hidden="true">↓</span></button>
+    </section>
+
     <section class="section" id="experience" style="margin-top: 112px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
       <div class="section-head">
         <h2>Experiência</h2>
@@ -2083,6 +2117,15 @@ Universidade Federal de Lavras (UFLA).</p>
     window.addEventListener("resize", updateActiveSection);
     window.addEventListener("hashchange", updateActiveSection);
     updateActiveSection();
-  </script>
+  
+  const initiativesToggle=document.getElementById('initiativesToggle');
+  const initiativesMore=document.getElementById('initiativesMore');
+  initiativesToggle?.addEventListener('click',()=>{
+    const expanded=initiativesToggle.getAttribute('aria-expanded')==='true';
+    initiativesToggle.setAttribute('aria-expanded',String(!expanded));
+    initiativesMore.hidden=expanded;
+    initiativesToggle.innerHTML=expanded?'Ver mais <span aria-hidden="true">↓</span>':'Ver menos <span aria-hidden="true">↑</span>';
+  });
+</script>
 </body>
 </html>
