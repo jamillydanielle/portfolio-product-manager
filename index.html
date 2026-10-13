@@ -1793,12 +1793,12 @@
       <div class="section-head"><h3 id="initiativesTitle">Iniciativas</h3></div>
       <div class="micro-grid">
         <article class="micro initiative-card">
-          <div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured">Em destaque</span></div>
+          <div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span> Em destaque</span></div>
           <h3>Estruturação dos fluxos de Discovery e Delivery</h3>
           <p>Apoio à definição e padronização dos fluxos da área de Produto, organizando etapas e movimentações no board.</p>
         </article>
         <article class="micro initiative-card">
-          <div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured">Em destaque</span></div>
+          <div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span> Em destaque</span></div>
           <h3>Padronização da documentação</h3>
           <p>Estruturação de padrões para documentar demandas e decisões, facilitando o entendimento e a continuidade do trabalho.</p>
         </article>
@@ -1809,7 +1809,7 @@
           <article class="micro initiative-card"><div class="micro-label">Azure DevOps</div><h3>Acompanhamento centralizado do board</h3><p>Visão de acompanhamento das iniciativas no Azure DevOps, reunindo informações do andamento em um único lugar.</p></article>
         </div>
       </div>
-      <button class="initiatives-toggle" type="button" id="initiativesToggle" aria-expanded="false" aria-controls="initiativesMore">Ver mais <span aria-hidden="true">↓</span></button>
+      <button class="initiatives-toggle" type="button" id="initiativesToggle" aria-expanded="false" aria-controls="initiativesMore">Ver mais</button>
     </section>
 
     <section class="section" id="experience" style="margin-top: 112px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
@@ -2128,7 +2128,7 @@ Universidade Federal de Lavras (UFLA).</p>
     const expanded=initiativesToggle.getAttribute('aria-expanded')==='true';
     initiativesToggle.setAttribute('aria-expanded',String(!expanded));
     initiativesMore.hidden=expanded;
-    initiativesToggle.innerHTML=expanded?'Ver mais <span aria-hidden="true">↓</span>':'Ver menos <span aria-hidden="true">↑</span>';
+    initiativesToggle.innerHTML=expanded?'Ver mais <span aria-hidden="true">↓</span>':'Ver menos';
   });
 </script>
 </body>
