@@ -439,8 +439,10 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 #discoveryOverlay .demo-intro .demo-button.primary{background:#7453c5;border-color:#7453c5;color:#fff}
 #discoveryOverlay .demo-intro .demo-button.outline{background:#fff;color:#7453c5;border-color:#a58cde}
 #discoveryOverlay .demo-intro .demo-button:hover{filter:brightness(.96)}
-#discoveryOverlay .demo-modal-nav button.selected{background:#f0eafd;color:#6444b1}
-#discoveryOverlay .demo-modal-nav button:hover{background:#f5f1fc}
+/* Roxo apenas na apresentação e no carregamento */
+#discoveryOverlay .demo-transition{background:#f8f7fd}
+#discoveryOverlay .transition-spinner{border-color:#e5dcf6;border-top-color:#7956c8}
+#discoveryOverlay .transition-inner strong{color:#6642b1}
 </style>
 </head>
 <body>
@@ -530,6 +532,13 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  const transition=document.getElementById('demoTransition');
  const nav=[...document.querySelectorAll('[data-demo-view]')];
  let starting=false,loading=false,lastFocus=null;
+ const routes={intro:'#discovery/apresentacao',simulation:'#discovery/simulacao',structure:'#discovery/estrutura'};
+ const initialHash=location.hash&&!Object.values(routes).includes(location.hash)?location.hash:'';
+ function routeForHash(){return Object.keys(routes).find(k=>routes[k]===location.hash)||null}
+ function saveRoute(name){const target=routes[name];if(target&&location.hash!==target)history.pushState(null,'',target)}
+ function syncFromRoute(){const name=routeForHash();if(name){if(overlay.hidden)open(name);else if(name==='simulation')simulate();else view(name)}else if(!overlay.hidden){overlay.hidden=true;document.body.classList.remove('demo-fullscreen-open')}}
+ window.addEventListener('popstate',syncFromRoute);
+ window.addEventListener('hashchange',syncFromRoute);
  function view(name){
    intro.hidden=name!=='intro';
    stage.hidden=name!=='simulation';
@@ -537,6 +546,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
    document.getElementById('simulationRibbon').hidden=name!=='simulation';
    nav.forEach(b=>{const active=b.dataset.demoView===name;b.classList.toggle('selected',active);b.setAttribute('aria-current',active?'page':'false')});
    document.getElementById('discoveryShowcase').scrollTop=0;
+   if(!overlay.hidden)saveRoute(name);
  }
  function open(name='intro'){
    lastFocus=document.activeElement;
@@ -546,6 +556,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  }
  function close(){
    overlay.hidden=true;document.body.classList.remove('demo-fullscreen-open');
+   if(routeForHash())history.pushState(null,'',location.pathname+location.search+initialHash);
    if(lastFocus&&typeof lastFocus.focus==='function')lastFocus.focus();
  }
  window.addEventListener('message',event=>{
@@ -582,5 +593,6 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
 
  nav.forEach(b=>b.addEventListener('click',()=>b.dataset.demoView==='simulation'?simulate():view(b.dataset.demoView)));
  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlay.hidden&&!overlay.classList.contains('demo-child-modal-open'))close()});
+ if(routeForHash())syncFromRoute();
 })();
 </script></body></html>
