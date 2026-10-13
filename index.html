@@ -902,6 +902,9 @@
 .initiatives-toggle:hover{background:transparent;color:var(--dark)}
 .initiative-featured{gap:5px}
 .initiative-featured>span:first-child{display:inline-block;line-height:1}
+
+/* Exceção: três trabalhos complementares na mesma linha em telas amplas */
+@media(min-width:900px){#otherMore .other-extra-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 </style>
 
   <style id="reference-redesign">
@@ -1775,7 +1778,7 @@
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Modernização</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Migração de sistema legado</h3><p>Reconstrução de fluxos e requisitos, prototipação, documentação, critérios, priorização, homologação e acompanhamento da adoção.</p><div class="big-result"><span>C#/.NET + Angular → Ruby/Rails + React</span></div></article>
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Cadastro e gestão de clientes</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Digitalização do cadastro de compradores e fornecedores</h3><p>Digitalização do processo de cadastro e automação da identificação de clientes ativos e de prospecção.</p></article>
 </div>
-<div class="initiatives-more" id="otherMore" hidden><div class="micro-grid">
+<div class="initiatives-more" id="otherMore" hidden><div class="micro-grid other-extra-grid">
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Performance</span></div><h3>Problema identificado no acompanhamento de uso</h3><p>Identificação de tela crítica lenta, investigação de requisições desnecessárias e encaminhamento da otimização para priorização.</p><div class="big-result"><strong>5,92 s → ≤ 1,2 s</strong></div></article>
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Crédito</span></div><h3>Motor de cálculo de crédito</h3><p>Estruturação de regras para apoiar o cálculo de crédito e sua aplicação nos processos operacionais.</p></article>
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Logística</span></div><h3>Motor de cálculo de frete e paletização automática</h3><p>Estruturação de regras de cálculo de frete e paletização para apoiar planejamento e automação logística.</p></article>
@@ -1785,7 +1788,7 @@
 <section class="section initiatives-section" id="initiatives" aria-labelledby="initiativesTitle">
 <div class="section-head"><h3 id="initiativesTitle">Iniciativas</h3></div>
 <div class="micro-grid">
-<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Estruturação dos fluxos de Discovery e Delivery</h3><p>Apoio à definição e padronização dos fluxos da área de Produto, incluindo etapas e movimentações do board.</p></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Estruturação dos fluxos de Discovery e Delivery</h3><p>Apoio à definição e padronização dos fluxos de Discovery e Delivery, organizando as etapas, o fluxo de trabalho e as práticas de acompanhamento das iniciativas de Produto no board.</p></article>
 <article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Padronização da documentação</h3><p>Estruturação de padrões para documentar demandas e decisões, facilitando acompanhamento e continuidade do trabalho.</p></article>
 </div>
 <div class="initiatives-more" id="initiativesMore" hidden><div class="micro-grid">
