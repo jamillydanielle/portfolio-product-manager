@@ -1190,6 +1190,10 @@ button {
 body{background:#f8f7fd}
 .context-box-header strong{background:#4f3198!important;border-color:#4f3198!important;color:#fff!important}
 #analyzeButton:not(:disabled),#createDiscoveryTaskButton:not(:disabled){background:#6f54df!important;color:#fff!important;border-color:#6f54df!important}
+
+/* Links para Work Items simulados: cinza neutro e sublinhado */
+.work-item-link,.ado-link{color:#78838f!important;text-decoration:underline!important;text-underline-offset:3px;cursor:pointer}
+.work-item-link:hover,.ado-link:hover{color:#505c6b!important}
 </style>
   <style>body{min-width:0}.tool-card:not(:disabled){cursor:pointer} .context-source-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} @media(max-width:640px){.context-source-list{grid-template-columns:1fr}}
 .context-box-header strong{display:inline-flex;align-items:center;width:fit-content;padding:5px 10px;border-radius:999px;background:#e8f6ee;border:1px solid #cfeada;color:#23764c;font-size:12px;font-weight:650;line-height:1.35}
@@ -1473,7 +1477,7 @@ body.demo-modal-open{overflow:hidden!important}
   const analyzeButton = document.getElementById('analyzeButton');
   const result = document.getElementById('analysisResult');
   const actions = [...document.querySelectorAll('.tool-card')];
-  const link = id => '<span class="work-item-link" style="color:#0078d4">' + id + '</span>';
+  const link = id => '<span class="work-item-link">' + id + '</span>';
   const loadedContext = `<div class="context-box">
     <div class="context-box-header"><strong>✓ Contexto carregado</strong><span>Informações consideradas nesta análise</span></div>
     <div class="context-source-list">
