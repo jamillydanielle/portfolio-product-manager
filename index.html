@@ -900,6 +900,8 @@
 /* Ver mais como link discreto à esquerda */
 .initiatives-toggle{display:inline-flex;align-items:center;margin:17px 0 0;padding:0;border:0;border-radius:0;background:transparent;color:var(--accent-strong);font-size:12px;font-weight:650;text-decoration:underline;text-underline-offset:3px;box-shadow:none}
 .initiatives-toggle:hover{background:transparent;color:var(--dark)}
+.initiative-featured{gap:5px}
+.initiative-featured>span:first-child{display:inline-block;line-height:1}
 </style>
 
   <style id="reference-redesign">
@@ -1768,51 +1770,31 @@
     </section>
 
     <section class="section" id="other">
-      <div class="section-head">
-        <h3>Outros trabalhos</h3>
-      </div>
-
-      <div class="micro-grid">
-        <article class="micro">
-          <div class="micro-label">Modernização</div>
-          <h3>Migração de sistema legado</h3>
-          <p>Reconstrução de fluxos e requisitos, prototipação, documentação, definição de critérios, priorização do que migrava, homologação e acompanhamento da adoção.</p>
-          <div class="big-result"><span>C#/.NET + Angular → Ruby/Rails + React</span></div>
-        </article>
-
-        <article class="micro">
-          <div class="micro-label">Performance</div>
-          <h3>Problema identificado no acompanhamento de uso</h3>
-          <p>Identificação de tela crítica lenta, investigação de requisições desnecessárias, estruturação da necessidade e encaminhamento da otimização para priorização.</p>
-          <div class="big-result"><strong>5,92 s → ≤ 1,2 s</strong></div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section initiatives-section" id="initiatives" aria-labelledby="initiativesTitle">
-      <div class="section-head"><h3 id="initiativesTitle">Iniciativas</h3></div>
-      <div class="micro-grid">
-        <article class="micro initiative-card">
-          <div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span> Em destaque</span></div>
-          <h3>Estruturação dos fluxos de Discovery e Delivery</h3>
-          <p>Apoio à definição e padronização dos fluxos da área de Produto, organizando etapas e movimentações no board.</p>
-        </article>
-        <article class="micro initiative-card">
-          <div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span> Em destaque</span></div>
-          <h3>Padronização da documentação</h3>
-          <p>Estruturação de padrões para documentar demandas e decisões, facilitando o entendimento e a continuidade do trabalho.</p>
-        </article>
-      </div>
-      <div class="initiatives-more" id="initiativesMore" hidden>
-        <div class="micro-grid">
-          <article class="micro initiative-card"><div class="micro-label">Organização</div><h3>Fluxo de trabalho</h3><p>Organização das etapas e práticas de acompanhamento das iniciativas de Produto.</p></article>
-          <article class="micro initiative-card"><div class="micro-label">Azure DevOps</div><h3>Acompanhamento centralizado do board</h3><p>Visão de acompanhamento das iniciativas no Azure DevOps, reunindo informações do andamento em um único lugar.</p></article>
-        </div>
-      </div>
-      <button class="initiatives-toggle" type="button" id="initiativesToggle" aria-expanded="false" aria-controls="initiativesMore">Ver mais</button>
-    </section>
-
-    <section class="section" id="experience" style="margin-top: 112px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
+<div class="section-head"><h3>Outros trabalhos</h3></div>
+<div class="micro-grid">
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Modernização</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Migração de sistema legado</h3><p>Reconstrução de fluxos e requisitos, prototipação, documentação, critérios, priorização, homologação e acompanhamento da adoção.</p><div class="big-result"><span>C#/.NET + Angular → Ruby/Rails + React</span></div></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Cadastro e gestão de clientes</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Digitalização do cadastro de compradores e fornecedores</h3><p>Digitalização do processo de cadastro e automação da identificação de clientes ativos e de prospecção.</p></article>
+</div>
+<div class="initiatives-more" id="otherMore" hidden><div class="micro-grid">
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Performance</span></div><h3>Problema identificado no acompanhamento de uso</h3><p>Identificação de tela crítica lenta, investigação de requisições desnecessárias e encaminhamento da otimização para priorização.</p><div class="big-result"><strong>5,92 s → ≤ 1,2 s</strong></div></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Crédito</span></div><h3>Motor de cálculo de crédito</h3><p>Estruturação de regras para apoiar o cálculo de crédito e sua aplicação nos processos operacionais.</p></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Logística</span></div><h3>Motor de cálculo de frete e paletização automática</h3><p>Estruturação de regras de cálculo de frete e paletização para apoiar planejamento e automação logística.</p></article>
+</div></div>
+<button class="initiatives-toggle" type="button" id="otherToggle" aria-expanded="false" aria-controls="otherMore">Ver mais...</button>
+</section>
+<section class="section initiatives-section" id="initiatives" aria-labelledby="initiativesTitle">
+<div class="section-head"><h3 id="initiativesTitle">Iniciativas</h3></div>
+<div class="micro-grid">
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Processos de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Estruturação dos fluxos de Discovery e Delivery</h3><p>Apoio à definição e padronização dos fluxos da área de Produto, incluindo etapas e movimentações do board.</p></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Governança de Produto</span><span class="initiative-featured"><span aria-hidden="true">★</span><span>Em destaque</span></span></div><h3>Padronização da documentação</h3><p>Estruturação de padrões para documentar demandas e decisões, facilitando acompanhamento e continuidade do trabalho.</p></article>
+</div>
+<div class="initiatives-more" id="initiativesMore" hidden><div class="micro-grid">
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Azure DevOps · Indicadores</span></div><h3>Dashboard centralizado de documentação e métricas</h3><p>Centralização do acompanhamento da documentação e das métricas de Produto em um dashboard do Azure DevOps.</p></article>
+<article class="micro initiative-card"><div class="initiative-meta"><span class="micro-label">Comunicação interna</span></div><h3>Canal centralizado de novidades</h3><p>Iniciativa criada durante o estágio para reunir e compartilhar novidades e comunicados em um canal centralizado, ainda utilizado atualmente.</p></article>
+</div></div>
+<button class="initiatives-toggle" type="button" id="initiativesToggle" aria-expanded="false" aria-controls="initiativesMore">Ver mais...</button>
+</section>
+<section class="section" id="experience" style="margin-top: 112px; border-top: 1px solid color-mix(in srgb, var(--muted) 28%, transparent); padding-top: 42px;">
       <div class="section-head">
         <h2>Experiência</h2>
         <p>Trajetória resumida (os detalhes estão nos principais trabalhos)</p>
@@ -2122,14 +2104,15 @@ Universidade Federal de Lavras (UFLA).</p>
     window.addEventListener("hashchange", updateActiveSection);
     updateActiveSection();
   
-  const initiativesToggle=document.getElementById('initiativesToggle');
-  const initiativesMore=document.getElementById('initiativesMore');
-  initiativesToggle?.addEventListener('click',()=>{
-    const expanded=initiativesToggle.getAttribute('aria-expanded')==='true';
-    initiativesToggle.setAttribute('aria-expanded',String(!expanded));
-    initiativesMore.hidden=expanded;
-    initiativesToggle.innerHTML=expanded?'Ver mais... <span aria-hidden="true">↓</span>':'Ver menos';
-  });
+  for(const [toggleId,moreId] of [['initiativesToggle','initiativesMore'],['otherToggle','otherMore']]){
+ const toggle=document.getElementById(toggleId),content=document.getElementById(moreId);
+ toggle?.addEventListener('click',()=>{
+  const expanded=toggle.getAttribute('aria-expanded')==='true';
+  toggle.setAttribute('aria-expanded',String(!expanded));
+  content.hidden=expanded;
+  toggle.textContent=expanded?'Ver mais...':'Ver menos';
+ });
+}
 </script>
 </body>
 </html>
