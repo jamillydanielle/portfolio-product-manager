@@ -701,19 +701,24 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  const transition=document.getElementById('demoTransition');
  const nav=[...document.querySelectorAll('[data-demo-view]')];
  const desktopHint=document.getElementById('mobileDesktopHint');
- let desktopHintDismissed=false;
+ const hintStorageKey='portfolioDesktopHintHiddenUntil';
+ const hintCooldown=24*60*60*1000;
+ function hintIsOnCooldown(){try{return Number(localStorage.getItem(hintStorageKey)||0)>Date.now()}catch{return false}}
+ function hideHintForNow(){desktopHint.hidden=true;try{localStorage.setItem(hintStorageKey,String(Date.now()+hintCooldown))}catch{}}
+ let desktopHintDismissed=hintIsOnCooldown();
  let hintTimer=null;
  function startHintCountdown(){
   if(desktopHintDismissed||hintTimer||window.innerWidth>700)return;
   let remaining=20;
+  document.getElementById('discoveryHintCountdown').textContent='20';
   hintTimer=window.setInterval(()=>{
    if(desktopHint.hidden||overlay.hidden){window.clearInterval(hintTimer);hintTimer=null;return}
    remaining--;
    document.getElementById('discoveryHintCountdown').textContent=String(Math.max(0,remaining));
-   if(remaining<=0){desktopHintDismissed=true;desktopHint.hidden=true;window.clearInterval(hintTimer);hintTimer=null}
+   if(remaining<=0){desktopHintDismissed=true;hideHintForNow();window.clearInterval(hintTimer);hintTimer=null}
   },1000);
  }
- document.getElementById('dismissDesktopHint').addEventListener('click',()=>{desktopHintDismissed=true;desktopHint.hidden=true;if(hintTimer){window.clearInterval(hintTimer);hintTimer=null}});
+ document.getElementById('dismissDesktopHint').addEventListener('click',()=>{desktopHintDismissed=true;hideHintForNow();if(hintTimer){window.clearInterval(hintTimer);hintTimer=null}});
  let starting=false,loading=false,lastFocus=null;
  const routes={intro:'#discovery/apresentacao',simulation:'#discovery/simulacao',structure:'#discovery/estrutura'};
  const initialHash=location.hash&&!Object.values(routes).includes(location.hash)?location.hash:'';
@@ -734,6 +739,7 @@ header.topbar .brand-text small{font-size:10px;margin-top:3px}
  function open(name='intro',focusClose=true){
    lastFocus=document.activeElement;
    overlay.hidden=false;document.body.classList.add('demo-fullscreen-open');
+   desktopHintDismissed=desktopHintDismissed||hintIsOnCooldown();
    desktopHint.hidden=desktopHintDismissed;
    startHintCountdown();
    if(name==='simulation')simulate();else view(name);
