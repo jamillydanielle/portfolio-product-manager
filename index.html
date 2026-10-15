@@ -2131,7 +2131,7 @@ Universidade Federal de Lavras (UFLA).</p>
         if(window.innerWidth <= 680) return;
         event.preventDefault();
         history.pushState(null, "", "#about");
-        window.scrollTo({top:document.documentElement.scrollHeight - window.innerHeight, behavior:"smooth"});
+        window.scrollTo({top:Math.max(0, document.documentElement.scrollHeight - window.innerHeight - 90), behavior:"smooth"});
         updateActiveSection();
       });
     });
