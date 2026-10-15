@@ -2125,16 +2125,28 @@ Universidade Federal de Lavras (UFLA).</p>
       });
     }
 
-    // Na seção Sobre, mostrar também o rodapé em telas maiores.
+    // Manter o título "Sobre" visível abaixo do cabeçalho em qualquer altura de tela.
+    function scrollToAbout(behavior = "smooth"){
+      const section = document.getElementById("about");
+      const header = document.querySelector(".topbar");
+      if(!section) return;
+      const offset = (header?.getBoundingClientRect().height || 80) + 24;
+      const target = Math.max(0, window.scrollY + section.getBoundingClientRect().top - offset);
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      // A seção fica perto do fim da página: permitir espaço para alinhar o título.
+      document.body.style.paddingBottom = Math.max(0, target - maxScroll + 16) + "px";
+      window.scrollTo({top:target, behavior});
+    }
     document.querySelectorAll('a[href="#about"]').forEach(link => {
       link.addEventListener("click", event => {
-        if(window.innerWidth <= 680) return;
         event.preventDefault();
         history.pushState(null, "", "#about");
-        window.scrollTo({top:Math.max(0, document.documentElement.scrollHeight - window.innerHeight - 90), behavior:"smooth"});
-        updateActiveSection();
+        scrollToAbout();
       });
     });
+    if(location.hash === "#about"){
+      window.addEventListener("load", () => scrollToAbout("instant"), {once:true});
+    }
     window.addEventListener("scroll", updateActiveSection, {passive:true});
     window.addEventListener("resize", updateActiveSection);
     window.addEventListener("hashchange", updateActiveSection);
