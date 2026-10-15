@@ -3,20 +3,61 @@
 <title>Portfólio completo · Jamilly Danielle</title>
 <style>
 :root{font-family:Arial,Helvetica,sans-serif;color:#102b2d;background:#fff}
-*{box-sizing:border-box}body{margin:0 auto;max-width:850px;padding:40px 36px;line-height:1.55}
-h1{font-size:28px;margin:0}h2{font-size:21px;border-bottom:1px solid #bad0d0;padding-bottom:7px;margin:28px 0 14px}
-h3{font-size:17px;margin:20px 0 8px}p,li{font-size:13px}a{color:#24585d}
-.note{color:#5a7072;font-size:13px}.controls{display:flex;align-items:center;gap:14px;margin-bottom:30px}
-button{padding:11px 18px;background:#102b2d;border:0;border-radius:7px;color:#fff;cursor:pointer;font-weight:700}
-.block{margin-bottom:28px}.block > div > *{max-width:100%}
-section,article{break-inside:avoid-page}img{max-width:100%;max-height:320px;object-fit:contain}
-svg,canvas,iframe,video,.modal,.topbar,.hero-glow-wrap,.portrait-column,.side-dashes,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.portfolio-desktop-hint,.close,.contact-btn,.main-nav,.actions,.back,.hero-art{display:none!important}
-[hidden]{display:block!important} .print-hidden{display:none!important}
+*{box-sizing:border-box}
+body{margin:0 auto;max-width:850px;padding:32px 38px;line-height:1.55;font-size:13px}
+h1{font-size:28px;line-height:1.2;margin:0 0 6px}
+h2{font-size:19px;line-height:1.3;border-bottom:1px solid #c7dada;padding:0 0 7px;margin:26px 0 15px}
+h3{font-size:15px;line-height:1.4;margin:16px 0 6px}
+h4{font-size:14px;margin:12px 0 5px}
+p{margin:0 0 9px}li{margin:0 0 5px}ul,ol{margin:6px 0 12px;padding-left:20px}
+a{color:#24585d;overflow-wrap:anywhere}
+strong,b{font-weight:700}
+.note{color:#5a7072;font-size:12px;margin:0 0 20px}
+.controls{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:30px;padding-bottom:14px;border-bottom:1px solid #dbe7e7}
+.controls .note{margin:0}
+.control-button{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;padding:10px 15px;background:#102b2d;border:1px solid #102b2d;border-radius:7px;color:#fff;cursor:pointer;font-weight:700;font-size:12px}
+.control-button.secondary{background:#fff;color:#102b2d}
+.block{margin:0 0 26px}
+.block>h2{margin-top:0}
+.block>div,.block>section,.block>article{margin:0 0 16px}
+.block section{margin:0 0 17px}
+.block article{margin:0 0 14px;padding:0 0 11px;border-bottom:1px solid #ecf1f1}
+.block article:last-child{border:0}
+.block .section-head{margin-bottom:12px}
+.block .section-head h2{font-size:16px;border:0;padding:0;margin:0 0 6px}
+.block .section-head p{margin:0}
+.block .about-grid,.block .work-grid,.block .micro-grid,.block .hero-stats,.block .quick,.block .experience{display:block}
+.block .hero-stat,.block .quick-card,.block .micro,.block .exp-row{display:block;margin:0 0 11px}
+.block .editorial-impact,.block .big-result{margin:7px 0 0}
+.block .skill{margin-bottom:10px}
+.block .skill b{display:block}
+.block .skill span{display:block}
+.block .about-footer{margin-top:18px}
+.block .about-footer h2{font-size:16px}
+.block .project-heading-row,.block .project-heading-actions{display:block}
+.block .project-links{margin:8px 0 12px}
+.block .project-title-inline small{font-size:12px;font-weight:400}
+.block .project-title-inline{margin:0 0 10px}
+.block .case-title-link,.block .project-title-button{font:inherit;color:inherit}
+.block .actions,.block .tags{display:none}
+.block img{max-width:100%;height:auto;max-height:270px;object-fit:contain}
+.block [hidden]{display:none!important}
+svg,canvas,iframe,video,.modal,.topbar,.hero-glow-wrap,.portrait-column,.side-dashes,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.portfolio-desktop-hint,.close,.contact-btn,.main-nav,.actions,.back,.hero-art,.simulation-info-wrap,.demo-stage,.demo-shell,.demo-cover,.simulation-ribbon,.demo-transition{display:none!important}
+article,.exp-row,.micro,.quick-card,.skill{break-inside:avoid-page}
+p,li{orphans:3;widows:3}
+h1,h2,h3,h4{break-after:avoid-page}
 @page{size:A4;margin:15mm}
-@media print{body{padding:0;max-width:100%}.controls{display:none}h2{break-after:avoid}a{text-decoration:none}}
+@media print{
+ body{max-width:none;padding:0;font-size:11pt;line-height:1.45;print-color-adjust:exact}
+ .controls{display:none!important}
+ .block{margin-bottom:18px}
+ .block>div,.block>section,.block>article{margin-bottom:11px}
+ h2{margin-top:18px}
+ a{text-decoration:none}
+}
 </style></head>
 <body>
-<div class="controls"><button type="button" id="save">Salvar como PDF</button><span class="note">Na janela de impressão, escolha “Salvar como PDF”.</span></div>
+<div class="controls"><a href="./index.html" class="control-button secondary">← Voltar ao portfólio</a><button class="control-button" type="button" id="save">Salvar como PDF</button><span class="note">Na impressão, escolha “Salvar como PDF”.</span></div>
 <h1>Jamilly Danielle</h1><p class="note">Product Manager · Portfólio completo · jamillydanielle.com</p>
 <div id="output"><p>Carregando as informações do portfólio…</p></div>
 <script>
@@ -35,8 +76,13 @@ svg,canvas,iframe,video,.modal,.topbar,.hero-glow-wrap,.portrait-column,.side-da
       for(const el of els){
         if(!el)continue;
         const copy=el.cloneNode(true);
-        copy.querySelectorAll("script,style,button,svg,canvas,iframe,video,form,nav,aside,.modal,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.close,.portfolio-desktop-hint,.side-dashes").forEach(e=>e.remove());
-        copy.querySelectorAll("[hidden]").forEach(e=>e.removeAttribute("hidden"));
+        copy.querySelectorAll("button").forEach(button=>{
+          const span=copy.ownerDocument.createElement("span");
+          span.textContent=button.textContent.trim();
+          button.replaceWith(span);
+        });
+        copy.querySelectorAll("script,style,svg,canvas,iframe,video,form,nav,aside,.modal,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.simulation-info-wrap,.project-heading-actions,.close,.portfolio-desktop-hint,.side-dashes").forEach(e=>e.remove());
+        copy.querySelectorAll("[hidden]").forEach(e=>{if(!e.matches(".initiatives-more,.other-more,#initiativesMore,#otherMore")) e.remove();else e.removeAttribute("hidden")});
         copy.querySelectorAll("[style]").forEach(e=>e.removeAttribute("style"));
         copy.querySelectorAll("a[href]").forEach(a=>{const href=a.getAttribute("href");if(href&&!href.startsWith("#")){try{a.href=new URL(href,location.href).href}catch(_){}}});
         copy.querySelectorAll("img[src]").forEach(img=>{try{img.src=new URL(img.getAttribute("src"),location.href).href}catch(_){}});
