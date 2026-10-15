@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio completo · Jamilly Danielle</title>
+<style>
+:root{font-family:Arial,Helvetica,sans-serif;color:#102b2d;background:#fff}
+*{box-sizing:border-box}body{margin:0 auto;max-width:850px;padding:40px 36px;line-height:1.55}
+h1{font-size:28px;margin:0}h2{font-size:21px;border-bottom:1px solid #bad0d0;padding-bottom:7px;margin:28px 0 14px}
+h3{font-size:17px;margin:20px 0 8px}p,li{font-size:13px}a{color:#24585d}
+.note{color:#5a7072;font-size:13px}.controls{display:flex;align-items:center;gap:14px;margin-bottom:30px}
+button{padding:11px 18px;background:#102b2d;border:0;border-radius:7px;color:#fff;cursor:pointer;font-weight:700}
+.block{margin-bottom:28px}.block > div > *{max-width:100%}
+section,article{break-inside:avoid-page}img{max-width:100%;max-height:320px;object-fit:contain}
+svg,canvas,iframe,video,.modal,.topbar,.hero-glow-wrap,.portrait-column,.side-dashes,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.portfolio-desktop-hint,.close,.contact-btn,.main-nav,.actions,.back,.hero-art{display:none!important}
+[hidden]{display:block!important} .print-hidden{display:none!important}
+@page{size:A4;margin:15mm}
+@media print{body{padding:0;max-width:100%}.controls{display:none}h2{break-after:avoid}a{text-decoration:none}}
+</style></head>
+<body>
+<div class="controls"><button type="button" id="save">Salvar como PDF</button><span class="note">Na janela de impressão, escolha “Salvar como PDF”.</span></div>
+<h1>Jamilly Danielle</h1><p class="note">Product Manager · Portfólio completo · jamillydanielle.com</p>
+<div id="output"><p>Carregando as informações do portfólio…</p></div>
+<script>
+(async()=>{
+ const box=document.getElementById("output");
+ try{
+   const pages=await Promise.all(["index.html","projetos.html"].map(async path=>{
+      const response=await fetch(path,{cache:"no-store"});
+      if(!response.ok)throw new Error("Não foi possível carregar "+path);
+      return new DOMParser().parseFromString(await response.text(),"text/html");
+   }));
+   box.replaceChildren();
+   function appendSection(title,els){
+      const sec=document.createElement("section");sec.className="block";
+      const heading=document.createElement("h2");heading.textContent=title;sec.append(heading);
+      for(const el of els){
+        if(!el)continue;
+        const copy=el.cloneNode(true);
+        copy.querySelectorAll("script,style,button,svg,canvas,iframe,video,form,nav,aside,.modal,.demo-fullscreen,.demo-hover-preview,.demo-preview-trigger,.close,.portfolio-desktop-hint,.side-dashes").forEach(e=>e.remove());
+        copy.querySelectorAll("[hidden]").forEach(e=>e.removeAttribute("hidden"));
+        copy.querySelectorAll("[style]").forEach(e=>e.removeAttribute("style"));
+        copy.querySelectorAll("a[href]").forEach(a=>{const href=a.getAttribute("href");if(href&&!href.startsWith("#")){try{a.href=new URL(href,location.href).href}catch(_){}}});
+        copy.querySelectorAll("img[src]").forEach(img=>{try{img.src=new URL(img.getAttribute("src"),location.href).href}catch(_){}});
+        sec.append(copy);
+      }
+      box.append(sec);
+   }
+   const [home,projects]=pages;
+   appendSection("Apresentação e principais trabalhos",[
+      home.querySelector(".hero-copy"),home.querySelector(".hero-stats"),
+      home.querySelector(".quick"),home.querySelector("#work"),
+      home.querySelector("#other"),home.querySelector("#initiatives"),
+      home.querySelector("#experience"),home.querySelector("#about")
+   ]);
+   // Os detalhes que aparecem em modais também fazem parte dos projetos.
+   const modalDetails=[...home.querySelectorAll(".modal-content,.case-detail,.modal-body")].filter(e=>e.textContent.trim().length>40);
+   if(modalDetails.length) appendSection("Detalhamento dos projetos",modalDetails);
+   const projectSections=[...projects.querySelectorAll("main > section,main > article")].filter(e=>!e.matches(".demo-fullscreen")&&e.textContent.trim().length>30);
+   appendSection("Projetos e ferramentas",projectSections);
+   document.getElementById("save").addEventListener("click",()=>window.print());
+ }catch(err){
+   box.innerHTML="<p>Não foi possível reunir as páginas. Acesse esta opção pelo site publicado e tente novamente.</p>";
+ }
+})();
+</script></body></html>
