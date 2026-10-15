@@ -932,6 +932,10 @@
 }
 
 .portfolio-desktop-hint .hint-countdown{display:block;margin-top:4px;font-size:10px;opacity:.8;font-weight:400}
+
+/* Acesso secundário à versão imprimível do portfólio */
+.portfolio-pdf-link{font-size:12px;color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.portfolio-pdf-link:hover{color:var(--dark)}
 </style>
 
   <style id="reference-redesign">
@@ -1730,7 +1734,7 @@
         <a href="#experience">Experiência</a><span class="nav-dot"> ∙ </span>
         <a href="#about">Sobre</a>
       </nav>
-      <div class="header-actions"><a class="contact-btn download-btn" href="./baixar.html">Baixar portfólio</a><a class="contact-btn" href="mailto:jamillydant@gmail.com">Contate-me</a></div>
+      <div class="header-actions"><a class="contact-btn download-btn" href="https://drive.google.com/file/d/1sCcfWPAg8clpsqfQPOOuIswsguz6kfn-/view?usp=sharing" target="_blank" rel="noopener noreferrer">Currículo</a><a class="portfolio-pdf-link" href="./baixar.html">Portfólio em PDF</a><a class="contact-btn" href="mailto:jamillydant@gmail.com">Contate-me</a></div>
     </header>
 
     
@@ -2171,14 +2175,21 @@ Universidade Federal de Lavras (UFLA).</p>
 
 const portfolioHint=document.getElementById('portfolioDesktopHint');
 const portfolioCountdown=document.getElementById('portfolioHintCountdown');
+const hintStorageKey='portfolioDesktopHintHiddenUntil';
+const hintCooldown=24*60*60*1000;
+function hintIsOnCooldown(){try{return Number(localStorage.getItem(hintStorageKey)||0)>Date.now()}catch{return false}}
+function hideHintForNow(){portfolioHint.hidden=true;try{localStorage.setItem(hintStorageKey,String(Date.now()+hintCooldown))}catch{}}
+if(hintIsOnCooldown())portfolioHint.hidden=true;
 let portfolioSeconds=20;
-const portfolioTimer=window.setInterval(()=>{
- if(portfolioHint.hidden||window.innerWidth>700){window.clearInterval(portfolioTimer);return;}
- portfolioSeconds--;
- portfolioCountdown.textContent=String(Math.max(0,portfolioSeconds));
- if(portfolioSeconds<=0){portfolioHint.hidden=true;window.clearInterval(portfolioTimer);}
-},1000);
-document.getElementById('dismissPortfolioHint')?.addEventListener('click',()=>{portfolioHint.hidden=true;window.clearInterval(portfolioTimer)});
+let portfolioTimer=null;
+if(!portfolioHint.hidden&&window.innerWidth<=700){
+ portfolioTimer=window.setInterval(()=>{
+  portfolioSeconds--;
+  portfolioCountdown.textContent=String(Math.max(0,portfolioSeconds));
+  if(portfolioSeconds<=0){hideHintForNow();clearInterval(portfolioTimer)}
+ },1000);
+}
+document.getElementById('dismissPortfolioHint')?.addEventListener('click',()=>{hideHintForNow();if(portfolioTimer)clearInterval(portfolioTimer)});
 </script>
 </body>
 </html>
