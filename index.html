@@ -936,6 +936,15 @@
 /* Acesso secundário à versão imprimível do portfólio */
 .portfolio-pdf-link{font-size:12px;color:var(--accent-dark);text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
 .portfolio-pdf-link:hover{color:var(--dark)}
+
+/* Cabeçalho mobile: marca na primeira linha e ações alinhadas na segunda */
+@media(max-width:700px){
+ .topbar{height:auto!important;min-height:64px!important;grid-template-columns:minmax(0,1fr)!important;gap:12px!important;padding:12px 0!important}
+ .topbar .brand{min-width:0}
+ .topbar .header-actions{width:100%;display:flex;justify-content:flex-start;align-items:center;gap:10px;flex-wrap:wrap}
+ .topbar .header-actions .portfolio-pdf-link{margin-right:0;font-size:11px;white-space:nowrap}
+ .topbar .header-actions .contact-btn{min-height:34px;padding:0 11px;font-size:11px!important;white-space:nowrap}
+}
 </style>
 
   <style id="reference-redesign">
