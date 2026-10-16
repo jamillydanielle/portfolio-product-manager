@@ -2138,7 +2138,10 @@ Universidade Federal de Lavras (UFLA).</p>
     });
 
     closeModal.addEventListener("click", closeCase);
-    // A modal fecha exclusivamente pelo botão X.
+    // A modal fecha pelo botão X ou pela tecla Esc; clique fora não fecha.
+    document.addEventListener("keydown", (event) => {
+      if(event.key === "Escape" && modal.classList.contains("open")) closeCase();
+    });
 
     const navLinks = [...document.querySelectorAll(".side-dashes a")];
     const trackedSections = ["work","experience","about"]
